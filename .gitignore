@@ -6,6 +6,8 @@
 # compiled output
 dist/
 tmp/
+/out-tsc
+/bazel-out
 app/**/*.js
 app/**/*.js.map
 
@@ -339,4 +341,13 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/angular,webstorm,webstorm+all,webstorm+iml,sass,visualstudiocode
+# Node
+yarn-error.log
+
+# IDEs and editors
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
