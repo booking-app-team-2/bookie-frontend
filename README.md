@@ -1,5 +1,5 @@
-# bookie-frontend
-Frontend app for bookie.
+# Bookie
+Frontend app for Bookie.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
 
