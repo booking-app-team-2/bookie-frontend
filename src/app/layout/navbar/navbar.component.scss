@@ -1,0 +1,46 @@
+mat-toolbar {
+  height: 10%;
+  min-height: 75px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 10px 10px 10px 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#logo-container {
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: -10px;
+}
+
+#logo-container:hover {
+  cursor: pointer;
+}
+
+#image-container {
+  height: 100%;
+  aspect-ratio: 1;
+  background-image: url("../../../assets/images/bookie-final.svg");
+  @media (prefers-color-scheme: dark) {
+    // TODO: Add dark bookie variant
+    background-image: url("../../../assets/images/bookie-final.svg");
+  }
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#bookie-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  font: 2em "Diskopia Dots";
+  margin-left: -8%;
+}
+
+#buttons-container {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+}

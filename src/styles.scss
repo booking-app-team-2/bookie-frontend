@@ -223,56 +223,13 @@ $bookie-light-accent: mat.define-palette($bookie-orange-palette, 700, 500, 900);
 $bookie-light-warn: mat.define-palette($bookie-cyan-palette, 100, 50, 200);
 
 // Bookie dark theme palettes
-$bookie-dark-primary: mat.define-palette($bookie-purple-palette, 700, 500, 900);
+$bookie-dark-primary: mat.define-palette($bookie-purple-palette, 800, 600, 900);
 $bookie-dark-accent: mat.define-palette($bookie-magenta-palette, 700, 500, 900);
 $bookie-dark-warn: mat.define-palette($bookie-yellow-palette, 600, 500, 700);
 
 // Bookie typography
 $bookie-typography-config: mat.define-typography-config(
-  $headline-1: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $headline-2: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $headline-3: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $headline-4: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $headline-5: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $headline-6: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $subtitle-1: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $subtitle-2: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $body-1: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $body-2: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
-  $caption: mat.define-typography-level(
-    $font-size: 2em,
-    $font-family: Rubik,
-  ),
+  // TODO: Add fonts for other types of texts (see angular material typography guide)
   $button: mat.define-typography-level(
     $font-size: 1em,
     $font-family: Rubik,
@@ -314,4 +271,8 @@ $bookie-dark-theme: mat.define-dark-theme((
 html, body { height: 100%; }
 body {
   margin: 0;
+  background-color: white;
+  @media (prefers-color-scheme: dark) {
+    background-color: black;
+  }
 }
