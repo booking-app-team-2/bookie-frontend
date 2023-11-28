@@ -227,6 +227,58 @@ $bookie-dark-primary: mat.define-palette($bookie-purple-palette, 700, 500, 900);
 $bookie-dark-accent: mat.define-palette($bookie-magenta-palette, 700, 500, 900);
 $bookie-dark-warn: mat.define-palette($bookie-yellow-palette, 600, 500, 700);
 
+// Bookie typography
+$bookie-typography-config: mat.define-typography-config(
+  $headline-1: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $headline-2: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $headline-3: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $headline-4: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $headline-5: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $headline-6: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $subtitle-1: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $subtitle-2: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $body-1: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $body-2: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $caption: mat.define-typography-level(
+    $font-size: 2em,
+    $font-family: Rubik,
+  ),
+  $button: mat.define-typography-level(
+    $font-size: 1em,
+    $font-family: Rubik,
+  ),
+);
+
 // Bookie light theme
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
@@ -235,7 +287,8 @@ $bookie-light-theme: mat.define-light-theme((
     primary: $bookie-light-primary,
     accent: $bookie-light-accent,
     warn: $bookie-light-warn,
-  )
+  ),
+  typography: $bookie-typography-config
 ));
 
 // Bookie dark theme
@@ -253,10 +306,12 @@ $bookie-dark-theme: mat.define-dark-theme((
 @include mat.all-component-themes($bookie-light-theme);
 
 @media (prefers-color-scheme: dark) {
-  @include mat.all-component-themes($bookie-dark-theme);
+  @include mat.all-component-colors($bookie-dark-theme);
 }
 
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+}
