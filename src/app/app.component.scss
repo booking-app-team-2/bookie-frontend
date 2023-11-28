@@ -1,0 +1,39 @@
+#page-holder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#content-holder{
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+#inner-holder {
+  width: 80%;
+  height: 100%;
+
+  // TODO: Set right colours
+  background-color: black;
+  @media (prefers-color-scheme: dark) {
+    background-color: white;
+  }
+  position: relative;
+}
+
+#inner-holder:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  box-shadow: 0 0 50px black;
+  @media (prefers-color-scheme: dark) {
+    box-shadow: 0 0 50px white;
+  }
+}
