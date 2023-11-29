@@ -26,7 +26,7 @@ import {MatBadgeModule} from "@angular/material/badge";
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   exports: [
     MatToolbarModule,
@@ -43,7 +43,7 @@ import {MatBadgeModule} from "@angular/material/badge";
     MatInputModule,
     MatIconModule,
     MatBadgeModule,
-    MatDialogModule
+    MatDialogModule,
   ]
 })
 export class MaterialModule { }

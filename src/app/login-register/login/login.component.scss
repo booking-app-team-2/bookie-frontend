@@ -1,0 +1,51 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card-header{
+  padding: 20px
+}
+
+.bookie-quirky {
+  margin-right: 20px;
+}
+
+.login-card {
+  background-color: transparent;
+  box-shadow: none;
+  width: 300px;
+  color: #c2211e;
+  padding: 20px;
+  margin: 50px;
+  text-align: center;
+  font-family: Rubik;
+  @media (prefers-color-scheme: dark) {
+    color: #631785;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.a {
+  color: #cf2825;;
+  text-decoration: none;
+}
+
+.a:hover {
+  color: #c0350c;
+  text-decoration: underline;
+}
+
+.a:visited{
+  color: #e26c00;
+}
+
+.button {
+  background-color: #cf2825;
+  color: #f2e4f2;
+}
