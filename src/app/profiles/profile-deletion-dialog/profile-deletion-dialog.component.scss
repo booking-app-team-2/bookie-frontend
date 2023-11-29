@@ -1,0 +1,45 @@
+button[mat-raised-button] {
+  font-size: 1.5em;
+  border-radius: 10px;
+  height: 50px;
+  flex-grow: 1;
+}
+
+#content-holder {
+  width: 25vw;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 10px 10px 10px 10px;
+  background-color: #FDF5EC;
+  @media (prefers-color-scheme: dark) {
+    background-color: #171123;
+  }
+}
+
+#bookie-holder {
+  width: 200px;
+  height: 200px;
+  background: url("../../../assets/images/bookie-sad.svg") no-repeat;
+  background-size: 100% 100%;
+  align-self: center;
+}
+
+#text-holder {
+  font: 1.2em Rubik;
+  color: black;
+  @media (prefers-color-scheme: dark) {
+    color: #FDF5EC;
+  }
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+}
+
+#button-holder {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 10px;
+}
