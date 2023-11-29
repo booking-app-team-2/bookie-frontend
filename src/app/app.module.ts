@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {LayoutModule} from "./layout/layout.module";
 import {FormsModule} from "@angular/forms";
-
+import { ProfilesModule } from "./profiles/profiles.module";
 
 
 @NgModule({
@@ -18,6 +18,7 @@ import {FormsModule} from "@angular/forms";
     BrowserAnimationsModule,
     LayoutModule,
     FormsModule,
+    ProfilesModule
   ],
   providers: [
     provideClientHydration()

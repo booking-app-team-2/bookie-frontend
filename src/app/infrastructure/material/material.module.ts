@@ -9,6 +9,9 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatCardModule} from "@angular/material/card";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatBadgeModule} from "@angular/material/badge";
+
 
 @NgModule({
   declarations: [],
@@ -22,7 +25,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatDividerModule,
     MatCardModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
   ],
   exports: [
     MatToolbarModule,
@@ -32,7 +36,14 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatFormFieldModule,
     MatDividerModule,
     MatCardModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

@@ -1,0 +1,24 @@
+button[mat-raised-button] {
+  font-size: 1.5em;
+  border-radius: 10px;
+  height: 50px;
+  flex-grow: 1;
+}
+
+#content-holder {
+  width: 25vw;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 10px 10px 10px 10px;
+  background-color: #FDF5EC;
+  @media (prefers-color-scheme: dark) {
+    background-color: #171123;
+  }
+}
+
+#button-holder {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 10px;
+}
