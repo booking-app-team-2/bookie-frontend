@@ -4,7 +4,7 @@ import {AccommodationDetailsScreenComponent} from "./layout/accommodation-detail
 import {MainScreenComponent} from "./layout/main-screen/main-screen.component";
 
 const routes: Routes = [
-  { path: 'main', component: MainScreenComponent },
+  { path: '', component: MainScreenComponent },
   { path: 'details', component: AccommodationDetailsScreenComponent }
 ];
 
