@@ -12,7 +12,6 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  z-index: -1;
 }
 
 #inner-holder {
@@ -34,7 +33,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: -2;
   box-shadow: 0 0 50px #FDF5EC;
   @media (prefers-color-scheme: dark) {
     box-shadow: 0 0 50px #171123;
