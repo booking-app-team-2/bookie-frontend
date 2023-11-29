@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-
+  userType: string = 'guest';
+  userName: string = 'Bookie';
 }

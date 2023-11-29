@@ -39,8 +39,9 @@ mat-toolbar {
   margin-left: -8%;
 }
 
-#buttons-container {
+.buttons-container {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   gap: 10px;
 }
