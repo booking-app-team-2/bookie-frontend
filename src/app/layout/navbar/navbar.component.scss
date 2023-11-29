@@ -1,11 +1,13 @@
 mat-toolbar {
-  height: 10%;
+  height: 5vh;
   min-height: 75px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   padding: 10px 10px 10px 10px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  z-index: 99;
 }
 
 #logo-container {
@@ -28,7 +30,7 @@ mat-toolbar {
     background-image: url("../../../assets/images/bookie-final.svg");
   }
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100%, 100%;
 }
 
 #bookie-container {
@@ -36,7 +38,7 @@ mat-toolbar {
   flex-flow: column nowrap;
   justify-content: center;
   font: 2em "Diskopia Dots";
-  margin-left: -8%;
+  margin-left: -6%;
 }
 
 #buttons-container {
