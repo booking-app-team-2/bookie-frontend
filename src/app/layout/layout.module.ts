@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import {MaterialModule} from "../infrastructure/material/material.module";
-import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import {AccommodationCardComponent} from "./accommodation-card/accommodation-card.component";
 import {MatInputModule} from "@angular/material/input";
@@ -27,7 +26,6 @@ import { ReviewCardComponent } from './review-card/review-card.component';
   imports: [
     CommonModule,
     MaterialModule,
-    MatButtonModule,
     RouterLink,
     MatInputModule,
     FormsModule,

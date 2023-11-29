@@ -1,0 +1,14 @@
+<div id="content-holder">
+  <mat-form-field appearance="outline" color="primary">
+    <mat-label>Email</mat-label>
+    <input matInput value="{{data.email}}">
+  </mat-form-field>
+  <mat-form-field appearance="outline" color="primary">
+    <mat-label>Telephone</mat-label>
+    <input matInput value="{{data.telephone}}">
+  </mat-form-field>
+  <div id="button-holder">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">Confirm</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+  </div>
+</div>

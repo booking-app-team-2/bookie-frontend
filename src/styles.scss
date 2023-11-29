@@ -227,12 +227,27 @@ $bookie-dark-primary: mat.define-palette($bookie-purple-palette, 800, 600, 900);
 $bookie-dark-accent: mat.define-palette($bookie-magenta-palette, 700, 500, 900);
 $bookie-dark-warn: mat.define-palette($bookie-yellow-palette, 600, 500, 700);
 
+// Bookie fonts
+@font-face {
+  font-family: "Rubik";
+  src: url(./assets/fonts/Rubik-W92V.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Diskopia Dots";
+  src: url(./assets/fonts/DiskopiaDots-2Ow4o.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 // Bookie typography
 $bookie-typography-config: mat.define-typography-config(
   // TODO: Add fonts for other types of texts (see angular material typography guide)
   $button: mat.define-typography-level(
     $font-size: 1em,
-    $font-family: Rubik,
+    $font-family: "Rubik",
   ),
 );
 
