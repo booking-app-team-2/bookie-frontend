@@ -1,0 +1,115 @@
+.frame{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 30px;
+}
+.divider{
+  width: 100%;
+  position: relative;
+  margin-bottom: 3vh;
+  margin-top: 3vh;
+  background-color: white;
+}
+.text-wrapper{
+  font:2em"Rubik";
+  color: white;
+  position: relative;
+  text-align: center;
+}
+.imgholder{
+  background-image: url("../../../assets/images/bookie-final.svg");
+  height: 30vh;
+}
+.descframe {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.descframe .div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.descframe .div-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.descframe .text-wrapper {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1px;
+  font:1em"Rubik";
+  color: white;
+  text-align: center;
+
+}
+
+.descframe .p {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1px;
+  font:1em"Rubik";
+  color: white;
+  text-align: center;
+
+}
+
+.descframe .vertical-full-width-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  padding: 0px 10px;
+  align-self: stretch;
+  flex: 0 0 auto;
+  overflow: hidden;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.vertical-divider {
+  border-left: 1px solid white; /* Adjust color and thickness as needed */
+  height: 100%; /* Adjust height based on your layout */
+  margin-left: 10px; /* Adjust margin as needed */
+}
+.DescPrice{
+  width: 40vw;
+}
+.smalldiv{
+  width: 20vw;
+}
+.div-3 {
+  width: 70%;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  position: relative;
+  color: white;
+}
+.div-3 mat-icon{
+  color: yellow;
+}
+.demo-inline-calendar-card {
+  width: 70%;
+}
+.location{
+  background-image: url("../../../assets/images/bookie-final.svg");
+  height: 30vh;
+  width: 100%;
+}
