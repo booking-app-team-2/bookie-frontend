@@ -5,7 +5,10 @@
   padding: 10px 20px;
   position: relative;
   margin-bottom: 10px;
-  color: #c0350c;
+  color: black;
+  @media (prefers-color-scheme: dark){
+    color: #FDF5EC;
+  }
 }
 
 .frame .bookie-kawaii {

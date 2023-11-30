@@ -5,7 +5,10 @@
   padding: 10px 20px;
   position: relative;
   margin-bottom: 10px;
-  color: #cf2825;
+  color: black;
+  @media (prefers-color-scheme: dark){
+    color: #FDF5EC;
+  }
 }
 
 .frame .bookie-kawaii {
@@ -112,7 +115,6 @@
 .frame .button {
   display: flex;
   flex-direction: column;
-  background-color:#E8C502;
 }
 
 .frame .state-layer {
