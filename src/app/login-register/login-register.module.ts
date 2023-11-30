@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { MaterialModule } from "../infrastructure/material/material.module";
 import {FormsModule} from "@angular/forms";
 import { RegisterComponent } from './register/register.component';
-
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
     MaterialModule,
     FormsModule,
     NgOptimizedImage,
+    RouterModule,
   ]
 })
 

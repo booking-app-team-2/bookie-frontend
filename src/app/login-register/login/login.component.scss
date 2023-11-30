@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 70vh;
 }
 
 .login-card-header{
@@ -48,4 +48,10 @@
 .button {
   background-color: #cf2825;
   color: #f2e4f2;
+}
+
+.radio-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
