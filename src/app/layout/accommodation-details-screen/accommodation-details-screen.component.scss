@@ -3,7 +3,10 @@
   flex-direction: column;
   margin-top: 20px;
   padding: 30px;
-  color: #c0350c;
+  color: black;
+  @media (prefers-color-scheme: dark){
+    color: #FDF5EC;
+  }
 }
 .divider{
   width: 100%;

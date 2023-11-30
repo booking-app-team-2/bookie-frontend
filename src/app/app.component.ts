@@ -8,11 +8,4 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   title = 'bookie';
-
-  constructor(private router: Router) {}
-
-  redirectToLogin() {
-    this.router.navigate(['/login']);
-  }
-  ngOnInit():void {this.redirectToLogin()}
 }
