@@ -1,0 +1,32 @@
+.create-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.create-card {
+  background-color: transparent;
+  box-shadow: none;
+  width: 300px;
+  color: black;
+  padding: 20px;
+  margin: 50px;
+  text-align: left;
+  font: 1em "Rubik";
+  @media (prefers-color-scheme: dark) {
+    color: #FDF5EC;
+  }
+}
+
+.bookie-quirky{
+  padding-bottom: 5vh;
+}
+
+.create-header{
+  padding-bottom: 3vh;
+}
+
+.full-width {
+  width: 100%;
+}
