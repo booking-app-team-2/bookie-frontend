@@ -24,7 +24,7 @@
   position: relative;
 }
 
-.frame .div-2 {
+.frame .div-top {
   align-items: center;
   gap: 10px;
   padding: 0 10px;
@@ -35,7 +35,7 @@
   position: relative;
   justify-content: space-between;
 }
-.frame .div-4 {
+.frame .div-info {
   align-items: center;
   gap: 10px;
   padding: 0 10px;
@@ -53,8 +53,8 @@
   color: white;
 }
 
-.frame .div-3 {
-  width: 142px;
+.frame .div-rating {
+  width: 5vw;
   align-items: center;
   justify-content: space-between;
   display: flex;
@@ -70,14 +70,6 @@
   flex: 0 0 auto;
 }
 
-.frame .text-wrapper-2 {
-  position: relative;
-  width: fit-content;
-  margin-top: -1px;
-  font:1em"rubik";
-  color: white;
-}
-
 .frame .div-wrapper {
   align-items: flex-start;
   justify-content: space-around;
@@ -89,55 +81,12 @@
   display: flex;
   position: relative;
 }
-
-.frame .p {
-  position: relative;
-  flex: 1;
-  align-self: stretch;
-  margin-top: -1px;
-  font:1em"rubik";
-  color: white;
-  text-align: center;
-}
-
-
-.frame .text-wrapper-3 {
-  position: relative;
-  align-self: stretch;
-  width: 104px;
-  margin-top: -1px;
-  font:1em"rubik";
-  color: white;
-  text-align: center;
-
-}
-
 .frame .button {
   display: flex;
   flex-direction: column;
   background-color:#E8C502;
 }
 
-.frame .state-layer {
-  display: flex;
-  width: 83px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 24px;
-  position: relative;
-}
-
-.frame .label-text {
-  position: relative;
-  width: fit-content;
-  margin-left: -20.5px;
-  margin-right: -20.5px;
-  font:1em"rubik";
-  text-align: center;
-  white-space: nowrap;
-}
 mat-icon{
   color: rgb(255, 210, 48);
 }
