@@ -5,6 +5,10 @@
   padding: 10px 20px;
   position: relative;
   margin-bottom: 10px;
+  color: black;
+  @media (prefers-color-scheme: dark){
+    color: #FDF5EC;
+  }
 }
 
 .frame .bookie-kawaii {
@@ -50,7 +54,6 @@
   width: fit-content;
   margin-top: -1px;
   font:1em"rubik";
-  color: white;
 }
 
 .frame .div-rating {
@@ -69,7 +72,6 @@
   align-self: stretch;
   flex: 0 0 auto;
 }
-
 .frame .div-wrapper {
   align-items: flex-start;
   justify-content: space-around;

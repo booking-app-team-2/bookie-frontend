@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <div id="logo-container" [routerLink]="" >
+  <div id="logo-container" [routerLink]="'/'" >
     <div id="image-container"></div>
     <div id="bookie-container">BOOKIE</div>
   </div>
@@ -11,7 +11,7 @@
     <button mat-button>Favourite accommodations</button>
     <button mat-button>My reservations</button>
     <button mat-button routerLink="profile">Welcome, {{userName}}</button>
-    <button mat-button>Log out</button>
+    <button mat-button [routerLink]="'/login'">Log out</button>
     <button mat-icon-button aria-label="notifications">
       <mat-icon matBadge="0" matBadgeColor="accent" aria-hidden="false">notifications_active</mat-icon>
     </button>
@@ -20,7 +20,7 @@
     <button mat-button>Reservations for my accommodations</button>
     <button mat-button>Create an accommodation</button>
     <button mat-button routerLink="profile">Welcome, {{userName}}</button>
-    <button mat-button>Log out</button>
+    <button mat-button [routerLink]="'/login'">Log out</button>
     <button mat-icon-button aria-label="notifications">
       <mat-icon matBadge="0" matBadgeColor="accent" aria-hidden="false">notifications_active</mat-icon>
     </button>
@@ -29,7 +29,7 @@
     <button mat-button>Reported comments</button>
     <button mat-button>Users</button>
     <button mat-button routerLink="profile">Welcome, {{userName}}</button>
-    <button mat-button>Log out</button>
+    <button mat-button [routerLink]="'/login'">Log out</button>
     <button mat-icon-button aria-label="notifications">
       <mat-icon matBadge="0" matBadgeColor="accent" aria-hidden="false">notifications_active</mat-icon>
     </button>

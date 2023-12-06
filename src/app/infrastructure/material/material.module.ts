@@ -11,6 +11,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatBadgeModule} from "@angular/material/badge";
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {MatBadgeModule} from "@angular/material/badge";
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule,
   ],
   exports: [
     MatToolbarModule,
@@ -43,7 +45,8 @@ import {MatBadgeModule} from "@angular/material/badge";
     MatInputModule,
     MatIconModule,
     MatBadgeModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule,
   ]
 })
 export class MaterialModule { }

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {LayoutModule} from "./layout/layout.module";
 import {FormsModule} from "@angular/forms";
 import { ProfilesModule } from "./profiles/profiles.module";
+import {LoginRegisterModule} from "./login-register/login-register.module";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ProfilesModule } from "./profiles/profiles.module";
     BrowserAnimationsModule,
     LayoutModule,
     FormsModule,
-    ProfilesModule
+    ProfilesModule,
+    LoginRegisterModule,
   ],
   providers: [
     provideClientHydration()
