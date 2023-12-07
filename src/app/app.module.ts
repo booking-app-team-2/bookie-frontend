@@ -7,6 +7,7 @@ import {LayoutModule} from "./layout/layout.module";
 import {FormsModule} from "@angular/forms";
 import { ProfilesModule } from "./profiles/profiles.module";
 import {LoginRegisterModule} from "./login-register/login-register.module";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {LoginRegisterModule} from "./login-register/login-register.module";
     FormsModule,
     ProfilesModule,
     LoginRegisterModule,
+    MatButtonModule,
   ],
   providers: [
     provideClientHydration()

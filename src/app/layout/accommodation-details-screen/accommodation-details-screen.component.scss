@@ -87,9 +87,9 @@
 }
 
 .vertical-divider {
-  border-left: 1px solid white; /* Adjust color and thickness as needed */
-  height: 100%; /* Adjust height based on your layout */
-  margin-left: 10px; /* Adjust margin as needed */
+  border-left: 1px solid white;
+  height: 100%;
+  margin-left: 10px;
 }
 .DescPrice{
   width: 40vw;
@@ -116,4 +116,12 @@
   background-position: center;
   height: 30vh;
   width: 100%;
+}
+mat-calendar{
+  @media (prefers-color-scheme: dark){
+    background-color: #171123;
+    border: 1px solid white;
+  }
+  background-color: #FDF5EC;
+  border: 1px solid black;
 }

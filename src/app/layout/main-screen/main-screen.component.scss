@@ -2,10 +2,10 @@
   margin-top: 20px;
   padding: 30px;
 }
-.example-form {
+.search-form {
   min-width: 100px;
   max-width: 500px;
-  width: 100%;
+  width: 25vw;
 }
 
 .example-full-width {
@@ -20,7 +20,26 @@
   padding: 10px 10px 10px 10px;
 }
 button{
-  margin-left: 25px;
   font:1em"rubik";
 }
+mat-menu{
+  width: 10vw;
+}
+.example-full-width mat-icon{
+  color: black;
+  @media (prefers-color-scheme: dark){
+    color: #FDF5EC;
+  }
+}
+.search-div{
+  width: 50vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.search-options{
+  margin-left: 1vw;
+  width: 15vw;
+}
+
 

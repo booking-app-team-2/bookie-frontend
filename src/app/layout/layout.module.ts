@@ -7,6 +7,7 @@ import {AccommodationCardComponent} from "./accommodation-card/accommodation-car
 import {AccommodationDetailsScreenComponent} from "./accommodation-details-screen/accommodation-details-screen.component";
 import {MainScreenComponent} from "./main-screen/main-screen.component";
 import {ReviewCardComponent} from './review-card/review-card.component';
+import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
 import {FormsModule} from "@angular/forms";
 
 
@@ -16,7 +17,8 @@ import {FormsModule} from "@angular/forms";
     AccommodationCardComponent,
     AccommodationDetailsScreenComponent,
     MainScreenComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    FilterDialogComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import {FormsModule} from "@angular/forms";
     AccommodationCardComponent,
     AccommodationDetailsScreenComponent,
     MainScreenComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    FilterDialogComponent
   ]
 })
 export class LayoutModule { }

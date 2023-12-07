@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {FilterDialogComponent} from "../filter-dialog/filter-dialog.component";
 
 
 @Component({
@@ -7,6 +9,21 @@ import { Component } from '@angular/core';
   styleUrl: './main-screen.component.scss'
 })
 export class MainScreenComponent {
-  value="";
+  search="";
 
+  constructor(public dialog: MatDialog) { }
+  openFilterDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(FilterDialogComponent, {
+      enterAnimationDuration,
+      exitAnimationDuration,
+    })
+  }
+  dropdownOptions = [
+    { label: 'location', value: 'location' },
+    { label: 'number of guests', value: 'number of guests' },
+    { label: 'trip start date', value: 'trip start date' },
+    { label: 'trip end date', value: 'trip end date' }
+  ];
+
+  selectedOption: string = '';
 }
