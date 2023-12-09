@@ -7,6 +7,7 @@ import {LayoutModule} from "./layout/layout.module";
 import {FormsModule} from "@angular/forms";
 import { ProfilesModule } from "./profiles/profiles.module";
 import {LoginRegisterModule} from "./login-register/login-register.module";
+import {provideHttpClient, withFetch} from "@angular/common/http";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {LoginRegisterModule} from "./login-register/login-register.module";
     LoginRegisterModule,
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

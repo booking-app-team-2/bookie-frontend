@@ -28,7 +28,7 @@ export class ProfileComponent {
       },
       enterAnimationDuration,
       exitAnimationDuration,
-    })
+    });
   }
 
   openChangeContactInfoDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -39,7 +39,7 @@ export class ProfileComponent {
       },
       enterAnimationDuration,
       exitAnimationDuration,
-    })
+    });
   }
 
   openChangeAddressDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -49,14 +49,14 @@ export class ProfileComponent {
       },
       enterAnimationDuration,
       exitAnimationDuration,
-    })
+    });
   }
 
   openChangePasswordDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(PasswordChangeDialogComponent, {
       enterAnimationDuration,
       exitAnimationDuration,
-    })
+    });
   }
 
   openProfileDeletionDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
