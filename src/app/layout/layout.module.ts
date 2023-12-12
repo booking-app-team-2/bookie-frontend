@@ -8,6 +8,7 @@ import {AccommodationDetailsScreenComponent} from "./accommodation-details-scree
 import {MainScreenComponent} from "./main-screen/main-screen.component";
 import {ReviewCardComponent} from './review-card/review-card.component';
 import {FormsModule} from "@angular/forms";
+import {RequestsModule} from "../requests/requests.module";
 
 
 @NgModule({
@@ -18,14 +19,15 @@ import {FormsModule} from "@angular/forms";
     MainScreenComponent,
     ReviewCardComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterLink,
-    NgOptimizedImage,
-    FormsModule,
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterLink,
+        NgOptimizedImage,
+        FormsModule,
+        RequestsModule,
 
-  ],
+    ],
   exports: [
     NavbarComponent,
     AccommodationCardComponent,

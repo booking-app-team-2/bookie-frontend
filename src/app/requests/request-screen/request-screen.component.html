@@ -1,0 +1,54 @@
+<div class="frame">
+  <div class="search-frame">
+    <form class="search-form">
+      <mat-form-field class="example-full-width" color="primary" appearance="outline">
+        <mat-label>Search</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput type="text" [(ngModel)]="search" name="value">
+        <button matSuffix mat-icon-button aria-label="Clear" *ngIf="search" (click)="search=''">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+    <mat-form-field appearance="outline" color="primary" class="search-options">
+      <mat-label>Search by</mat-label>
+      <mat-select [(value)]="selectedOption">
+        <mat-option *ngFor="let option of dropdownOptions" [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="label-frame">
+      <div class="text-wrapper">
+        Location
+      </div>
+      <div class="vertical-divider"></div>
+      <div class="text-wrapper">
+        Number of guests
+      </div>
+      <div class="vertical-divider"></div>
+      <div class="text-wrapper">
+        From-To
+      </div>
+      <div class="vertical-divider"></div>
+      <div class="text-wrapper">
+        Price
+      </div>
+      <div class="vertical-divider"></div>
+      <div class="text-wrapper">
+        Status
+      </div>
+      <div class="vertical-divider"></div>
+      <div class="text-wrapper">
+        <button mat-button [disabled]="true"></button>
+      </div>
+  </div>
+  <app-request-card></app-request-card>
+  <app-request-card></app-request-card>
+  <app-request-card></app-request-card>
+  <app-request-card></app-request-card>
+  <app-request-card></app-request-card>
+  <app-request-card></app-request-card>
+  <app-request-card></app-request-card>
+</div>

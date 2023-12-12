@@ -1,0 +1,30 @@
+.frame{
+  display:flex;
+  flex-direction: row;
+  padding-top:2vh;
+  padding-bottom: 2vh;
+  color: black;
+  @media (prefers-color-scheme: dark){
+    color: #FDF5EC;
+  }
+  border: 1px solid black;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: flex-start;
+  @media(prefers-color-scheme: dark){
+    border-color: white;
+  }
+  margin-top: 5vh;
+}
+.vertical-divider {
+  border: 1px solid black;
+  @media(prefers-color-scheme: dark){
+    border-color: white;
+  }
+  height: 5vh;
+}
+.text-wrapper{
+  font: 1em"Rubik";
+  width: 14vw;
+  text-align: center;
+}

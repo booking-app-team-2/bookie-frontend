@@ -12,6 +12,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatNativeDateModule,
     MatDialogModule,
     MatRadioModule,
+    MatSelectModule
   ],
   exports: [
     MatToolbarModule,
@@ -47,6 +49,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatBadgeModule,
     MatDialogModule,
     MatRadioModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }
