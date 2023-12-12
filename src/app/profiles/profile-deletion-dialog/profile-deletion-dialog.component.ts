@@ -17,8 +17,7 @@ export class ProfileDeletionDialogComponent {
   deleteProfile(): void {
     this.profileService.remove(this.data.userId).subscribe({
 
-      // TODO: Add rerouting to login screen
-      next: (_): void => {},
+      next: (_): Promise<Boolean> => this.router.navigate(['login']),
 
       error: (_): void => {}
     });
