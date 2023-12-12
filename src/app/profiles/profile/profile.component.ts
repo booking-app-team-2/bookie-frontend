@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ProfileDeletionDialogComponent} from "../profile-deletion-dialog/profile-deletion-dialog.component";
 import {BasicInfoDialogComponent} from "../basic-info-dialog/basic-info-dialog.component";
@@ -12,6 +12,10 @@ import {PasswordChangeDialogComponent} from "../password-change-dialog/password-
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
+
+  // TODO: Get userId from JWT
+  userId: number = 2;
+
   name: string = "Bookie";
   surname: string = "Bookie";
   email: string = "bookie@bookie.com";
@@ -61,8 +65,11 @@ export class ProfileComponent {
 
   openProfileDeletionDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(ProfileDeletionDialogComponent, {
+      data: {
+        userId: this.userId
+      },
       enterAnimationDuration,
       exitAnimationDuration,
-    });
+    })
   }
 }
