@@ -1,11 +1,11 @@
 <div id="content-holder">
   <div id="inner-holder">
     <mat-divider />
-    <div id="name-holder" class="info-holder">{{name}}'s profile</div>
+    <div id="name-holder" class="info-holder">{{userDTO.name}}'s profile</div>
     <mat-divider />
     <div class="info-holder secondary-info-holder">
       <div>Surname:</div>
-      <div>{{surname}}</div>
+      <div>{{userDTO.surname}}</div>
     </div>
     <button mat-raised-button color="primary" (click)="openChangeBasicInfoDialog('250ms', '250ms')">
       Change basic info
@@ -13,11 +13,11 @@
     <mat-divider />
     <div class="info-holder secondary-info-holder">
       <div>Email:</div>
-      <div>{{email}}</div>
+      <div>{{userDTO.email}}</div>
     </div>
     <div class="info-holder secondary-info-holder">
       <div>Telephone:</div>
-      <div>{{telephone}}</div>
+      <div>{{userDTO.telephone}}</div>
     </div>
     <button mat-raised-button color="primary" (click)="openChangeContactInfoDialog('250ms', '250ms')">
       Change contact info
@@ -25,7 +25,7 @@
     <mat-divider />
     <div class="info-holder secondary-info-holder">
       <div>Address:</div>
-      <div>{{address}}</div>
+      <div>{{userDTO.addressOfResidence}}</div>
     </div>
     <button mat-raised-button color="primary" (click)="openChangeAddressDialog('250ms', '250ms')">
       Change address

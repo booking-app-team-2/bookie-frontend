@@ -2,7 +2,6 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ProfileService} from "../profile.service";
 import {Router} from "@angular/router";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-profile-deletion-dialog',
