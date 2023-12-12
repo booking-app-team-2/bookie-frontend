@@ -16,9 +16,7 @@ export class ProfileDeletionDialogComponent {
 
   deleteProfile(): void {
     this.profileService.remove(this.data.userId).subscribe({
-
       next: (_): Promise<Boolean> => this.router.navigate(['login']),
-
       error: (_): void => {}
     });
   }
