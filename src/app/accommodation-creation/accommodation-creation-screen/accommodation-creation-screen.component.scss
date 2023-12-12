@@ -8,10 +8,8 @@
 .create-card {
   background-color: transparent;
   box-shadow: none;
-  width: 300px;
+  width: 800px;
   color: black;
-  padding: 20px;
-  margin: 50px;
   text-align: left;
   font: 1em "Rubik";
   @media (prefers-color-scheme: dark) {
@@ -24,9 +22,24 @@
 }
 
 .create-header{
-  padding-bottom: 3vh;
+  justify-content: center;
 }
 
 .full-width {
   width: 100%;
+}
+
+.form-column {
+  margin: 50px;
+}
+
+.combo-boxes {
+  width: 100%;
+  display: inline;
+}
+
+.create-forum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

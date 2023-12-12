@@ -1,64 +1,66 @@
 <div class="create-container">
   <mat-card class="create-card">
-    <img class="bookie-quirky" ngSrc="../../../assets/images/bookie-quirky.svg" alt="" height="236" width="272"/>
-    <button mat-raised-button color="primary">Upload images</button>
-  </mat-card>
-  <mat-card class="create-card">
     <mat-card-header class="create-header">
       <mat-card-title>Create Accommodation</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form>
-        <!-- Name Field -->
-        <mat-form-field appearance="outline" class="full-width">
-          <input matInput placeholder="Name" name="name" required>
-        </mat-form-field>
+      <form class="create-forum">
+        <div class="form-column">
+          <img class="bookie-quirky" ngSrc="../../../assets/images/bookie-quirky.svg" alt="" height="236" width="272"/>
+          <button mat-raised-button class="full-width" color="primary">Upload images</button>
+        </div>
+        <div class="form-column">
+          <!-- Name Field -->
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput placeholder="Name" name="name" required>
+          </mat-form-field>
 
-        <!-- Description Field -->
-        <mat-form-field appearance="outline" class="full-width">
-          <textarea matInput placeholder="Description" name="description" required></textarea>
-        </mat-form-field>
+          <!-- Description Field -->
+          <mat-form-field appearance="outline" class="full-width">
+            <textarea matInput placeholder="Description" name="description" required></textarea>
+          </mat-form-field>
 
-        <!-- Location Field -->
-        <mat-form-field appearance="outline" class="full-width">
-          <input matInput placeholder="Location" name="location" required>
-        </mat-form-field>
+          <!-- Location Field -->
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput placeholder="Location" name="location" required>
+          </mat-form-field>
 
-        <!-- Amenities Checkboxes -->
-        <mat-checkbox class="full-width" *ngFor="let amenity of amenities">
-          {{ amenity }}
-        </mat-checkbox>
+          <!-- Amenities Checkboxes -->
+          <mat-checkbox class="full-width" *ngFor="let amenity of amenities">
+            {{ amenity }}
+          </mat-checkbox>
 
-        <!-- Accommodation Type ComboBox -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Accommodation Type</mat-label>
-          <mat-select name="type">
-            <mat-option *ngFor="let type of accommodationTypes" [value]="type">{{ type }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+          <!-- Accommodation Type ComboBox -->
+          <mat-form-field appearance="outline" class="combo-boxes">
+            <mat-label>Accommodation Type</mat-label>
+            <mat-select name="type">
+              <mat-option *ngFor="let type of accommodationTypes" [value]="type">{{ type }}</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <!-- Price Per Person Field -->
-        <mat-form-field appearance="outline" class="full-width">
-          <input matInput placeholder="Price Per Person" name="pricePerPerson" required>
-        </mat-form-field>
+          <!-- Price Per Person Field -->
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput placeholder="Price Per Person" name="pricePerPerson" required>
+          </mat-form-field>
 
-        <!-- Guests Slider -->
-        <mat-label>Min and Max Guests</mat-label>
-        <mat-slider class="full-width" name="guests" min="1" max="10" step="1" discrete>
-          <input value="2" matSliderStartThumb>
-          <input value="6" matSliderEndThumb>
-        </mat-slider>
+          <!-- Guests Slider -->
+          <mat-label>Min and Max Guests</mat-label>
+          <mat-slider class="full-width" name="guests" min="1" max="10" step="1" discrete>
+            <input value="2" matSliderStartThumb>
+            <input value="6" matSliderEndThumb>
+          </mat-slider>
 
-        <!--Availability dates-->
-        <mat-form-field appearance="outline">
-          <mat-label>Choose availability</mat-label>
-          <input matInput [matDatepicker]="picker">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+          <!--Availability dates-->
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Choose availability</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
-        <!-- Submit Button -->
-        <button mat-raised-button color="primary" type="submit">Submit</button>
+          <!-- Submit Button -->
+          <button mat-raised-button color="primary" class="full-width" type="submit">Submit</button>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>
