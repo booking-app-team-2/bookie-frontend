@@ -117,11 +117,18 @@
   height: 30vh;
   width: 100%;
 }
-mat-calendar{
-  @media (prefers-color-scheme: dark){
-    background-color: #171123;
-    border: 1px solid white;
-  }
-  background-color: #FDF5EC;
-  border: 1px solid black;
+mat-calendar {
+          @media (prefers-color-scheme: dark) {
+            background-color: #171123;
+            border: 1px solid white;
+          }
+          background-color: #FDF5EC;
+          border: 1px solid black;
+        }
+.map-frame {
+  border: 2px solid black;
+}
+
+#map {
+  height: 300px;
 }

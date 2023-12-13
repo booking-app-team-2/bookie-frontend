@@ -8,7 +8,7 @@ import {FormsModule} from "@angular/forms";
 import { ProfilesModule } from "./profiles/profiles.module";
 import {LoginRegisterModule} from "./login-register/login-register.module";
 import {MatButtonModule} from "@angular/material/button";
-
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -23,6 +23,7 @@ import {MatButtonModule} from "@angular/material/button";
     ProfilesModule,
     LoginRegisterModule,
     MatButtonModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

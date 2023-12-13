@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {FilterDialogComponent} from "../filter-dialog/filter-dialog.component";
+import {Component, OnInit} from '@angular/core';
+import {AccommodationDTO} from "../accommodation-card/model/accommodation.model";
+import {Router} from "@angular/router";
+import {AccommodationService} from "../accommodation.service";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -8,10 +12,13 @@ import {FilterDialogComponent} from "../filter-dialog/filter-dialog.component";
   templateUrl: './main-screen.component.html',
   styleUrl: './main-screen.component.scss'
 })
-export class MainScreenComponent {
-  search="";
 
-  constructor(public dialog: MatDialog) { }
+export class MainScreenComponent  implements OnInit{
+  value="";
+
+  accommodations: AccommodationDTO[];
+
+  search="";
   openFilterDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(FilterDialogComponent, {
       enterAnimationDuration,
@@ -26,4 +33,11 @@ export class MainScreenComponent {
   ];
 
   selectedOption: string = '';
+  constructor(private accommodationService:AccommodationService,public dialog: MatDialog) {}
+  ngOnInit():void{
+    this.accommodationService.get().subscribe({
+      next:(accommodations: AccommodationDTO[]):AccommodationDTO[]=> this.accommodations=accommodations,
+      error:(_)=>{}
+  });
+  }
 }
