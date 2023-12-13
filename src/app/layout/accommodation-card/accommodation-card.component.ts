@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import {AccommodationDTO} from "./model/accommodation.model";
 @Component({
   selector: 'app-accommodation-card',
   templateUrl: './accommodation-card.component.html',
   styleUrl: './accommodation-card.component.scss'
 })
-export class AccommodationCardComponent {
-  constructor(private router: Router) {}
+export class AccommodationCardComponent{
 
-  redirectDetails() {
-    this.router.navigate(['/details']);
-  }
+  @Input()
+  accommodation: AccommodationDTO;
+
 }
