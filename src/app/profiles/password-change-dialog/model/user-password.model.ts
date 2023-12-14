@@ -1,4 +1,4 @@
 export interface UserPassword {
-  oldPassword: string,
+  currentPassword: string,
   newPassword: string,
 }

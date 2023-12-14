@@ -5,6 +5,8 @@ import {catchError, Observable, retry, throwError} from "rxjs";
 import {User} from "./profile/model/user.model";
 import {UserBasicInfo} from "./basic-info-dialog/model/user-basic-info.model";
 import {UserPassword} from "./password-change-dialog/model/user-password.model";
+import {UserTelephone} from "./telephone-dialog/model/user-telephone.model";
+import {UserAddress} from "./address-dialog/model/user-address.model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +24,12 @@ export class ProfileService {
     return this.httpClient.put<UserBasicInfo>(this.userControllerRoute + '/' + id + '/basic-info', userBasicInfo);
   }
 
-  putUserAddress(id: number, userAddress: string): Observable<string> {
-    return this.httpClient.put<string>(this.userControllerRoute + '/' + id + '/addressOfResidence', userAddress);
+  putUserAddress(id: number, userAddress: UserAddress): Observable<UserAddress> {
+    return this.httpClient.put<UserAddress>(this.userControllerRoute + '/' + id + '/addressOfResidence', userAddress);
   }
 
-  putUserTelephone(id: number, userTelephone: string): Observable<string> {
-    return this.httpClient.put<string>(this.userControllerRoute + '/' + id + '/telephone', userTelephone);
+  putUserTelephone(id: number, userTelephone: UserTelephone): Observable<UserTelephone> {
+    return this.httpClient.put<UserTelephone>(this.userControllerRoute + '/' + id + '/telephone', userTelephone);
   }
 
   putUserPassword(id: number, userPassword: UserPassword): Observable<UserPassword> {

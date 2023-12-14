@@ -7,6 +7,8 @@ import {AddressDialogComponent} from "../address-dialog/address-dialog.component
 import {PasswordChangeDialogComponent} from "../password-change-dialog/password-change-dialog.component";
 import {User} from "./model/user.model";
 import {ProfileService} from "../profile.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {SharedService} from "../../shared/shared.service";
 
 @Component({
   selector: 'app-profile',
@@ -20,14 +22,18 @@ export class ProfileComponent implements OnInit {
 
   user: User | undefined;
 
-  constructor(private profileService: ProfileService, public dialog: MatDialog) { }
+  constructor(private profileService: ProfileService, public dialog: MatDialog,
+              private sharedService: SharedService) { }
 
   getProfileData(): void {
     this.profileService.get(this.userId).subscribe({
       next: (userDTO: User): User => this.user = userDTO,
-
-      // TODO: React to a user not being found
-      error: () => console.log('Not found')
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 404)
+          this.sharedService.openSnackBar('User not found.');
+        else
+          this.sharedService.openSnackBar('Error reaching the server.');
+      }
     })
   }
 
@@ -45,8 +51,9 @@ export class ProfileComponent implements OnInit {
       exitAnimationDuration,
     }).afterClosed().subscribe({
       next: dialogResult => {
-        if (dialogResult)
+        if (dialogResult) {
           this.getProfileData();
+        }
       }
     });
   }
@@ -87,8 +94,10 @@ export class ProfileComponent implements OnInit {
       exitAnimationDuration,
     }).afterClosed().subscribe({
       next: dialogResult => {
-        if (dialogResult)
+        if (dialogResult) {
           this.getProfileData();
+          this.sharedService.openSnackBar('Password successfully changed.');
+        }
       }
     });
   }

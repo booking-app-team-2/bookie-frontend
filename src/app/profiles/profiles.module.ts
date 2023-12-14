@@ -9,6 +9,7 @@ import { AddressDialogComponent } from './address-dialog/address-dialog.componen
 import { PasswordChangeDialogComponent } from './password-change-dialog/password-change-dialog.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {ReactiveFormsModule} from "@angular/forms";
       CommonModule,
       MaterialModule,
       ReactiveFormsModule,
+      SharedModule,
   ]
 })
 export class ProfilesModule { }
