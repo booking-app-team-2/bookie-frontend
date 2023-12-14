@@ -1,0 +1,14 @@
+<form [formGroup]="userTelephoneForm">
+  <div id="content-holder">
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Telephone</mat-label>
+      <input matInput type="tel" name="telephone" formControlName="telephone" spellcheck="false">
+    </mat-form-field>
+    <div id="button-holder">
+      <button mat-raised-button type="submit" color="primary" [mat-dialog-close]="true" (click)="updateUserTelephone()">
+        Confirm
+      </button>
+      <button mat-raised-button type="reset" color="primary" mat-dialog-close>Cancel</button>
+    </div>
+  </div>
+</form>

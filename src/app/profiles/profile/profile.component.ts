@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ProfileDeletionDialogComponent} from "../profile-deletion-dialog/profile-deletion-dialog.component";
 import {BasicInfoDialogComponent} from "../basic-info-dialog/basic-info-dialog.component";
-import {ContactInfoDialogComponent} from "../contact-info-dialog/contact-info-dialog.component";
+import {TelephoneDialogComponent} from "../telephone-dialog/telephone-dialog.component";
 import {AddressDialogComponent} from "../address-dialog/address-dialog.component";
 import {PasswordChangeDialogComponent} from "../password-change-dialog/password-change-dialog.component";
-import {UserDTO} from "./model/profile.model";
+import {User} from "./model/user.model";
 import {ProfileService} from "../profile.service";
 
 @Component({
@@ -16,50 +16,68 @@ import {ProfileService} from "../profile.service";
 export class ProfileComponent implements OnInit {
 
   // TODO: Get userId from JWT
-  userId: number = 4;
+  userId: number = 2;
 
-  userDTO: UserDTO;
+  user: User | undefined;
 
   constructor(private profileService: ProfileService, public dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  getProfileData(): void {
     this.profileService.get(this.userId).subscribe({
-      next: (userDTO: UserDTO): UserDTO => this.userDTO = userDTO,
+      next: (userDTO: User): User => this.user = userDTO,
 
       // TODO: React to a user not being found
-      error: (_) => {}
+      error: () => console.log('Not found')
     })
+  }
+
+  ngOnInit(): void {
+    this.getProfileData();
   }
 
   openChangeBasicInfoDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(BasicInfoDialogComponent, {
       data: {
-        name: this.userDTO.name,
-        surname: this.userDTO.surname,
+        name: this.user?.name,
+        surname: this.user?.surname,
       },
       enterAnimationDuration,
       exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (dialogResult)
+          this.getProfileData();
+      }
     });
   }
 
   openChangeContactInfoDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(ContactInfoDialogComponent, {
+    this.dialog.open(TelephoneDialogComponent, {
       data: {
-        email: this.userDTO.email,
-        telephone: this.userDTO.telephone,
+        telephone: this.user?.telephone,
       },
       enterAnimationDuration,
       exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (dialogResult)
+          this.getProfileData();
+      }
     });
   }
 
   openChangeAddressDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(AddressDialogComponent, {
       data: {
-        address: this.userDTO.addressOfResidence
+        address: this.user?.addressOfResidence
       },
       enterAnimationDuration,
       exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (dialogResult)
+          this.getProfileData();
+      }
     });
   }
 
@@ -67,6 +85,11 @@ export class ProfileComponent implements OnInit {
     this.dialog.open(PasswordChangeDialogComponent, {
       enterAnimationDuration,
       exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (dialogResult)
+          this.getProfileData();
+      }
     });
   }
 

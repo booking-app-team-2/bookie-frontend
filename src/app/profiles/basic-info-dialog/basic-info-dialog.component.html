@@ -1,14 +1,18 @@
-<div id="content-holder">
-  <mat-form-field appearance="outline" color="primary">
-    <mat-label>Name</mat-label>
-    <input matInput value="{{data.name}}">
-  </mat-form-field>
-  <mat-form-field appearance="outline" color="primary">
-    <mat-label>Surname</mat-label>
-    <input matInput value="{{data.surname}}">
-  </mat-form-field>
-  <div id="button-holder">
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">Confirm</button>
-    <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+<form [formGroup]="userBasicInfoForm">
+  <div id="content-holder">
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" name="name" formControlName="name" spellcheck="false">
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Surname</mat-label>
+      <input matInput type="text" name="surname" formControlName="surname" spellcheck="false">
+    </mat-form-field>
+    <div id="button-holder">
+      <button mat-raised-button type="submit" color="primary" [mat-dialog-close]="true" (click)="updateUserBasicInfo()">
+        Confirm
+      </button>
+      <button mat-raised-button type="reset" color="primary" mat-dialog-close>Cancel</button>
+    </div>
   </div>
-</div>
+</form>

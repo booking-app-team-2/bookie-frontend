@@ -1,10 +1,14 @@
-<div id="content-holder">
-  <mat-form-field appearance="outline" color="primary">
-    <mat-label>Address</mat-label>
-    <input matInput value="{{data.address}}">
-  </mat-form-field>
-  <div id="button-holder">
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">Confirm</button>
-    <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+<form [formGroup]="userAddressForm">
+  <div id="content-holder">
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Address</mat-label>
+      <input matInput type="text" name="address" formControlName="address" spellcheck="false">
+    </mat-form-field>
+    <div id="button-holder">
+      <button mat-raised-button type="submit" color="primary" [mat-dialog-close]="true" (click)="updateUserAddress()">
+        Confirm
+      </button>
+      <button mat-raised-button type="reset" color="primary" mat-dialog-close>Cancel</button>
+    </div>
   </div>
-</div>
+</form>
