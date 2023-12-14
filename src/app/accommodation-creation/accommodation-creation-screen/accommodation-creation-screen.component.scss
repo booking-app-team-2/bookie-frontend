@@ -19,6 +19,16 @@
 
 .bookie-quirky{
   padding-bottom: 5vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 236px;
+  width: 272px;
+  @media (prefers-color-scheme: dark) {
+    background-image: url("../../../assets/images/bookie-quirky-alt.svg");
+  }
+  @media (prefers-color-scheme: light) {
+    background-image: url("../../../assets/images/bookie-quirky.svg");
+  }
 }
 
 .create-header{
@@ -42,4 +52,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.forum-buttons {
+  width: 100%;
+  margin-top: 2vh;
 }
