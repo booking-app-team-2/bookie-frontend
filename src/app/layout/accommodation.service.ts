@@ -8,10 +8,16 @@ import {AccommodationDTO} from "./accommodation-card/model/accommodation.model";
   providedIn: 'root'
 })
 export class AccommodationService {
-  accommodationControllerRoute: string= environment.apiHost + '/accommodations/cards';
+  accommodationControllerRoute: string= environment.apiHost + '/accommodations/search';
   constructor(private httpClient: HttpClient) { }
-  get(): Observable<AccommodationDTO[]>{
-    return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute);
+  get(location:string,numberOfGuests:string,startDate:string,endDate:string): Observable<AccommodationDTO[]>{
+    const params = {
+      location,
+      numberOfGuests,
+      startDate,
+      endDate,
+    };
+    return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute,{params});
   }
 
 }

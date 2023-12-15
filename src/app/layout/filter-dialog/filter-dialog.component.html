@@ -2,29 +2,30 @@
   <div class="statement-holder" id="asd">
     <mat-label>Amenities</mat-label>
     <div class="options-holder">
-      <mat-checkbox>WiFi</mat-checkbox>
-      <mat-checkbox>Parking</mat-checkbox>
-      <mat-checkbox>AC</mat-checkbox>
-      <mat-checkbox>Kitchen</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.wifi">WiFi</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.parking">Parking</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.ac">AC</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.kitchen">Kitchen</mat-checkbox>
     </div>
   </div>
   <div class="statement-holder">
     <mat-label>Accommodation type</mat-label>
     <div class="options-holder">
-      <mat-checkbox>Apartment</mat-checkbox>
-      <mat-checkbox>Villa</mat-checkbox>
-      <mat-checkbox>House</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.apartment">Apartment</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.room">Room</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.studio">Studio</mat-checkbox>
     </div>
   </div>
   <div class="statement-holder">
     <mat-label>Price per guest</mat-label>
     <mat-slider class="full-width" name="price" min="0" max="10000" step="" discrete>
-      <input value="100" matSliderStartThumb>
-      <input value="5000" matSliderEndThumb>
+      <input [(ngModel)]="data.startThumbValue" matSliderStartThumb>
+      <input [(ngModel)]="data.endThumbValue" matSliderEndThumb>
     </mat-slider>
   </div>
+
   <div class="statement-holder button-holder">
-    <button mat-button mat-dialog-close color="primary">Apply</button>
+    <button mat-button (click)="applyFilter()" color="primary">Apply</button>
     <button mat-button mat-dialog-close color="primary">Cancel</button>
   </div>
 </div>

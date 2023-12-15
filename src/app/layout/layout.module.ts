@@ -8,8 +8,8 @@ import {AccommodationDetailsScreenComponent} from "./accommodation-details-scree
 import {MainScreenComponent} from "./main-screen/main-screen.component";
 import {ReviewCardComponent} from './review-card/review-card.component';
 import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
-import {FormsModule} from "@angular/forms";
-
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
+import {CdkListbox} from "@angular/cdk/listbox";
 
 @NgModule({
   declarations: [
@@ -26,6 +26,8 @@ import {FormsModule} from "@angular/forms";
     RouterLink,
     NgOptimizedImage,
     FormsModule,
+    ReactiveFormsModule,
+    CdkListbox
 
   ],
   exports: [

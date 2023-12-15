@@ -16,11 +16,13 @@
   min-height: 75px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-evenly;
   padding: 10px 10px 10px 10px;
 }
 button{
   font:1em"rubik";
+  margin-left: 1vw;
 }
 mat-menu{
   width: 10vw;
@@ -34,12 +36,15 @@ mat-menu{
 .search-div{
   width: 50vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-end;
 }
-.search-options{
-  margin-left: 1vw;
+button{
   width: 15vw;
 }
-
+.button-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
 

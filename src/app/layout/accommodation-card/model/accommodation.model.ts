@@ -8,6 +8,16 @@ export interface AccommodationDTO{
     latitude: number;
     longitude: number;
   };
+  amenities:[];
+  availabilityPeriods:{
+    id:number;
+    price:number;
+    period:{
+      startDate:number;
+      endDate:number;
+    }
+    deleted:boolean;
+  }[];
   reservationCancellationDeadline:string;
   type:string;
 }

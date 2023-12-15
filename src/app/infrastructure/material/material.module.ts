@@ -16,7 +16,6 @@ import {MatMenuModule} from '@angular/material/menu'
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatSliderModule} from '@angular/material/slider'
 import {MatSelectModule} from "@angular/material/select";
-import {MatOption} from "@angular/material/core";
 
 @NgModule({
   declarations: [],
