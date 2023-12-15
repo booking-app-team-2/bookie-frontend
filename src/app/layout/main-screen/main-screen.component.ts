@@ -7,7 +7,6 @@ import {FormControl, FormGroup} from "@angular/forms";
 
 
 
-
 @Component({
   selector: 'app-main-screen',
   templateUrl: './main-screen.component.html',
@@ -109,8 +108,5 @@ export class MainScreenComponent{
       error: (_) => {
       }
     });
-
-
-
 }
 }
