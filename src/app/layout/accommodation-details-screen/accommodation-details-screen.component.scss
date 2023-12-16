@@ -110,15 +110,17 @@
 .div-rating mat-icon{
   color: yellow;
 }
-.demo-inline-calendar-card {
+.calendar-card {
   width: 70%;
 }
-.location{
-  background-image: url("../../../assets/images/bookie-quirky.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 30vh;
-  width: 100%;
+button.special-date {
+  @media (prefers-color-scheme: dark) {
+    background-color: #a243aa;
+    border: 1px solid white;
+  }
+  background-color: #ff6f43;
+  border: 1px solid black;
+  border-radius: 50%;
 }
 mat-calendar {
           @media (prefers-color-scheme: dark) {

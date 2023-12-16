@@ -70,6 +70,7 @@
     <div class="div DescPrice">
       <div class="div-wrapper"><div class="text-wrapper">Location</div></div>
       <div class="div-wrapper">
+        <app-map [center]="mapCenter"></app-map>
       </div>
     </div>
     <div class="vertical-full-width-wrapper">
@@ -77,9 +78,10 @@
     </div>
     <div class="div DescPrice">
       <div class="div-wrapper"><div class="text-wrapper">Availability periods and pricing</div></div>
+      <div class="div-wrapper"><div class="text-wrapper">{{price}}</div></div>
       <div class="div-wrapper">
-        <mat-card class="demo-inline-calendar-card">
-          <mat-calendar [(selected)]="selected"></mat-calendar>
+        <mat-card class="calendar-card">
+          <mat-calendar [dateClass]="dateClass()" [(selected)]="selected" (selectedChange)="displayPrice()"></mat-calendar>
         </mat-card>
       </div>
     </div>

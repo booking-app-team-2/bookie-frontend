@@ -17,6 +17,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatSliderModule} from '@angular/material/slider'
 import {MatSelectModule} from "@angular/material/select";
 
+
 @NgModule({
   declarations: [],
   imports: [

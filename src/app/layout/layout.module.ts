@@ -10,6 +10,7 @@ import {ReviewCardComponent} from './review-card/review-card.component';
 import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import {CdkListbox} from "@angular/cdk/listbox";
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {CdkListbox} from "@angular/cdk/listbox";
     AccommodationDetailsScreenComponent,
     MainScreenComponent,
     ReviewCardComponent,
-    FilterDialogComponent
+    FilterDialogComponent,
+    MapComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import {CdkListbox} from "@angular/cdk/listbox";
     AccommodationDetailsScreenComponent,
     MainScreenComponent,
     ReviewCardComponent,
-    FilterDialogComponent
+    FilterDialogComponent,
+    MapComponent
   ]
 })
 export class LayoutModule { }
