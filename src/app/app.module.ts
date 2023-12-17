@@ -7,8 +7,8 @@ import {LayoutModule} from "./layout/layout.module";
 import {FormsModule} from "@angular/forms";
 import { ProfilesModule } from "./profiles/profiles.module";
 import {LoginRegisterModule} from "./login-register/login-register.module";
-import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
+import {provideHttpClient, withFetch} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch()),
   ],
   bootstrap: [AppComponent]
 })
