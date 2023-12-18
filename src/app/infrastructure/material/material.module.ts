@@ -33,7 +33,7 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatRadioModule,
     MatSnackBarModule,
     MatProgressBarModule,
-    MatStepperModule,
+    MatStepperModule
   ],
   exports: [
     MatToolbarModule,
@@ -54,7 +54,7 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatRadioModule,
     MatSnackBarModule,
     MatProgressBarModule,
-    MatStepperModule,
+    MatStepperModule
   ]
 })
 export class MaterialModule { }
