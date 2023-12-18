@@ -1,0 +1,76 @@
+<div class="create-container">
+  <mat-card class="create-card">
+    <mat-card-header class="create-header">
+      <mat-card-title>Update Accommodation</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="create-forum">
+        <div class="form-column">
+          <div class="bookie-quirky"></div>
+          <button mat-raised-button class="forum-buttons" color="primary">Upload images</button>
+        </div>
+        <div class="form-column">
+          <!-- Name Field -->
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput placeholder="Name" name="name" required>
+          </mat-form-field>
+
+          <!-- Description Field -->
+          <mat-form-field appearance="outline" class="full-width">
+            <textarea matInput style="resize: none" rows="3" placeholder="Description" name="description" required></textarea>
+          </mat-form-field>
+
+          <!-- Location Field -->
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput placeholder="Latitude" name="latitude" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput placeholder="Longitude" name="longitude" required>
+          </mat-form-field>
+
+          <!-- Accommodation Type ComboBox -->
+          <mat-form-field appearance="outline" class="combo-boxes">
+            <mat-label>Accommodation Type</mat-label>
+            <mat-select name="type">
+              <mat-option *ngFor="let type of accommodationTypes" [value]="type">{{ type }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Guests Slider -->
+          <mat-label>Min and Max Guests</mat-label>
+          <mat-slider class="full-width" name="guests" min="1" max="10" step="1" discrete>
+            <input value="2" matSliderStartThumb>
+            <input value="6" matSliderEndThumb>
+          </mat-slider>
+
+          <!--Availability dates-->
+          <mat-label>Availability periods</mat-label>
+          <div class="availability-period">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date">
+                <input matEndDate placeholder="End date">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width price">
+              <input matInput placeholder="Price" name="price" required>
+            </mat-form-field>
+            <button mat-flat-button color="primary" class="delete-button">Delete</button>
+          </div>
+          <button mat-button class="add-button">Add another period<mat-icon>add</mat-icon></button>
+          <!-- Amenities Checkboxes -->
+          <mat-checkbox class="combo-boxes" *ngFor="let amenity of amenities">
+            {{ amenity }}
+          </mat-checkbox>
+
+          <!-- Submit Button -->
+          <button mat-raised-button color="primary" class="forum-buttons" type="submit">Save changes</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

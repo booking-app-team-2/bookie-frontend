@@ -8,6 +8,7 @@ import {FormsModule} from "@angular/forms";
 import { ProfilesModule } from "./profiles/profiles.module";
 import {LoginRegisterModule} from "./login-register/login-register.module";
 import {provideHttpClient, withFetch} from "@angular/common/http";
+import {AccommodationUpdatingModule} from "./accommodation-updating/accommodation-updating.module";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {provideHttpClient, withFetch} from "@angular/common/http";
     FormsModule,
     ProfilesModule,
     LoginRegisterModule,
+    AccommodationUpdatingModule,
   ],
   providers: [
     provideClientHydration(),
