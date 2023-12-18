@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../env/env";
+//import {environment} from "../../env/env";
 import {catchError, Observable, retry, throwError} from "rxjs";
 import {LoginCredentials} from "./login/model/login-credentials.model";
 import {NewUser} from "./register/model/new-user.model";
@@ -9,7 +9,7 @@ import {NewUser} from "./register/model/new-user.model";
   providedIn: 'root'
 })
 export class LoginRegisterService {
-  userControllerRoute: string = environment.apiHost + 'users';
+  userControllerRoute: string = /*environment.apiHost + */'users';
 
   constructor(private httpClient: HttpClient) { }
   get(id: number): Observable<LoginCredentials> {

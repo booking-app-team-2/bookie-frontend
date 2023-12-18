@@ -1,9 +1,11 @@
 export interface NewUser {
-  username : string;
-  password : string;
+  id : string;
   email : string;
+  password : string;
   name : string;
   surname : string;
-  dateOfBirth : string;
-  city : string;
+  addressOfResidence: string;
+  role : string;
+  isBlocked : boolean;
+  isDeleted : boolean;
 }

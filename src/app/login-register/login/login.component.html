@@ -7,10 +7,10 @@
     <mat-card-content>
       <form (ngSubmit)="login()" #loginForm="ngForm">
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput placeholder="Username" name="username" formControlName="username" ngModel required>
+          <input matInput placeholder="Username" name="username" ngModel required>
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput type="password" placeholder="Password" name="password" formControlName="password" ngModel required>
+          <input matInput type="password" placeholder="Password" name="password" ngModel required>
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
       </form>
