@@ -4,7 +4,6 @@ import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {AccommodationDTO} from "../accommodation-card/model/accommodation.model";
 import {AccommodationService} from "../accommodation.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import {start} from "node:repl";
 
 
 

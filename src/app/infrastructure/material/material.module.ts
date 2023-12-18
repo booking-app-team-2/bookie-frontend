@@ -38,7 +38,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatMenuModule,
     MatCheckboxModule,
     MatSliderModule,
-    MatSelectModule
+    MatSelectModule,
     MatSnackBarModule,
     MatProgressBarModule,
   ],
@@ -62,7 +62,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatMenuModule,
     MatCheckboxModule,
     MatSliderModule,
-    MatSelectModule
+    MatSelectModule,
     MatSnackBarModule,
     MatProgressBarModule,
   ]
