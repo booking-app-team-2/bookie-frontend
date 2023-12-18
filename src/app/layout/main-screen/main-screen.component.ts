@@ -4,6 +4,7 @@ import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {AccommodationDTO} from "../accommodation-card/model/accommodation.model";
 import {AccommodationService} from "../accommodation.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {start} from "node:repl";
 
 
 
@@ -88,16 +89,22 @@ export class MainScreenComponent{
 
   }
 
-  location:string;
-  guestNumber:string;
+  location:string="";
+  guestNumber:string="";
   isButtonEnabled: boolean = false;
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
   searchButton():void {
-    // @ts-ignore
-    this.accommodationService.get(this.location,this.guestNumber,Math.floor(this.range.value.start.getTime()/1000).toString(),Math.floor(this.range.value.end.getTime()/1000).toString()).subscribe({
+    let startDate:number=0;
+    let endDate:number=0;
+    if(this.range.value.start!=null && this.range.value.end!=null){
+      startDate=Math.floor(this.range.value.start.getTime()/1000);
+
+      endDate=Math.floor(this.range.value.end.getTime()/1000);
+    }
+    this.accommodationService.getSearchedAccommodations(this.location,this.guestNumber,startDate.toString(),endDate.toString()).subscribe({
       next: (accommodations: AccommodationDTO[]): void => {
         this.accommodations = accommodations;
         if (this.accommodations.length > 0) {

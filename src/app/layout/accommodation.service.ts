@@ -3,21 +3,28 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../env/env";
 import {Observable} from "rxjs";
 import {AccommodationDTO} from "./accommodation-card/model/accommodation.model";
+import {start} from "node:repl";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccommodationService {
-  accommodationControllerRoute: string= environment.apiHost + '/accommodations/search';
+  accommodationControllerRoute: string= environment.apiHost + '/accommodations';
   constructor(private httpClient: HttpClient) { }
-  get(location:string,numberOfGuests:string,startDate:string,endDate:string): Observable<AccommodationDTO[]>{
+  getSearchedAccommodations(location:string,numberOfGuests:string,startDate:string,endDate:string): Observable<AccommodationDTO[]>{
     const params = {
       location,
       numberOfGuests,
       startDate,
       endDate,
     };
-    return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute,{params});
+    if(location=="" && numberOfGuests=="" && startDate=="0" && endDate=="0"){
+      return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search');
+    }
+    return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search',{params});
+  }
+  getAccommodationDetails(id:string): Observable<AccommodationDTO>{
+    return this.httpClient.get<AccommodationDTO>(this.accommodationControllerRoute+'/'+id);
   }
 
 }

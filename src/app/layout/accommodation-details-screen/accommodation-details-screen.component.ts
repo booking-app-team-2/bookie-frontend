@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AccommodationDTO} from "../accommodation-card/model/accommodation.model";
-import {AccommodationDetailsService} from "../accommodation-details.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatCalendarCellCssClasses} from "@angular/material/datepicker";
+import {AccommodationService} from "../accommodation.service";
 
 export interface calendarDate{
   start:Date;
@@ -47,13 +47,13 @@ export class AccommodationDetailsScreenComponent implements OnInit{
       this.price="Click on the date to see its price";
     }
   }
-  constructor(private accommodationDetailsService:AccommodationDetailsService,private route: ActivatedRoute) {
+  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = params['id'];
-      this.accommodationDetailsService.get(id.toString()).subscribe({
+      this.accommodationService.getAccommodationDetails(id.toString()).subscribe({
         next: (accommodation: AccommodationDTO): AccommodationDTO => this.accommodation = accommodation,
         error: (_) => {
         }

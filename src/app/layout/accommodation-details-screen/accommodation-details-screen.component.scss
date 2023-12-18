@@ -130,10 +130,6 @@ mat-calendar {
           background-color: #FDF5EC;
           border: 1px solid black;
         }
-.map-frame {
-  border: 2px solid black;
-}
-
-#map {
-  height: 300px;
+app-map{
+  z-index: 1;
 }
