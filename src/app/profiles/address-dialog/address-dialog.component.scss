@@ -16,6 +16,11 @@ button[mat-raised-button] {
   }
 }
 
+#form-holder {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 #button-holder {
   display: flex;
   flex-flow: row nowrap;

@@ -1,17 +1,17 @@
 <div id="content-holder">
-  <form [formGroup]="userAddressForm">
+  <form [formGroup]="userTelephoneForm">
     <div id="form-holder">
       <mat-form-field appearance="outline" color="primary">
-        <mat-label>Address</mat-label>
-        <input matInput type="text" name="address" formControlName="address" spellcheck="false">
-        @if (!userAddressForm.get('address')?.valid) {
+        <mat-label>Telephone</mat-label>
+        <input matInput type="tel" name="telephone" formControlName="telephone" spellcheck="false">
+        @if (!userTelephoneForm.get('telephone')?.valid) {
           <mat-error>{{getErrorMessage()}}</mat-error>
         }
       </mat-form-field>
     </div>
   </form>
   <div id="button-holder">
-    <button mat-raised-button color="primary" (click)="updateUserAddress()" [disabled]="!userAddressForm.valid">
+    <button mat-raised-button color="primary" (click)="updateUserTelephone()" [disabled]="!userTelephoneForm.valid">
       Confirm
     </button>
     <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
