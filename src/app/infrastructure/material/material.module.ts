@@ -14,7 +14,7 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
-
+import {MatStepperModule} from "@angular/material/stepper";
 
 @NgModule({
   declarations: [],
@@ -33,6 +33,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatRadioModule,
     MatSnackBarModule,
     MatProgressBarModule,
+    MatStepperModule,
   ],
   exports: [
     MatToolbarModule,
@@ -53,6 +54,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatRadioModule,
     MatSnackBarModule,
     MatProgressBarModule,
+    MatStepperModule,
   ]
 })
 export class MaterialModule { }

@@ -1,0 +1,38 @@
+#content-holder {
+  width: 25vw;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 10px 10px 10px 10px;
+  background-color: #FDF5EC;
+  @media (prefers-color-scheme: dark) {
+    background-color: #171123;
+  }
+  color: black;
+  @media (prefers-color-scheme: dark) {
+    color: #FDF5EC;
+  }
+}
+
+.mat-stepper-vertical {
+  border-radius: 10px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 10px;
+}
+
+.button-holder {
+  display: flex;
+  gap: 10px;
+}
+
+.step-holder {
+  margin-top: 10px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+}
+
+#confirmation-holder {
+  margin-top: 10px;
+}

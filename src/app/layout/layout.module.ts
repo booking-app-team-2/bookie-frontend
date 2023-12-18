@@ -7,7 +7,8 @@ import {AccommodationCardComponent} from "./accommodation-card/accommodation-car
 import {AccommodationDetailsScreenComponent} from "./accommodation-details-screen/accommodation-details-screen.component";
 import {MainScreenComponent} from "./main-screen/main-screen.component";
 import {ReviewCardComponent} from './review-card/review-card.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ReserveDialogComponent } from './reserve-dialog/reserve-dialog.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {FormsModule} from "@angular/forms";
     AccommodationCardComponent,
     AccommodationDetailsScreenComponent,
     MainScreenComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    ReserveDialogComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import {FormsModule} from "@angular/forms";
     RouterLink,
     NgOptimizedImage,
     FormsModule,
+    ReactiveFormsModule,
 
   ],
   exports: [
