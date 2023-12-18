@@ -46,11 +46,14 @@
           </mat-slider>
 
           <!--Availability dates-->
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Choose availability</mat-label>
-            <input matInput [matDatepicker]="picker">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Start date">
+              <input matEndDate placeholder="End date">
+            </mat-date-range-input>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-date-range-picker #picker></mat-date-range-picker>
           </mat-form-field>
 
           <!-- Amenities Checkboxes -->
