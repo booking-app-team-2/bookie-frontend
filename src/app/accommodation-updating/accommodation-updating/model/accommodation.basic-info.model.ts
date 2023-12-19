@@ -1,4 +1,4 @@
-export interface AccommodationDTO{
+export interface AccommodationBasicInfoDTO{
   id:number;
   name:string;
   description:string;
@@ -9,6 +9,14 @@ export interface AccommodationDTO{
     longitude: number;
   };
   amenities:string[];
+  images:{
+    id:number;
+    path:string;
+    name:string;
+    isDeleted:boolean;
+  }[];
+  type:string;
+  reservationAutoAccepted:boolean;
   availabilityPeriods:{
     id:number;
     price:number;
@@ -18,13 +26,4 @@ export interface AccommodationDTO{
     }
     deleted:boolean;
   }[];
-  images:{
-    id:number;
-    path:string;
-    name:string;
-    isDeleted:boolean;
-  }[];
-  reservationCancellationDeadline:string;
-  type:string;
-  reservationAutoAccepted:boolean;
 }

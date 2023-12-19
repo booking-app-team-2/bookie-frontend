@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccommodationUpdatingComponent } from './accommodation-updating/accommodation-updating.component';
 import {MaterialModule} from "../infrastructure/material/material.module";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import {MaterialModule} from "../infrastructure/material/material.module";
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class AccommodationUpdatingModule { }
