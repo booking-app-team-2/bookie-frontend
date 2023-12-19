@@ -36,7 +36,7 @@ export class ProfileService {
     return this.httpClient.put<UserPassword>(this.userControllerRoute + '/' + id + '/password', userPassword);
   }
 
-  remove(id: number): Observable<string> {
-    return this.httpClient.delete<string>(this.userControllerRoute + '/' + id);
+  remove(id: number): Observable<void> {
+    return this.httpClient.delete<void>(this.userControllerRoute + '/' + id);
   }
 }
