@@ -16,6 +16,8 @@ export class ReserveDialogComponent {
     numberOfGuests: new FormControl<number | null>(null, [Validators.required]),
   });
 
+  minDate: Date = new Date();
+
   periodForm: FormGroup<{
     startDate: FormControl<Date | null>,
     endDate: FormControl<Date | null>,
@@ -28,15 +30,10 @@ export class ReserveDialogComponent {
   });
 
   getNumberOfGuestsErrorMessage(): string {
-    return 'Drool';
-  }
+    if (this.numberOfGuestsForm.get('numberOfGuests')?.hasError('required'))
+      return "You must state the number of guests"
 
-  getStartDateErrorMessage(): string {
-    return 'Drool';
-  }
-
-  getEndDateErrorMessage(): string {
-    return 'Drool';
+    return "Something went wrong";
   }
 
   createReservation(): void {

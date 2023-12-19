@@ -22,18 +22,15 @@
           <div class="step-holder">
             <mat-form-field appearance="outline" color="accent">
               <mat-label>Pick the reservation period</mat-label>
-              <mat-date-range-input [formGroup]="periodForm" [rangePicker]="picker">
+              <mat-date-range-input [formGroup]="periodForm" [min]="minDate" [rangePicker]="picker">
                 <input matStartDate formControlName="startDate" required>
                 <input matEndDate formControlName="endDate" required>
               </mat-date-range-input>
               <mat-hint>DD/MM/YYYY - DD/MM/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker" />
               <mat-date-range-picker #picker></mat-date-range-picker>
-              @if (periodForm.get('startDate')?.valid) {
-                <mat-error>{{getStartDateErrorMessage()}}</mat-error>
-              }
-              @if (periodForm.get('endDate')?.valid) {
-                <mat-error>{{getEndDateErrorMessage()}}</mat-error>
+              @if (!periodForm.get('startDate')?.valid || periodForm.get('endDate')?.valid) {
+                <mat-error>You have picked a date range outside of the allowed bounds</mat-error>
               }
             </mat-form-field>
             <div class="button-holder">
