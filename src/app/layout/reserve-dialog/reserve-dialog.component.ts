@@ -21,6 +21,8 @@ export class ReserveDialogComponent {
     numberOfGuests: new FormControl<number | null>(null, [Validators.required]),
   });
 
+  minDate: Date = new Date();
+
   periodForm: FormGroup<{
     startDate: FormControl<Date | null>,
     endDate: FormControl<Date | null>,
