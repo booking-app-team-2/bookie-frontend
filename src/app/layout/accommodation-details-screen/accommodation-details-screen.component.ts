@@ -9,14 +9,13 @@ import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component
 })
 export class AccommodationDetailsScreenComponent {
   selected: Date=new Date();
+
+  // TODO: Get user role from JWT
   userType = "Guest";
   constructor(public dialog: MatDialog) { }
 
   openReserveDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(ReserveDialogComponent, {
-      data: {
-
-      },
       enterAnimationDuration,
       exitAnimationDuration,
     });
