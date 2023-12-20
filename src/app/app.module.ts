@@ -41,7 +41,7 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
     {
       provide: MAT_DATE_LOCALE,
       useValue: 'en-GB',
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })
