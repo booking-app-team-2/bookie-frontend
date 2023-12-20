@@ -18,7 +18,7 @@ import {SharedService} from "../../shared/shared.service";
 export class ProfileComponent implements OnInit {
 
   // TODO: Get userId from JWT
-  userId: number = 2;
+  userId: number = 6;
 
   user: User | undefined;
 
