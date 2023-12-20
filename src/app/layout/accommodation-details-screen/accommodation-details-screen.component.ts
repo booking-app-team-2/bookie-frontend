@@ -6,6 +6,7 @@ import {AccommodationService} from "../accommodation.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component";
 import {SharedService} from "../../shared/shared.service";
+import {TokenService} from "../../shared/token.service";
 
 export interface calendarDate{
   start:Date;
@@ -27,9 +28,7 @@ export class AccommodationDetailsScreenComponent implements OnInit{
   price:string="Click on the date to see its price";
   mapCenter: [number, number];
 
-  // TODO: Get user role from JWT
-
-  userType = "Guest";
+  userType: string = this.tokenService.getRoleFromToken() ?? 'unauthenticated';
 
   dateClass(): (date: Date) => MatCalendarCellCssClasses {
     return (date: Date): MatCalendarCellCssClasses => {
@@ -57,7 +56,7 @@ export class AccommodationDetailsScreenComponent implements OnInit{
   }
 
   constructor(private accommodationService:AccommodationService,private route: ActivatedRoute,
-              public dialog: MatDialog, private sharedService: SharedService) {
+              public dialog: MatDialog, private sharedService: SharedService, private tokenService: TokenService) {
   }
 
   ngOnInit(): void {

@@ -5,6 +5,7 @@ import {Reservation} from "./model/reservation.model";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
+import {TokenService} from "../../shared/token.service";
 
 @Component({
   selector: 'app-reserve-dialog',
@@ -49,7 +50,7 @@ export class ReserveDialogComponent {
   }
 
   constructor(public dialogRef: MatDialogRef<ReserveDialogComponent>, private reservationService: ReservationService,
-              private sharedService: SharedService,
+              private tokenService: TokenService, private sharedService: SharedService,
               @Inject(MAT_DIALOG_DATA) public data:
                 {
                   accommodationId: number,
@@ -85,10 +86,7 @@ export class ReserveDialogComponent {
     const reservation: Reservation = {
       numberOfGuests: this.numberOfGuestsForm.value.numberOfGuests ?? 0,
       accommodationId: this.data.accommodationId,
-
-      // TODO: Get reservee id from JWT
-
-      reserveeId: 3,
+      reserveeId: this.tokenService.getIdFromToken() ?? 0,
       period: {
         startDate: Math.floor((this.periodForm.value.startDate?.getTime() ?? 0) / 1000),
         endDate: Math.floor((this.periodForm.value.endDate?.getTime() ?? 0) / 1000),
