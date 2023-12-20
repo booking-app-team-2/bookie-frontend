@@ -5,6 +5,7 @@ import {MatCalendarCellCssClasses} from "@angular/material/datepicker";
 import {AccommodationService} from "../accommodation.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component";
+import {SharedService} from "../../shared/shared.service";
 
 export interface calendarDate{
   start:Date;
@@ -54,7 +55,9 @@ export class AccommodationDetailsScreenComponent implements OnInit{
       this.price="Click on the date to see its price";
     }
   }
-  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute, public dialog: MatDialog) {
+
+  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute,
+              public dialog: MatDialog, private sharedService: SharedService) {
   }
 
   ngOnInit(): void {
@@ -65,8 +68,8 @@ export class AccommodationDetailsScreenComponent implements OnInit{
         error: (_) => {
         }
       });
-      this.mapCenter= [this.accommodation.location.latitude,this.accommodation.location.longitude];
-      for(const period of this.accommodation.availabilityPeriods){
+      this.mapCenter= [this.accommodation?.location?.latitude,this.accommodation?.location?.longitude];
+      for(const period of this.accommodation?.availabilityPeriods){
         this.dateRange.push({
           start: new Date(
             period.period.startDate * 1000
@@ -82,15 +85,18 @@ export class AccommodationDetailsScreenComponent implements OnInit{
 
   openReserveDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(ReserveDialogComponent, {
+      data: {
+        accommodationId: this.accommodation?.id,
+        minimumGuests: this.accommodation?.minimumGuests,
+        maximumGuests: this.accommodation?.maximumGuests,
+        availabilityPeriods: this.accommodation?.availabilityPeriods,
+      },
       enterAnimationDuration,
       exitAnimationDuration,
     }).afterClosed().subscribe({
       next: dialogResult => {
         if (dialogResult)
-
-          // TODO: Show snackbar confirming reservation creation
-
-          return;
+          this.sharedService.openSnackBar("Accommodation successfully reserved");
       }
     });
   }

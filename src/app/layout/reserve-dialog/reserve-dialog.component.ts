@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReservationService} from "../reservation.service";
 import {Reservation} from "./model/reservation.model";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {HttpErrorResponse} from "@angular/common/http";
+import {SharedService} from "../../shared/shared.service";
 
 @Component({
   selector: 'app-reserve-dialog',
@@ -16,7 +17,14 @@ export class ReserveDialogComponent {
   }> = new FormGroup<{
     numberOfGuests: FormControl<number | null>,
   }>({
-    numberOfGuests: new FormControl<number | null>(null, [Validators.required]),
+    numberOfGuests: new FormControl<number | null>(
+      null,
+      [
+        Validators.required,
+        Validators.min(this.data.minimumGuests),
+        Validators.max(this.data.maximumGuests)
+      ]
+    ),
   });
 
   minDate: Date = new Date();
@@ -32,12 +40,40 @@ export class ReserveDialogComponent {
     endDate: new FormControl<Date | null>(null, [Validators.required]),
   });
 
-  constructor(public dialogRef: MatDialogRef<ReserveDialogComponent>, private reservationService: ReservationService) {
+  availabilityPeriodFilter = (d: Date | null): boolean => {
+    return this.data.availabilityPeriods.some(
+      availabilityPeriod =>
+        availabilityPeriod.period.startDate * 1000 <= (d?.getTime() ?? new Date().getTime()) &&
+        availabilityPeriod.period.endDate * 1000 >= (d?.getTime() ?? new Date().getTime())
+    );
+  }
+
+  constructor(public dialogRef: MatDialogRef<ReserveDialogComponent>, private reservationService: ReservationService,
+              private sharedService: SharedService,
+              @Inject(MAT_DIALOG_DATA) public data:
+                {
+                  accommodationId: number,
+                  minimumGuests: number,
+                  maximumGuests: number,
+                  availabilityPeriods: {
+                    id:number;
+                    price:number;
+                    period:{
+                      startDate:number;
+                      endDate:number;
+                    }
+                    deleted:boolean;
+                  }[],
+                }) {
   }
 
   getNumberOfGuestsErrorMessage(): string {
     if (this.numberOfGuestsForm.get('numberOfGuests')?.hasError('required'))
-      return "You must state the number of guests"
+      return "You must state the number of guests";
+    else if (this.numberOfGuestsForm.get('numberOfGuests')?.hasError('min'))
+      return "Number of guests is less than the minimum";
+    else if (this.numberOfGuestsForm.get('numberOfGuests')?.hasError('max'))
+      return "Number of guests is more than the maximum";
 
     return "Something went wrong";
   }
@@ -48,10 +84,7 @@ export class ReserveDialogComponent {
 
     const reservation: Reservation = {
       numberOfGuests: this.numberOfGuestsForm.value.numberOfGuests ?? 0,
-
-      // TODO: Get accommodation id from selected accommodation
-
-      accommodationId: 1,
+      accommodationId: this.data.accommodationId,
 
       // TODO: Get reservee id from JWT
 
@@ -66,15 +99,9 @@ export class ReserveDialogComponent {
       next: (): void => this.dialogRef.close(true),
       error: (error: HttpErrorResponse): void => {
         if (error)
-
-          // TODO: Open snack bar with error message
-
-          return;
+          this.sharedService.openSnackBar(error.error.message);
         else
-
-        // TODO: Open snack bar with generic error message
-
-        return;
+          this.sharedService.openSnackBar("Error reaching the server.");
       },
     });
   }

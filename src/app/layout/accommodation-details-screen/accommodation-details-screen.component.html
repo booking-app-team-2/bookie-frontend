@@ -2,7 +2,7 @@
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
-  <div class="text-wrapper">{{accommodation.name}}</div>
+  <div class="text-wrapper">{{accommodation?.name}}</div>
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
@@ -15,7 +15,7 @@
       <div class="div-wrapper"><div class="text-wrapper">Description</div></div>
       <div class="div-wrapper">
         <p class="text-wrapper">
-          {{accommodation.description}}
+          {{accommodation?.description}}
         </p>
       </div>
     </div>
@@ -43,13 +43,13 @@
       <div class="vertical-divider"></div>
     </div>
     <div class="div smalldiv">
-      <div class="div-wrapper"><div class="text-wrapper">Suited for {{accommodation.minimumGuests}} to {{accommodation.maximumGuests}} guests</div></div>
+      <div class="div-wrapper"><div class="text-wrapper">Suited for {{accommodation?.minimumGuests}} to {{accommodation?.maximumGuests}} guests</div></div>
     </div>
     <div class="vertical-full-width-wrapper">
       <div class="vertical-divider"></div>
     </div>
     <div class="div smalldiv">
-      <div class="div-wrapper"><div class="text-wrapper">Reservation cancellation deadline up to {{accommodation.reservationCancellationDeadline}} days after being accepted</div></div>
+      <div class="div-wrapper"><div class="text-wrapper">Reservation cancellation deadline up to {{accommodation?.reservationCancellationDeadline}} days after being accepted</div></div>
     </div>
     <div class="vertical-full-width-wrapper">
       <div class="vertical-divider"></div>
@@ -58,7 +58,7 @@
       <div class="div-wrapper"><div class="text-wrapper">Type</div></div>
       <div class="div-wrapper">
         <p class="p">
-          {{accommodation.type}}
+          {{accommodation?.type}}
         </p>
       </div>
     </div>

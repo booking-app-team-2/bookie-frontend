@@ -2,7 +2,7 @@
   <img class="bookie-kawaii" ngSrc="../../../assets/images/bookie-quirky.svg" alt="Image" height="196" width="232"/>
   <div class="div">
     <div class="div-name">
-      <div class="text-wrapper">{{accommodation.name}}</div>
+      <div class="text-wrapper">{{accommodation?.name}}</div>
       <div class="div-rating">
         <div class="stars">
           <mat-icon>star</mat-icon>
@@ -16,12 +16,12 @@
     </div>
     <div class="div">
       <p class="text-wrapper">
-        {{accommodation.description}}
+        {{accommodation?.description}}
       </p>
     </div>
     <div class="div-bottom">
-      <div class="text-wrapper">{{accommodation.minimumGuests}} to {{accommodation.maximumGuests}} people</div>
-      <button mat-raised-button class="button" color="primary" [routerLink]="isOwnerScreen ? ['/updating', accommodation.id] : ['/details', accommodation.id]">
+      <div class="text-wrapper">{{accommodation?.minimumGuests}} to {{accommodation?.maximumGuests}} people</div>
+      <button mat-raised-button class="button" color="primary" [routerLink]="isOwnerScreen ? ['/updating', accommodation?.id] : ['/details', accommodation?.id]">
         <span *ngIf="isOwnerScreen; else alternativeText">Edit</span>
         <ng-template #alternativeText>See details</ng-template>
       </button>
