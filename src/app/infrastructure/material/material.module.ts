@@ -36,23 +36,15 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatDialogModule,
     MatRadioModule,
     MatMenuModule,
-    MatCheckboxModule,
-    MatSliderModule,
-    MatSelectModule,
     MatSnackBarModule,
     MatProgressBarModule,
     MatCheckboxModule,
     MatSliderModule,
     MatSelectModule,
-    MatStepperModule,
+    MatStepperModule
   ],
   exports: [
     MatToolbarModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatDividerModule,
     MatCardModule,
     MatDatepickerModule,
     MatButtonModule,
@@ -64,15 +56,12 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatDialogModule,
     MatRadioModule,
     MatMenuModule,
-    MatCheckboxModule,
-    MatSliderModule,
-    MatSelectModule,
     MatSnackBarModule,
     MatProgressBarModule,
     MatCheckboxModule,
     MatSliderModule,
     MatSelectModule,
-    MatStepperModule,
+    MatStepperModule
   ]
 })
 export class MaterialModule { }
