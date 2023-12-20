@@ -77,3 +77,10 @@
 .autoAccept{
   margin-bottom: 10px;
 }
+.imageDiv{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  justify-content: space-between;
+}

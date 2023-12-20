@@ -28,6 +28,9 @@ export class AccommodationService {
   getAccommodationDetails(id:string): Observable<AccommodationDTO>{
     return this.httpClient.get<AccommodationDTO>(this.accommodationControllerRoute+'/'+id);
   }
+  getAccommodationsByOwner(id:string):Observable<AccommodationDTO[]>{
+    return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/owner-accommodations/'+id);
+  }
   updateAccommodationBasicInfo(accommodation:AccommodationBasicInfoDTO): Observable<AccommodationBasicInfoDTO>{
     return this.httpClient.put<AccommodationBasicInfoDTO>(this.accommodationControllerRoute+'/'+accommodation.id+"/basic-info",accommodation).pipe(
       catchError((error: HttpResponse<any>) => {

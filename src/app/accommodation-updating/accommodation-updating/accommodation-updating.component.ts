@@ -107,4 +107,21 @@ export class AccommodationUpdatingComponent {
       deleted:false
     })
   }
+  onFileSelected(event: any): void {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      console.log(this.accommodation.images);
+      this.accommodation.images.push({
+        id:this.accommodation.images.length,
+        path:selectedFile.name,
+        name:selectedFile.name.slice(0,-4),
+        type:selectedFile.name.slice(-4),
+        isDeleted:false
+      })
+    }
+  }
+  deleteImage(index:number):void{
+    this.accommodation.images.splice(index,1);
+  }
 }

@@ -13,6 +13,7 @@ export interface AccommodationBasicInfoDTO{
     id:number;
     path:string;
     name:string;
+    type:string;
     isDeleted:boolean;
   }[];
   type:string;

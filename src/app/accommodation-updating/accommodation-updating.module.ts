@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { AccommodationUpdatingComponent } from './accommodation-updating/accommodation-updating.component';
 import {MaterialModule} from "../infrastructure/material/material.module";
 import {FormsModule} from "@angular/forms";
@@ -12,7 +12,8 @@ import {FormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    NgOptimizedImage
   ]
 })
 export class AccommodationUpdatingModule { }

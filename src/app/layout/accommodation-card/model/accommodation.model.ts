@@ -22,6 +22,7 @@ export interface AccommodationDTO{
     id:number;
     path:string;
     name:string;
+    type:string;
     isDeleted:boolean;
   }[];
   reservationCancellationDeadline:string;

@@ -10,6 +10,7 @@ import {LoginRegisterModule} from "./login-register/login-register.module";
 import {HttpClientModule} from "@angular/common/http";
 import {provideHttpClient, withFetch} from "@angular/common/http";
 import {AccommodationUpdatingModule} from "./accommodation-updating/accommodation-updating.module";
+import {OwnerAccommodationsModule} from "./owner-accommodations/owner-accommodations.module";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {AccommodationUpdatingModule} from "./accommodation-updating/accommodatio
     ProfilesModule,
     LoginRegisterModule,
     AccommodationUpdatingModule,
-    HttpClientModule
+    HttpClientModule,
+    OwnerAccommodationsModule
   ],
   providers: [
     provideClientHydration(),

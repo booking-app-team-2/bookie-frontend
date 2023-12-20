@@ -7,7 +7,12 @@
       <form class="create-forum" id="form">
         <div class="form-column">
           <div class="bookie-quirky"></div>
-          <button mat-raised-button class="forum-buttons" color="primary">Upload images</button>
+          <button mat-raised-button class="forum-buttons" color="primary" (click)="fileInput.click()">Choose file</button>
+          <input hidden type="file" accept=".svg" #fileInput (change)="onFileSelected($event)">
+          <div class="imageDiv" *ngFor="let image of accommodation.images; let i=index">
+            <img ngSrc="{{image.path}}" alt="Image" height="50" width="50"/>
+            <button mat-flat-button color="primary" class="delete-button" (click)="deleteImage(i)">Delete</button>
+          </div>
         </div>
         <div class="form-column">
           <!-- Name Field -->
