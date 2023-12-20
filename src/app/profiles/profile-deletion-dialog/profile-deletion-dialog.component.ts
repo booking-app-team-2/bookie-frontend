@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
 import {Observable} from "rxjs";
+import {TokenService} from "../../shared/token.service";
 
 @Component({
   selector: 'app-profile-deletion-dialog',
@@ -15,14 +16,15 @@ export class ProfileDeletionDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { userId: number },
               private router: Router,
               private profileService: ProfileService,
-              private sharedService: SharedService) { }
+              private sharedService: SharedService,
+              private tokenService: TokenService) { }
 
   deleteProfile(): void {
     this.profileService.remove(this.data.userId).subscribe({
-
-      // TODO: Clear the local storage of the current user
-      next: (): Promise<Boolean> => this.router.navigate(['login']),
-
+      next: (): Promise<Boolean> => {
+        this.tokenService.removeToken()
+        return this.router.navigate(['login'])
+      },
       error: (error: HttpErrorResponse): void =>  {
         if (error)
           this.sharedService.openSnackBar(error.error.message);

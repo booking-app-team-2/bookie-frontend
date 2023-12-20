@@ -7,10 +7,11 @@ import {LayoutModule} from "./layout/layout.module";
 import {FormsModule} from "@angular/forms";
 import { ProfilesModule } from "./profiles/profiles.module";
 import {LoginRegisterModule} from "./login-register/login-register.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {provideHttpClient, withFetch} from "@angular/common/http";
 import {AccommodationUpdatingModule} from "./accommodation-updating/accommodation-updating.module";
 import {OwnerAccommodationsModule} from "./owner-accommodations/owner-accommodations.module";
+import {TokenInterceptor} from "./shared/interceptor/token-interceptor";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,11 @@ import {OwnerAccommodationsModule} from "./owner-accommodations/owner-accommodat
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()),
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : TokenInterceptor,
+      multi : true
+    },
   ],
   bootstrap: [AppComponent]
 })

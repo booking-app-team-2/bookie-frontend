@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginCredentials} from "./model/login-credentials.model";
 import {AuthenticationService} from "../authentication.service";
 import {TokenModel} from "./model/token.model";
+import {TokenService} from "../../shared/token.service";
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
+    private tokenService : TokenService,
     ) {}
 
   loginForm : FormGroup = new FormGroup({
@@ -30,7 +32,7 @@ export class LoginComponent {
 
       this.authenticationService.login(login).subscribe({
         next : (data : TokenModel) : void => {
-          localStorage.setItem('jwt', data.jwt);
+          this.tokenService.setToken(data);
           this.router.navigate(['']);
       },
         error : error => {

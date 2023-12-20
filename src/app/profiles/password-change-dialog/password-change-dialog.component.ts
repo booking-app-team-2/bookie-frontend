@@ -5,6 +5,7 @@ import {UserPassword} from "./model/user-password.model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
 import {MatDialogRef} from "@angular/material/dialog";
+import {TokenService} from "../../shared/token.service";
 
 @Component({
   selector: 'app-password-change-dialog',
@@ -13,8 +14,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 })
 export class PasswordChangeDialogComponent {
 
-  // TODO: Get userId from JWT
-  userId: number = 2;
+  userId: number = this.tokenService.getIdFromToken() ?? 0;
 
   hideCurrentPassword: boolean = true;
   hideNewPassword: boolean = true;
@@ -37,7 +37,8 @@ export class PasswordChangeDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<PasswordChangeDialogComponent>,
               private profileService: ProfileService,
-              private sharedService: SharedService) { }
+              private sharedService: SharedService,
+              private tokenService: TokenService) { }
 
   getCurrentPasswordErrorMessage(): string {
     if (this.userPasswordForm.get('currentPassword')?.hasError('required'))

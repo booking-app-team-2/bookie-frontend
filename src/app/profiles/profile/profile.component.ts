@@ -9,6 +9,7 @@ import {User} from "./model/user.model";
 import {ProfileService} from "../profile.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
+import {TokenService} from "../../shared/token.service";
 
 @Component({
   selector: 'app-profile',
@@ -17,13 +18,13 @@ import {SharedService} from "../../shared/shared.service";
 })
 export class ProfileComponent implements OnInit {
 
-  // TODO: Get userId from JWT
-  userId: number = 6;
+  userId: number = this.tokenService.getIdFromToken() ?? 0;
 
   user: User | undefined;
 
   constructor(private profileService: ProfileService, public dialog: MatDialog,
-              private sharedService: SharedService) { }
+              private sharedService: SharedService,
+              private tokenService: TokenService) { }
 
   getProfileData(): void {
     this.profileService.get(this.userId).subscribe({

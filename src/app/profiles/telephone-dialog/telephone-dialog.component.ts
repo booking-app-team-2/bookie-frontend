@@ -5,6 +5,7 @@ import {ProfileService} from "../profile.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
 import {UserTelephone} from "./model/user-telephone.model";
+import {TokenService} from "../../shared/token.service";
 
 @Component({
   selector: 'app-telephone-dialog',
@@ -12,9 +13,7 @@ import {UserTelephone} from "./model/user-telephone.model";
   styleUrl: './telephone-dialog.component.scss'
 })
 export class TelephoneDialogComponent {
-
-  // TODO: Get userId from JWT
-  userId: number = 2;
+  userId: number = this.tokenService.getIdFromToken() ?? 0;
 
   userTelephoneForm: FormGroup<{
     telephone: FormControl<string | null>,
@@ -32,7 +31,8 @@ export class TelephoneDialogComponent {
   constructor(public dialogRef: MatDialogRef<TelephoneDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { telephone: string },
               private profileService: ProfileService,
-              private sharedService: SharedService) { }
+              private sharedService: SharedService,
+              private tokenService: TokenService) { }
 
   getErrorMessage(): string {
     if (this.userTelephoneForm.get('telephone')?.hasError('required'))
