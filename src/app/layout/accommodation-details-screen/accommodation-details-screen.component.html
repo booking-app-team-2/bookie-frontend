@@ -93,4 +93,9 @@
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
+  <button id="fab" mat-fab color="warn" extended="" *ngIf="userType == 'Guest'"
+          (click)="openReserveDialog('250ms', '250ms')">
+    <mat-icon aria-hidden="false" aria-label="Edit" fontIcon="edit"/>
+    Reserve
+  </button>
 </div>

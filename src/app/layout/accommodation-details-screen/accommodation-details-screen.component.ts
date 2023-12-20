@@ -3,6 +3,8 @@ import {AccommodationDTO} from "../accommodation-card/model/accommodation.model"
 import {ActivatedRoute} from "@angular/router";
 import {MatCalendarCellCssClasses} from "@angular/material/datepicker";
 import {AccommodationService} from "../accommodation.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component";
 
 export interface calendarDate{
   start:Date;
@@ -23,6 +25,11 @@ export class AccommodationDetailsScreenComponent implements OnInit{
   dateRange: calendarDate[] = [];
   price:string="Click on the date to see its price";
   mapCenter: [number, number];
+
+  // TODO: Get user role from JWT
+
+  userType = "Guest";
+
   dateClass(): (date: Date) => MatCalendarCellCssClasses {
     return (date: Date): MatCalendarCellCssClasses => {
       for (const range of this.dateRange) {
@@ -47,7 +54,7 @@ export class AccommodationDetailsScreenComponent implements OnInit{
       this.price="Click on the date to see its price";
     }
   }
-  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute) {
+  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -73,6 +80,13 @@ export class AccommodationDetailsScreenComponent implements OnInit{
     });
   }
 
+  openReserveDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ReserveDialogComponent, {
+      data: {
 
-
+      },
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
 }

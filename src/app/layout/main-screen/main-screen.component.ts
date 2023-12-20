@@ -5,15 +5,12 @@ import {AccommodationDTO} from "../accommodation-card/model/accommodation.model"
 import {AccommodationService} from "../accommodation.service";
 import {FormControl, FormGroup} from "@angular/forms";
 
-
-
 @Component({
   selector: 'app-main-screen',
   templateUrl: './main-screen.component.html',
   styleUrl: './main-screen.component.scss',
   host: {ngSkipHydration: 'true'},
 })
-
 export class MainScreenComponent{
 
     wifi:boolean=false;
@@ -114,5 +111,5 @@ export class MainScreenComponent{
       error: (_) => {
       }
     });
-}
+  }
 }
