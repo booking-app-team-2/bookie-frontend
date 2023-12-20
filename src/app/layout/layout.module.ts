@@ -12,6 +12,7 @@ import {CdkListbox} from "@angular/cdk/listbox";
 import { MapComponent } from '../shared/map/map.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ReserveDialogComponent } from './reserve-dialog/reserve-dialog.component';
+import { CustomMessageBoxDialogComponent } from '../shared/custom-message-box-dialog/custom-message-box-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReserveDialogComponent } from './reserve-dialog/reserve-dialog.componen
     ReviewCardComponent,
     FilterDialogComponent,
     MapComponent,
-    ReserveDialogComponent
+    ReserveDialogComponent,
+    CustomMessageBoxDialogComponent
   ],
   imports: [
     CommonModule,

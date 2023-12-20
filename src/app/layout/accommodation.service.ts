@@ -6,6 +6,7 @@ import {AccommodationDTO} from "./accommodation-card/model/accommodation.model";
 import {
   AccommodationBasicInfoDTO
 } from "../accommodation-updating/accommodation-updating/model/accommodation.basic-info.model";
+import {AccommodationApproval} from "./accommodation-details-screen/model/accommodation-approval.model";
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +43,9 @@ export class AccommodationService {
     );
   }
 
+  putAccommodationIsApproved(id: number,
+                             accommodationApproval: AccommodationApproval): Observable<AccommodationApproval> {
+    return this.httpClient.put<AccommodationApproval>(this.accommodationControllerRoute + '/' + id + '/is-approved',
+      accommodationApproval);
+  }
 }

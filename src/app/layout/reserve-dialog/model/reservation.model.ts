@@ -1,4 +1,4 @@
-import {Period} from "../../../model/period.model";
+import {Period} from "../../../shared/model/period.model";
 
 export interface Reservation {
   numberOfGuests: number,
