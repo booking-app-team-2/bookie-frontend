@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginCredentials} from "./model/login-credentials.model";
+import {AuthenticationService} from "../authentication.service";
+import {TokenModel} from "./model/token.model";
 
 @Component({
   selector: 'app-login',
@@ -10,28 +12,30 @@ import {LoginCredentials} from "./model/login-credentials.model";
 })
 
 export class LoginComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    ) {}
 
-  loginForm = new FormGroup({
+  loginForm : FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   })
 
   login(): void {
-
-    if (this.loginForm.valid) {
       const login: LoginCredentials = {
         username: this.loginForm.value.username || "",
         password: this.loginForm.value.password || ""
       }
-      /*this.authService.login(login).subscribe({
-        next: (response: AuthResponse) => {
-          localStorage.setItem('user', response.token);
-          this.authService.setUser()
-          this.router.navigate([''])
+
+      this.authenticationService.login(login).subscribe({
+        next : (data : TokenModel) : void => {
+          localStorage.setItem('jwt', data.jwt);
+          this.router.navigate(['']);
+      },
+        error : error => {
+        console.log(error);
         }
-      })*/
-      this.router.navigate(['']);
-    }
+      });
   }
 }
