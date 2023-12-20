@@ -86,12 +86,29 @@
       </div>
     </div>
   </div>
-  <div class="divider">
-    <mat-divider></mat-divider>
+  <div id="approval-holder" *ngIf="userType == 'Admin'">
+    <div class="divider">
+      <mat-divider></mat-divider>
+    </div>
+    <div id="approval-button-holder">
+      <button class="approval-button" mat-raised-button color="primary"
+              (click)="openApproveAccommodationDialog('250ms', '250ms')">
+        Approve this accommodation
+      </button>
+      <button class="approval-button" mat-stroked-button color="primary"
+              (click)="openUnapproveAccommodationDialog('250ms', '250ms')">
+        Send back for revision
+      </button>
+    </div>
   </div>
-  <div class="text-wrapper">Reviews</div>
-  <div class="divider">
-    <mat-divider></mat-divider>
+  <div id="reviews-holder" *ngIf="userType != 'Admin'">
+    <div class="divider">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="text-wrapper">Reviews</div>
+    <div class="divider">
+      <mat-divider></mat-divider>
+    </div>
   </div>
   <app-review-card></app-review-card>
   <div class="divider">
