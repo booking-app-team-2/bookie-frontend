@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {provideHttpClient, withFetch} from "@angular/common/http";
 import {AccommodationUpdatingModule} from "./accommodation-updating/accommodation-updating.module";
 import {OwnerAccommodationsModule} from "./owner-accommodations/owner-accommodations.module";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,11 @@ import {OwnerAccommodationsModule} from "./owner-accommodations/owner-accommodat
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB',
+    }
   ],
   bootstrap: [AppComponent]
 })
