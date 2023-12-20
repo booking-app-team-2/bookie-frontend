@@ -12,6 +12,7 @@ import {provideHttpClient, withFetch} from "@angular/common/http";
 import {AccommodationUpdatingModule} from "./accommodation-updating/accommodation-updating.module";
 import {OwnerAccommodationsModule} from "./owner-accommodations/owner-accommodations.module";
 import {TokenInterceptor} from "./shared/interceptor/token-interceptor";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,10 @@ import {TokenInterceptor} from "./shared/interceptor/token-interceptor";
       provide : HTTP_INTERCEPTORS,
       useClass : TokenInterceptor,
       multi : true
+    },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB',
     },
   ],
   bootstrap: [AppComponent]

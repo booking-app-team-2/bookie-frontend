@@ -84,6 +84,14 @@ export class AccommodationDetailsScreenComponent implements OnInit{
     this.dialog.open(ReserveDialogComponent, {
       enterAnimationDuration,
       exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (dialogResult)
+
+          // TODO: Show snackbar confirming reservation creation
+
+          return;
+      }
     });
   }
 }
