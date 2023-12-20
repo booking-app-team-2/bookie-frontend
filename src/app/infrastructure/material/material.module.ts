@@ -12,6 +12,10 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu'
+import {MatCheckboxModule} from '@angular/material/checkbox'
+import {MatSliderModule} from '@angular/material/slider'
+import {MatSelectModule} from "@angular/material/select";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 
@@ -31,6 +35,10 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatNativeDateModule,
     MatDialogModule,
     MatRadioModule,
+    MatMenuModule,
+    MatCheckboxModule,
+    MatSliderModule,
+    MatSelectModule,
     MatSnackBarModule,
     MatProgressBarModule,
   ],
@@ -51,6 +59,10 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     MatBadgeModule,
     MatDialogModule,
     MatRadioModule,
+    MatMenuModule,
+    MatCheckboxModule,
+    MatSliderModule,
+    MatSelectModule,
     MatSnackBarModule,
     MatProgressBarModule,
   ]

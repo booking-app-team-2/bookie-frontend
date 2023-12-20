@@ -87,12 +87,15 @@
 }
 
 .vertical-divider {
-  border-left: 1px solid white; /* Adjust color and thickness as needed */
-  height: 100%; /* Adjust height based on your layout */
-  margin-left: 10px; /* Adjust margin as needed */
+  border-left: 1px solid white;
+  height: 100%;
+  margin-left: 10px;
 }
 .DescPrice{
   width: 40vw;
+}
+.Desc{
+  width: 100vw;
 }
 .smalldiv{
   width: 20vw;
@@ -107,13 +110,26 @@
 .div-rating mat-icon{
   color: yellow;
 }
-.demo-inline-calendar-card {
+.calendar-card {
   width: 70%;
 }
-.location{
-  background-image: url("../../../assets/images/bookie-quirky.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 30vh;
-  width: 100%;
+button.special-date {
+  @media (prefers-color-scheme: dark) {
+    background-color: #a243aa;
+    border: 1px solid white;
+  }
+  background-color: #ff6f43;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+mat-calendar {
+          @media (prefers-color-scheme: dark) {
+            background-color: #171123;
+            border: 1px solid white;
+          }
+          background-color: #FDF5EC;
+          border: 1px solid black;
+        }
+app-map{
+  z-index: 1;
 }

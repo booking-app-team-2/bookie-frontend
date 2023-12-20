@@ -2,7 +2,7 @@
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
-  <div class="text-wrapper">Placeholder Accommodation</div>
+  <div class="text-wrapper">{{accommodation.name}}</div>
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
@@ -11,26 +11,11 @@
     <mat-divider></mat-divider>
   </div>
   <div class="descframe">
-    <div class="div DescPrice">
+    <div class="div Desc">
       <div class="div-wrapper"><div class="text-wrapper">Description</div></div>
       <div class="div-wrapper">
         <p class="text-wrapper">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-          ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-        </p>
-      </div>
-    </div>
-    <div class="vertical-full-width-wrapper">
-      <div class="vertical-divider"></div>
-    </div>
-    <div class="div DescPrice">
-      <div class="div-wrapper"><div class="text-wrapper">Price</div></div>
-      <div class="div-wrapper">
-        <p class="p">
-          10$ per guest
+          {{accommodation.description}}
         </p>
       </div>
     </div>
@@ -50,7 +35,7 @@
             <mat-icon>star</mat-icon>
             <mat-icon>star_half</mat-icon>
           </div>
-          <div class="text-wrapper">(4.5)</div>
+          <div class="text-wrapper">4.5</div>
         </div>
       </div>
     </div>
@@ -58,14 +43,13 @@
       <div class="vertical-divider"></div>
     </div>
     <div class="div smalldiv">
-      <div class="div-wrapper"><div class="text-wrapper">Suited for 4 to 6 guests</div></div>
-
+      <div class="div-wrapper"><div class="text-wrapper">Suited for {{accommodation.minimumGuests}} to {{accommodation.maximumGuests}} guests</div></div>
     </div>
     <div class="vertical-full-width-wrapper">
       <div class="vertical-divider"></div>
     </div>
     <div class="div smalldiv">
-      <div class="div-wrapper"><div class="text-wrapper">Reservation cancellation deadline up to 7 days after being accepted</div></div>
+      <div class="div-wrapper"><div class="text-wrapper">Reservation cancellation deadline up to {{accommodation.reservationCancellationDeadline}} days after being accepted</div></div>
     </div>
     <div class="vertical-full-width-wrapper">
       <div class="vertical-divider"></div>
@@ -74,7 +58,7 @@
       <div class="div-wrapper"><div class="text-wrapper">Type</div></div>
       <div class="div-wrapper">
         <p class="p">
-          Apartment
+          {{accommodation.type}}
         </p>
       </div>
     </div>
@@ -86,17 +70,18 @@
     <div class="div DescPrice">
       <div class="div-wrapper"><div class="text-wrapper">Location</div></div>
       <div class="div-wrapper">
-        <div class="location"></div>
+        <app-map [center]="mapCenter"></app-map>
       </div>
     </div>
     <div class="vertical-full-width-wrapper">
       <div class="vertical-divider"></div>
     </div>
     <div class="div DescPrice">
-      <div class="div-wrapper"><div class="text-wrapper">Availability periods</div></div>
+      <div class="div-wrapper"><div class="text-wrapper">Availability periods and pricing</div></div>
+      <div class="div-wrapper"><div class="text-wrapper">{{price}}</div></div>
       <div class="div-wrapper">
-        <mat-card class="demo-inline-calendar-card">
-          <mat-calendar [(selected)]="selected"></mat-calendar>
+        <mat-card class="calendar-card">
+          <mat-calendar [dateClass]="dateClass()" [(selected)]="selected" (selectedChange)="displayPrice()"></mat-calendar>
         </mat-card>
       </div>
     </div>
@@ -108,13 +93,4 @@
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
-  <app-review-card></app-review-card>
-  <div class="divider">
-    <mat-divider></mat-divider>
-  </div>
-  <app-review-card></app-review-card>
-  <div class="divider">
-    <mat-divider></mat-divider>
-  </div>
-  <app-review-card></app-review-card>
 </div>

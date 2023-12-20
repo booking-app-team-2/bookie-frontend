@@ -7,8 +7,10 @@ import {AccommodationCardComponent} from "./accommodation-card/accommodation-car
 import {AccommodationDetailsScreenComponent} from "./accommodation-details-screen/accommodation-details-screen.component";
 import {MainScreenComponent} from "./main-screen/main-screen.component";
 import {ReviewCardComponent} from './review-card/review-card.component';
-import {FormsModule} from "@angular/forms";
-
+import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
+import {CdkListbox} from "@angular/cdk/listbox";
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {FormsModule} from "@angular/forms";
     AccommodationCardComponent,
     AccommodationDetailsScreenComponent,
     MainScreenComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    FilterDialogComponent,
+    MapComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +28,8 @@ import {FormsModule} from "@angular/forms";
     RouterLink,
     NgOptimizedImage,
     FormsModule,
+    ReactiveFormsModule,
+    CdkListbox
 
   ],
   exports: [
@@ -31,7 +37,9 @@ import {FormsModule} from "@angular/forms";
     AccommodationCardComponent,
     AccommodationDetailsScreenComponent,
     MainScreenComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    FilterDialogComponent,
+    MapComponent
   ]
 })
 export class LayoutModule { }
