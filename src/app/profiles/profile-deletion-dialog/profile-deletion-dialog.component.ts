@@ -4,6 +4,7 @@ import {ProfileService} from "../profile.service";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-profile-deletion-dialog',
@@ -22,7 +23,12 @@ export class ProfileDeletionDialogComponent {
       // TODO: Clear the local storage of the current user
       next: (): Promise<Boolean> => this.router.navigate(['login']),
 
-      error: (error: HttpErrorResponse): void => this.sharedService.openSnackBar('Error reaching the server.')
+      error: (error: HttpErrorResponse): void =>  {
+        if (error)
+          this.sharedService.openSnackBar(error.error.message);
+        else
+          this.sharedService.openSnackBar('Error reaching the server.');
+      }
     });
   }
 }
