@@ -1,44 +1,62 @@
 <div id="content-holder">
-  <form>
     <mat-stepper orientation="vertical" color="primary" linear="" #stepper>
-      <mat-step label="Fill out the number of guests">
-        <div class="step-holder">
-            <mat-form-field appearance="outline" color="accent">
-              <mat-label>Number of guests</mat-label>
-              <input matInput required>
-            </mat-form-field>
-          <div class="button-holder">
-            <button mat-raised-button matStepperNext color="primary">Next</button>
+      <mat-step [stepControl]="numberOfGuestsForm" label="Fill out the number of guests">
+        <form [formGroup]="numberOfGuestsForm">
+          <div class="step-holder">
+              <mat-form-field appearance="outline" color="accent">
+                <mat-label>Number of guests</mat-label>
+                <input matInput type="number" name="numberOfGuests" formControlName="numberOfGuests" spellcheck="false"
+                       required>
+                @if (!numberOfGuestsForm.get('numberOfGuests')?.valid) {
+                  <mat-error>{{getNumberOfGuestsErrorMessage()}}</mat-error>
+                }
+              </mat-form-field>
+            <div class="button-holder">
+              <button mat-raised-button matStepperNext type="button" color="primary">Next</button>
+            </div>
           </div>
-        </div>
+        </form>
       </mat-step>
-      <mat-step label="Pick the period of the reservation">
-        <div class="step-holder">
-          <mat-form-field appearance="outline" color="accent">
-            <mat-label>Pick the reservation period</mat-label>
-            <mat-date-range-input [rangePicker]="picker">
-              <input matStartDate disabled>
-              <input matEndDate disabled>
-            </mat-date-range-input>
-            <mat-hint>DD/MM/YYYY - DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker" />
-            <mat-date-range-picker #picker disabled="{{false}}"></mat-date-range-picker>
-          </mat-form-field>
-          <div class="button-holder">
-            <button mat-raised-button matStepperNext color="primary">Next</button>
-            <button mat-raised-button matStepperPrevious color="primary">Previous</button>
+      <mat-step [stepControl]="periodForm" label="Pick the period of the reservation">
+        <form [formGroup]="periodForm">
+          <div class="step-holder">
+            <mat-form-field appearance="outline" color="accent">
+              <mat-label>Pick the reservation period</mat-label>
+              <mat-date-range-input [formGroup]="periodForm" [rangePicker]="picker">
+                <input matStartDate formControlName="startDate" required>
+                <input matEndDate formControlName="endDate" required>
+              </mat-date-range-input>
+              <mat-hint>DD/MM/YYYY - DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker" />
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              @if (periodForm.get('startDate')?.valid) {
+                <mat-error>{{getStartDateErrorMessage()}}</mat-error>
+              }
+              @if (periodForm.get('endDate')?.valid) {
+                <mat-error>{{getEndDateErrorMessage()}}</mat-error>
+              }
+            </mat-form-field>
+            <div class="button-holder">
+              <button mat-raised-button matStepperNext type="button" color="primary">Next</button>
+              <button mat-raised-button matStepperPrevious type="button" color="primary">Previous</button>
+            </div>
           </div>
-        </div>
+        </form>
       </mat-step>
       <mat-step label="Confirm your reservation">
         <div class="step-holder">
           Do you want to confirm your reservation?
           <div id="confirmation-holder" class="button-holder">
-            <button mat-raised-button color="primary">Confirm</button>
-            <button mat-raised-button (click)="stepper.reset()" color="primary">Reset input</button>
+            <button mat-raised-button color="primary" (click)="createReservation()"
+                    [disabled]="!numberOfGuestsForm.valid || !periodForm.valid">
+              Confirm
+            </button>
+            <button mat-raised-button (click)="stepper.reset();numberOfGuestsForm.reset();periodForm.reset()"
+                    color="primary">
+              Reset input
+            </button>
           </div>
         </div>
       </mat-step>
     </mat-stepper>
-  </form>
 </div>
