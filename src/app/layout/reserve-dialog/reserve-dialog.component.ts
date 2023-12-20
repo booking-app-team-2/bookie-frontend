@@ -11,6 +11,8 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrl: './reserve-dialog.component.scss'
 })
 export class ReserveDialogComponent {
+  minDate: Date = new Date();
+
   numberOfGuestsForm: FormGroup<{
     numberOfGuests: FormControl<number | null>,
   }> = new FormGroup<{
@@ -18,8 +20,6 @@ export class ReserveDialogComponent {
   }>({
     numberOfGuests: new FormControl<number | null>(null, [Validators.required]),
   });
-
-  minDate: Date = new Date();
 
   periodForm: FormGroup<{
     startDate: FormControl<Date | null>,
