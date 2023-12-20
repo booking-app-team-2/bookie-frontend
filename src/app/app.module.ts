@@ -30,7 +30,7 @@ import {OwnerAccommodationsModule} from "./owner-accommodations/owner-accommodat
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })
