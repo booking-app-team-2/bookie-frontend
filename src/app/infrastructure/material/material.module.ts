@@ -45,6 +45,7 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatSliderModule,
     MatSelectModule,
     MatStepperModule,
+    MatStepperModule
   ],
   exports: [
     MatToolbarModule,
@@ -73,6 +74,7 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatSliderModule,
     MatSelectModule,
     MatStepperModule,
+    MatStepperModule
   ]
 })
 export class MaterialModule { }

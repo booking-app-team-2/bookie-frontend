@@ -54,7 +54,8 @@ export class AccommodationDetailsScreenComponent implements OnInit{
       this.price="Click on the date to see its price";
     }
   }
-  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
