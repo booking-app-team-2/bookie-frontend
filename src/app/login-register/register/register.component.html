@@ -5,44 +5,40 @@
             <mat-card-title>Register</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" #form="ngForm">
               <mat-form-field appearance="outline" class="full-width">
-                <input matInput placeholder="Email" name="email" ngModel required>
+                <input matInput placeholder="Email" formControlName="email" required>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="full-width">
-                <input matInput type="password" placeholder="Password" name="password" ngModel required>
+                <input matInput type="password" placeholder="Password" formControlName="password" required>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="full-width">
-                <input matInput placeholder="Name" name="name" ngModel required>
+                <input matInput placeholder="Name" formControlName="name" required>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="full-width">
-                <input matInput placeholder="Surname" name="surname" ngModel required>
+                <input matInput placeholder="Surname" formControlName="surname" required>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="full-width">
-                <input matInput placeholder="Address" name="address" ngModel required>
+                <input matInput placeholder="Address" formControlName="address" required>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="full-width">
-                <input matInput placeholder="Phone number" name="phone" ngModel required>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="full-width">
-                <input matInput placeholder="Phone number" name="phone" ngModel required>
+                <input matInput placeholder="Telephone" formControlName="telephone" required>
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="full-width" [hideRequiredMarker]="true">
                 <mat-label>Role</mat-label>
-                <mat-select name="role" ngModel required>
-                  <mat-option value="guest">Guest</mat-option>
-                  <mat-option value="owner">Owner</mat-option>
+                <mat-select formControlName="role" required>
+                  <mat-option value="Guest">Guest</mat-option>
+                  <mat-option value="Owner">Owner</mat-option>
                 </mat-select>
               </mat-form-field>
 
-              <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Register</button>
             </form>
         </mat-card-content>
         <br>

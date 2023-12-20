@@ -1,11 +1,9 @@
 export interface NewUser {
-  id : string;
-  email : string;
+  username : string;
   password : string;
   name : string;
   surname : string;
   addressOfResidence: string;
+  telephone : string;
   role : string;
-  isBlocked : boolean;
-  isDeleted : boolean;
 }
