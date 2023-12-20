@@ -6,30 +6,43 @@
         </mat-card-header>
         <mat-card-content>
             <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-                <mat-form-field appearance="outline" class="full-width">
-                    <input matInput placeholder="Username" name="username" ngModel required>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width">
-                    <input matInput type="password" placeholder="Password" name="password" ngModel required>
-                </mat-form-field>
               <mat-form-field appearance="outline" class="full-width">
                 <input matInput placeholder="Email" name="email" ngModel required>
               </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width">
-                    <input matInput placeholder="Name" name="name" ngModel required>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width">
-                    <input matInput placeholder="Surname" name="surname" ngModel required>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width">
-                    <input matInput placeholder="MM/DD/YYYY" [matDatepicker]="picker">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="full-width">
-                    <input matInput placeholder="City" name="city" ngModel required>
-                </mat-form-field>
-                <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <input matInput type="password" placeholder="Password" name="password" ngModel required>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <input matInput placeholder="Name" name="name" ngModel required>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <input matInput placeholder="Surname" name="surname" ngModel required>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <input matInput placeholder="Address" name="address" ngModel required>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <input matInput placeholder="Phone number" name="phone" ngModel required>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <input matInput placeholder="Phone number" name="phone" ngModel required>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width" [hideRequiredMarker]="true">
+                <mat-label>Role</mat-label>
+                <mat-select name="role" ngModel required>
+                  <mat-option value="guest">Guest</mat-option>
+                  <mat-option value="owner">Owner</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Register</button>
             </form>
         </mat-card-content>
         <br>
