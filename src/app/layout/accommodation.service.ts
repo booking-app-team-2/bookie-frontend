@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {environment} from "../../env/env";
-import {Observable} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 import {AccommodationDTO} from "./accommodation-card/model/accommodation.model";
+import {
+  AccommodationBasicInfoDTO
+} from "../accommodation-updating/accommodation-updating/model/accommodation.basic-info.model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +27,19 @@ export class AccommodationService {
   }
   getAccommodationDetails(id:string): Observable<AccommodationDTO>{
     return this.httpClient.get<AccommodationDTO>(this.accommodationControllerRoute+'/'+id);
+  }
+  getAccommodationsByOwner(id:string):Observable<AccommodationDTO[]>{
+    return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/owner-accommodations/'+id);
+  }
+  updateAccommodationBasicInfo(accommodation:AccommodationBasicInfoDTO): Observable<AccommodationBasicInfoDTO>{
+    return this.httpClient.put<AccommodationBasicInfoDTO>(this.accommodationControllerRoute+'/'+accommodation.id+"/basic-info",accommodation).pipe(
+      catchError((error: HttpResponse<any>) => {
+        if (error.status === 500) {
+          console.error('Internal Server Error:', error);
+        }
+        return throwError(()=>error);
+      })
+    );
   }
 
 }

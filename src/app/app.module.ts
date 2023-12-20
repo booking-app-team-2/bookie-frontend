@@ -9,6 +9,8 @@ import { ProfilesModule } from "./profiles/profiles.module";
 import {LoginRegisterModule} from "./login-register/login-register.module";
 import {HttpClientModule} from "@angular/common/http";
 import {provideHttpClient, withFetch} from "@angular/common/http";
+import {AccommodationUpdatingModule} from "./accommodation-updating/accommodation-updating.module";
+import {OwnerAccommodationsModule} from "./owner-accommodations/owner-accommodations.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {provideHttpClient, withFetch} from "@angular/common/http";
     FormsModule,
     ProfilesModule,
     LoginRegisterModule,
-    HttpClientModule
+    AccommodationUpdatingModule,
+    HttpClientModule,
+    OwnerAccommodationsModule
   ],
   providers: [
     provideClientHydration(),

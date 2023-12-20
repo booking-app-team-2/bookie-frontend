@@ -10,4 +10,7 @@ export class AccommodationCardComponent{
   @Input()
   accommodation: AccommodationDTO;
 
+  @Input()
+  isOwnerScreen:boolean;
+
 }
