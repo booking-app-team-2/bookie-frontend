@@ -18,6 +18,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatSelectModule} from "@angular/material/select";
+import {MatStepperModule} from "@angular/material/stepper";
 
 @NgModule({
   declarations: [],
@@ -35,22 +36,15 @@ import {MatSelectModule} from "@angular/material/select";
     MatDialogModule,
     MatRadioModule,
     MatMenuModule,
-    MatCheckboxModule,
-    MatSliderModule,
-    MatSelectModule,
     MatSnackBarModule,
     MatProgressBarModule,
     MatCheckboxModule,
     MatSliderModule,
     MatSelectModule,
+    MatStepperModule
   ],
   exports: [
     MatToolbarModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatDividerModule,
     MatCardModule,
     MatDatepickerModule,
     MatButtonModule,
@@ -62,14 +56,12 @@ import {MatSelectModule} from "@angular/material/select";
     MatDialogModule,
     MatRadioModule,
     MatMenuModule,
-    MatCheckboxModule,
-    MatSliderModule,
-    MatSelectModule,
     MatSnackBarModule,
     MatProgressBarModule,
     MatCheckboxModule,
     MatSliderModule,
     MatSelectModule,
+    MatStepperModule
   ]
 })
 export class MaterialModule { }

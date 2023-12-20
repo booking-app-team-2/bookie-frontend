@@ -3,6 +3,10 @@ import {AccommodationDTO} from "../accommodation-card/model/accommodation.model"
 import {ActivatedRoute} from "@angular/router";
 import {MatCalendarCellCssClasses} from "@angular/material/datepicker";
 import {AccommodationService} from "../accommodation.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component";
+import {SharedService} from "../../shared/shared.service";
+import {TokenService} from "../../shared/token.service";
 
 export interface calendarDate{
   start:Date;
@@ -23,6 +27,9 @@ export class AccommodationDetailsScreenComponent implements OnInit{
   dateRange: calendarDate[] = [];
   price:string="Click on the date to see its price";
   mapCenter: [number, number];
+
+  userType: string = this.tokenService.getRoleFromToken() ?? 'unauthenticated';
+
   dateClass(): (date: Date) => MatCalendarCellCssClasses {
     return (date: Date): MatCalendarCellCssClasses => {
       for (const range of this.dateRange) {
@@ -47,7 +54,9 @@ export class AccommodationDetailsScreenComponent implements OnInit{
       this.price="Click on the date to see its price";
     }
   }
-  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute) {
+
+  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute,
+              public dialog: MatDialog, private sharedService: SharedService, private tokenService: TokenService) {
   }
 
   ngOnInit(): void {
@@ -58,8 +67,8 @@ export class AccommodationDetailsScreenComponent implements OnInit{
         error: (_) => {
         }
       });
-      this.mapCenter= [this.accommodation.location.latitude,this.accommodation.location.longitude];
-      for(const period of this.accommodation.availabilityPeriods){
+      this.mapCenter= [this.accommodation?.location?.latitude,this.accommodation?.location?.longitude];
+      for(const period of this.accommodation?.availabilityPeriods){
         this.dateRange.push({
           start: new Date(
             period.period.startDate * 1000
@@ -73,6 +82,21 @@ export class AccommodationDetailsScreenComponent implements OnInit{
     });
   }
 
-
-
+  openReserveDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(ReserveDialogComponent, {
+      data: {
+        accommodationId: this.accommodation?.id,
+        minimumGuests: this.accommodation?.minimumGuests,
+        maximumGuests: this.accommodation?.maximumGuests,
+        availabilityPeriods: this.accommodation?.availabilityPeriods,
+      },
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (dialogResult)
+          this.sharedService.openSnackBar("Accommodation successfully reserved");
+      }
+    });
+  }
 }

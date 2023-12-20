@@ -52,9 +52,8 @@ export class ProfileComponent implements OnInit {
       exitAnimationDuration,
     }).afterClosed().subscribe({
       next: dialogResult => {
-        if (dialogResult) {
+        if (dialogResult)
           this.getProfileData();
-        }
       }
     });
   }
