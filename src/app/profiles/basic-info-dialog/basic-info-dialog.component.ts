@@ -5,6 +5,7 @@ import {UserBasicInfo} from "./model/user-basic-info.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
+import {TokenService} from "../../shared/token.service";
 
 @Component({
   selector: 'app-basic-info-dialog',
@@ -12,9 +13,7 @@ import {SharedService} from "../../shared/shared.service";
   styleUrl: './basic-info-dialog.component.scss'
 })
 export class BasicInfoDialogComponent {
-
-  // TODO: Get userId from JWT
-  userId: number = 2;
+  userId: number = this.tokenService.getIdFromToken() ?? 0;
 
   userBasicInfoForm: FormGroup<{
     name: FormControl<string | null>,
@@ -30,7 +29,8 @@ export class BasicInfoDialogComponent {
   constructor(public dialogRef: MatDialogRef<BasicInfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: {name: string, surname: string},
               private profileService: ProfileService,
-              private sharedService: SharedService) { }
+              private sharedService: SharedService,
+              private tokenService: TokenService) { }
 
   getNameErrorMessage(): string {
     if (this.userBasicInfoForm.get('name')?.hasError('required'))

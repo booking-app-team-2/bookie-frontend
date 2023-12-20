@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
 import {UserAddress} from "./model/user-address.model";
+import {TokenService} from "../../shared/token.service";
 
 @Component({
   selector: 'app-address-dialog',
@@ -12,9 +13,7 @@ import {UserAddress} from "./model/user-address.model";
   styleUrl: './address-dialog.component.scss'
 })
 export class AddressDialogComponent {
-
-  // TODO: Get userId from JWT
-  userId: number = 2;
+  userId: number = this.tokenService.getIdFromToken() ?? 0;
 
   userAddressForm: FormGroup<{
     address: FormControl<string | null>,
@@ -27,7 +26,9 @@ export class AddressDialogComponent {
   constructor(public dialogRef: MatDialogRef<AddressDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: {address: string},
               private profileService: ProfileService,
-              private sharedService: SharedService) { }
+              private sharedService: SharedService,
+              private tokenService : TokenService,
+              ) { }
 
   getErrorMessage(): string {
     if (this.userAddressForm.get('address')?.hasError('required'))
