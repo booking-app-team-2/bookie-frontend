@@ -11,6 +11,7 @@ import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import {CdkListbox} from "@angular/cdk/listbox";
 import { MapComponent } from '../shared/map/map.component';
+import { ReserveDialogComponent } from './reserve-dialog/reserve-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MapComponent } from '../shared/map/map.component';
     MainScreenComponent,
     ReviewCardComponent,
     FilterDialogComponent,
-    MapComponent
+    MapComponent,
+    ReserveDialogComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,6 @@ import { MapComponent } from '../shared/map/map.component';
     FormsModule,
     ReactiveFormsModule,
     CdkListbox
-
   ],
   exports: [
     NavbarComponent,
