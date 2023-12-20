@@ -133,3 +133,15 @@ mat-calendar {
 app-map{
   z-index: 1;
 }
+
+#approval-button-holder {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: end;
+  gap: 10px;
+}
+
+.approval-button {
+  border-radius: 20px;
+}
