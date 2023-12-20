@@ -8,6 +8,7 @@ import {FormsModule} from "@angular/forms";
 import { ProfilesModule } from "./profiles/profiles.module";
 import {LoginRegisterModule} from "./login-register/login-register.module";
 import {provideHttpClient, withFetch} from "@angular/common/http";
+import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,11 @@ import {provideHttpClient, withFetch} from "@angular/common/http";
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB',
+    }
   ],
   bootstrap: [AppComponent]
 })
