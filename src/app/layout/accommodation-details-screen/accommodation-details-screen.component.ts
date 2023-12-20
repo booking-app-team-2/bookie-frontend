@@ -82,9 +82,6 @@ export class AccommodationDetailsScreenComponent implements OnInit{
 
   openReserveDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(ReserveDialogComponent, {
-      data: {
-
-      },
       enterAnimationDuration,
       exitAnimationDuration,
     });
