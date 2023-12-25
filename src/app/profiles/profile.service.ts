@@ -25,7 +25,10 @@ export class ProfileService {
   }
 
   putUserAddress(id: number, userAddress: UserAddress): Observable<UserAddress> {
-    return this.httpClient.put<UserAddress>(this.userControllerRoute + '/' + id + '/addressOfResidence', userAddress);
+    return this.httpClient.put<UserAddress>(
+      this.userControllerRoute + '/' + id + '/address-of-residence',
+      userAddress
+    );
   }
 
   putUserTelephone(id: number, userTelephone: UserTelephone): Observable<UserTelephone> {
