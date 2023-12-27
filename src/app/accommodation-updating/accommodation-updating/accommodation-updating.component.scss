@@ -1,0 +1,86 @@
+.create-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.create-card {
+  background-color: transparent;
+  box-shadow: none;
+  width: 90%;
+  color: black;
+  text-align: left;
+  font: 1em "Rubik";
+  @media (prefers-color-scheme: dark) {
+    color: #FDF5EC;
+  }
+}
+
+.bookie-quirky{
+  padding-bottom: 5vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 236px;
+  width: 272px;
+  @media (prefers-color-scheme: dark) {
+    background-image: url("../../../assets/images/bookie-quirky.svg");
+  }
+  @media (prefers-color-scheme: light) {
+    background-image: url("../../../assets/images/bookie-quirky.svg");
+  }
+}
+
+.create-header{
+  justify-content: center;
+}
+
+.full-width {
+  width: 100%;
+}
+.price{
+  width: 10vw;
+}
+.form-column {
+  margin: 50px;
+  width: 50%;
+}
+
+.combo-boxes {
+  width: 100%;
+  display: inline;
+}
+
+.create-forum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forum-buttons {
+  width: 100%;
+  margin-top: 2vh;
+}
+.availability-period{
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  margin-top: 10px;
+}
+.delete-button{
+  height: 7vh;
+}
+.add-button{
+  width: 100%;
+  align-items: center;
+}
+.autoAccept{
+  margin-bottom: 10px;
+}
+.imageDiv{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  justify-content: space-between;
+}

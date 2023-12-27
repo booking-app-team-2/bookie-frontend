@@ -1,0 +1,9 @@
+<div id="content-holder">
+  <div id="text-holder">Are you sure you wish to delete your profile?<br />Bookie will miss you.</div>
+  <div id="bookie-holder"></div>
+  <div id="button-holder">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="deleteProfile()">Confirm</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+  </div>
+</div>
+<app-snack-bar />

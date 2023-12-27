@@ -1,0 +1,47 @@
+<div id="content-holder">
+  <div id="inner-holder">
+    <mat-divider />
+    <div id="name-holder" class="info-holder">{{user?.name}}'s profile</div>
+    <mat-divider />
+    <div class="info-holder secondary-info-holder">
+      <div>Surname:</div>
+      <div>{{user?.surname}}</div>
+    </div>
+    <button mat-raised-button color="primary" (click)="openChangeBasicInfoDialog('250ms', '250ms')">
+      Change basic info
+    </button>
+    <mat-divider />
+    <div class="info-holder secondary-info-holder">
+      <div>Email:</div>
+      <div>{{user?.email}}</div>
+    </div>
+    <div class="info-holder secondary-info-holder">
+      <div>Telephone:</div>
+      <div>{{user?.telephone}}</div>
+    </div>
+    <button mat-raised-button color="primary" (click)="openChangeContactInfoDialog('250ms', '250ms')">
+      Change contact info
+    </button>
+    <mat-divider />
+    <div class="info-holder secondary-info-holder">
+      <div>Address:</div>
+      <div>{{user?.addressOfResidence}}</div>
+    </div>
+    <button mat-raised-button color="primary" (click)="openChangeAddressDialog('250ms', '250ms')">
+      Change address
+    </button>
+    <mat-divider />
+    <div class="info-holder secondary-info-holder">
+      <div>Password:</div>
+      <div>*******</div>
+    </div>
+    <button mat-raised-button color="primary" (click)="openChangePasswordDialog('250ms', '250ms')">
+      Change password
+    </button>
+    <mat-divider />
+    <button mat-raised-button color="primary" (click)="openProfileDeletionDialog('250ms', '250ms')">
+      Delete profile
+    </button>
+  </div>
+</div>
+<app-snack-bar />

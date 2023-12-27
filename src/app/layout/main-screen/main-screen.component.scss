@@ -1,0 +1,52 @@
+.mainframe{
+  margin-top: 20px;
+  padding: 30px;
+}
+
+.search-form {
+  min-width: 100px;
+  max-width: 500px;
+  width: 25vw;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.frame{
+  height: 10%;
+  min-height: 75px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px 10px 10px 10px;
+}
+
+button{
+  font:1em"rubik";
+  margin-left: 1vw;
+}
+mat-menu{
+  width: 10vw;
+}
+.example-full-width mat-icon{
+  color: black;
+  @media (prefers-color-scheme: dark){
+    color: #FDF5EC;
+  }
+}
+.search-div{
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+button{
+  width: 15vw;
+}
+.button-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

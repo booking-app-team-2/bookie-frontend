@@ -1,0 +1,153 @@
+.frame{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 30px;
+  color: black;
+  @media (prefers-color-scheme: dark){
+    color: #FDF5EC;
+  }
+}
+.divider{
+  width: 100%;
+  position: relative;
+  margin-bottom: 3vh;
+  margin-top: 3vh;
+  background-color: white;
+}
+.text-wrapper{
+  font:2em"Rubik";
+  position: relative;
+  text-align: center;
+}
+.imgholder{
+  background-image: url("../../../assets/images/bookie-quirky.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30vh;
+}
+.descframe {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.descframe .div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.descframe .div-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.descframe .text-wrapper {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1px;
+  font:1em"Rubik";
+  text-align: center;
+
+}
+
+.descframe .p {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1px;
+  font:1em"Rubik";
+  text-align: center;
+
+}
+
+.descframe .vertical-full-width-wrapper {
+  display: inline-flex;
+  justify-content: center;
+  padding: 0px 10px;
+  align-self: stretch;
+  flex: 0 0 auto;
+  overflow: hidden;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.vertical-divider {
+  border-left: 1px solid white;
+  height: 100%;
+  margin-left: 10px;
+}
+.DescPrice{
+  width: 40vw;
+}
+.Desc{
+  width: 100vw;
+}
+.smalldiv{
+  width: 20vw;
+}
+.div-rating {
+  width: 70%;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  position: relative;
+}
+.div-rating mat-icon{
+  color: yellow;
+}
+.calendar-card {
+  width: 70%;
+}
+button.special-date {
+  @media (prefers-color-scheme: dark) {
+    background-color: #a243aa;
+    border: 1px solid white;
+  }
+  background-color: #ff6f43;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+mat-calendar {
+          @media (prefers-color-scheme: dark) {
+            background-color: #171123;
+            border: 1px solid white;
+          }
+          background-color: #FDF5EC;
+          border: 1px solid black;
+        }
+app-map{
+  z-index: 1;
+}
+
+#fab {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+#approval-button-holder {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: end;
+  gap: 10px;
+}
+
+.approval-button {
+  border-radius: 20px;
+}

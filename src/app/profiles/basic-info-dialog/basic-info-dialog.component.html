@@ -1,0 +1,27 @@
+<div id="content-holder">
+  <form [formGroup]="userBasicInfoForm">
+    <div id="form-holder">
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" name="name" formControlName="name" spellcheck="false">
+        @if (!userBasicInfoForm.get('name')?.valid) {
+          <mat-error>{{getNameErrorMessage()}}</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Surname</mat-label>
+        <input matInput type="text" name="surname" formControlName="surname" spellcheck="false">
+        @if (!userBasicInfoForm.get('surname')?.valid) {
+          <mat-error>{{getSurnameErrorMessage()}}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </form>
+  <div id="button-holder">
+    <button mat-raised-button color="primary" (click)="updateUserBasicInfo()" [disabled]="!userBasicInfoForm.valid">
+      Confirm
+    </button>
+    <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+  </div>
+</div>
+<app-snack-bar />

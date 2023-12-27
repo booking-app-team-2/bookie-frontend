@@ -1,0 +1,32 @@
+#content-holder {
+  width: 25vw;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  background-color: #FDF5EC;
+  @media (prefers-color-scheme: dark) {
+    background-color: #171123;
+  }
+  color: black;
+  @media (prefers-color-scheme: dark) {
+    color: #FDF5EC;
+  }
+  font: 1.6em "Rubik";
+}
+
+#button-holder {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+button[mat-raised-button] {
+  font-size: 1.2em;
+  border-radius: 10px;
+  height: 40px;
+  flex-grow: 1;
+}
