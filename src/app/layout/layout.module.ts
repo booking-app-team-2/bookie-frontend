@@ -11,7 +11,7 @@ import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
 import {CdkListbox} from "@angular/cdk/listbox";
 import { MapComponent } from '../shared/map/map.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ReserveDialogComponent } from './reserve-dialog/reserve-dialog.component';
+import { ReserveDialogComponent } from '../reservations/reserve-dialog/reserve-dialog.component';
 import { CustomMessageBoxDialogComponent } from '../shared/custom-message-box-dialog/custom-message-box-dialog.component';
 
 @NgModule({

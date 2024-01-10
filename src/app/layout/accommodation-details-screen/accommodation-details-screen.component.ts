@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MatCalendarCellCssClasses} from "@angular/material/datepicker";
 import {AccommodationService} from "../accommodation.service";
 import {MatDialog} from "@angular/material/dialog";
-import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component";
+import {ReserveDialogComponent} from "../../reservations/reserve-dialog/reserve-dialog.component";
 import {SharedService} from "../../shared/shared.service";
 import {TokenService} from "../../shared/token.service";
 import {
