@@ -9,6 +9,7 @@ import {AccommodationUpdatingComponent} from "./accommodation-updating/accommoda
 import {OwnerAccommodationsComponent} from "./owner-accommodations/owner-accommodations/owner-accommodations.component";
 import {AccommodationCreationScreenComponent} from "./accommodation-creation/accommodation-creation-screen/accommodation-creation-screen.component";
 
+
 const routes: Routes = [
   { path: '', component: MainScreenComponent },
   { path: 'details/:id', component: AccommodationDetailsScreenComponent },
@@ -17,8 +18,7 @@ const routes: Routes = [
   { component: RegisterComponent, path: "register"},
   { component: AccommodationUpdatingComponent, path: "updating/:id"},
   { component: OwnerAccommodationsComponent, path: "owner/:id/accommodations"},
-  { component: AccommodationCreationScreenComponent, path: "create_accommodation"},
-
+  { component: AccommodationCreationScreenComponent, path: "create-accommodation"},
 ];
 
 @NgModule({

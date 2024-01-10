@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AccommodationBasicInfoDTO} from "../../accommodation-updating/accommodation-updating/model/accommodation.basic-info.model";
 
+
 @Component({
   selector: 'app-accommodation-creation-screen',
   templateUrl: './accommodation-creation-screen.component.html',
