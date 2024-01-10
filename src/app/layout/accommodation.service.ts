@@ -43,6 +43,17 @@ export class AccommodationService {
     );
   }
 
+  createAccomodation(accommodation:AccommodationBasicInfoDTO): Observable<AccommodationBasicInfoDTO>{
+    return this.httpClient.post<AccommodationBasicInfoDTO>(this.accommodationControllerRoute+'/'+accommodation.id+"/basic-info",accommodation).pipe(
+      catchError((error: HttpResponse<any>) => {
+        if (error.status === 500) {
+          console.error('Internal Server Error:', error);
+        }
+        return throwError(()=>error);
+      })
+    );
+  }
+
   putAccommodationIsApproved(id: number,
                              accommodationApproval: AccommodationApproval): Observable<AccommodationApproval> {
     return this.httpClient.put<AccommodationApproval>(this.accommodationControllerRoute + '/' + id + '/is-approved',
