@@ -21,7 +21,7 @@ export class AccommodationService {
       startDate,
       endDate,
     };
-    if(location=="" && numberOfGuests=="" && startDate=="0" && endDate=="0"){
+    if(location=="" && numberOfGuests=="" && startDate=="" && endDate==""){
       return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search');
     }
     return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search',{params});
@@ -47,5 +47,9 @@ export class AccommodationService {
                              accommodationApproval: AccommodationApproval): Observable<AccommodationApproval> {
     return this.httpClient.put<AccommodationApproval>(this.accommodationControllerRoute + '/' + id + '/is-approved',
       accommodationApproval);
+  }
+
+  loadImage(id:number):Observable<Blob>{
+    return this.httpClient.get(environment.apiHost+'images/'+id.toString(),{responseType:'blob'});
   }
 }
