@@ -7,7 +7,6 @@ import { BasicInfoDialogComponent } from './basic-info-dialog/basic-info-dialog.
 import { TelephoneDialogComponent } from './telephone-dialog/telephone-dialog.component';
 import { AddressDialogComponent } from './address-dialog/address-dialog.component';
 import { PasswordChangeDialogComponent } from './password-change-dialog/password-change-dialog.component';
-import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
 

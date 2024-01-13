@@ -4,7 +4,6 @@ import {ActivatedRoute} from "@angular/router";
 import {MatCalendarCellCssClasses} from "@angular/material/datepicker";
 import {AccommodationService} from "../accommodation.service";
 import {MatDialog} from "@angular/material/dialog";
-import {ReserveDialogComponent} from "../../reservations/reserve-dialog/reserve-dialog.component";
 import {SharedService} from "../../shared/shared.service";
 import {TokenService} from "../../shared/token.service";
 import {
@@ -12,6 +11,7 @@ import {
 } from "../../shared/custom-message-box-dialog/custom-message-box-dialog.component";
 import {AccommodationApproval} from "./model/accommodation-approval.model";
 import {HttpErrorResponse} from "@angular/common/http";
+import {ReserveDialogComponent} from "../../reservations/reserve-dialog/reserve-dialog.component";
 
 export interface calendarDate{
   start:Date;
