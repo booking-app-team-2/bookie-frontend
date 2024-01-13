@@ -85,7 +85,6 @@ export class AccommodationUpdatingComponent implements OnInit{
     }
   }
   SaveChanges():void{
-    console.log(this.accommodation)
     let accommodationBasicInfo:AccommodationBasicInfoDTO={
       id:this.accommodation.id,
       name:this.accommodation.name,
@@ -97,8 +96,24 @@ export class AccommodationUpdatingComponent implements OnInit{
       images:this.accommodation.images,
       type:this.accommodation.type,
       reservationAutoAccepted:this.accommodation.reservationAutoAccepted,
-      availabilityPeriods:this.accommodation.availabilityPeriods
+      availabilityPeriods:[]
     }
+    this.accommodation.availabilityPeriods.forEach((availabilityPeriod)=>{
+      const formatStartDate:Date|null=this.parseDateString(availabilityPeriod.period.startDate);
+      const formatEndDate:Date|null=this.parseDateString(availabilityPeriod.period.endDate);
+      console.log(formatStartDate?.getTime())
+      if(formatStartDate!=null && formatEndDate!=null){
+        accommodationBasicInfo.availabilityPeriods.push({
+          id:availabilityPeriod.id,
+          price:availabilityPeriod.price,
+          period:{
+            startTimestamp:formatStartDate.getTime(),
+            endTimestamp:formatEndDate.getTime()
+          },
+          deleted:availabilityPeriod.deleted
+        });
+      }
+    });
     this.accommodationService.updateAccommodationBasicInfo(accommodationBasicInfo)
       .subscribe(updatedInfo => {
         this._snackBar.open('Successfully changed information', 'Close',{

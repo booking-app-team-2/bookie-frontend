@@ -93,11 +93,11 @@ export class MainScreenComponent{
     end: new FormControl<Date | null>(null),
   });
   searchButton():void {
-    let startDate:string="";
-    let endDate:string="";
+    let startDate:number=0;
+    let endDate:number=0;
     if(this.range.value.start!=null && this.range.value.end!=null){
-      startDate=this.range.value.start.toLocaleDateString('en-CA');
-      endDate=this.range.value.end.toLocaleDateString('en-CA');
+      startDate=this.range.value.start.getTime();
+      endDate=this.range.value.end.getTime();
       console.log(startDate);
     }
     this.accommodationService.getSearchedAccommodations(this.location,this.guestNumber,startDate,endDate).subscribe({
