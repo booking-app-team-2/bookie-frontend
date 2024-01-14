@@ -7,6 +7,9 @@ import {
   AccommodationBasicInfoDTO
 } from "../accommodation-updating/accommodation-updating/model/accommodation.basic-info.model";
 import {AccommodationApproval} from "./accommodation-details-screen/model/accommodation-approval.model";
+import {
+  AccommodationAutoAccept
+} from "../accommodation-updating/accommodation-updating/model/accommodation-auto-accept.model";
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +50,14 @@ export class AccommodationService {
                              accommodationApproval: AccommodationApproval): Observable<AccommodationApproval> {
     return this.httpClient.put<AccommodationApproval>(this.accommodationControllerRoute + '/' + id + '/is-approved',
       accommodationApproval);
+  }
+
+  putAccommodationIsReservationAutoAccepted(
+    id: number,
+    accommodationAutoAccept: AccommodationAutoAccept
+  ): Observable<AccommodationAutoAccept> {
+    return this.httpClient.put<AccommodationAutoAccept>(
+      this.accommodationControllerRoute + '/' + id + '/is-reservation-auto-accepted', accommodationAutoAccept
+    );
   }
 }
