@@ -17,7 +17,6 @@ export interface AccommodationBasicInfoDTO{
     isDeleted:boolean;
   }[];
   type:string;
-  reservationAutoAccepted:boolean;
   availabilityPeriods:{
     id:number;
     price:number;

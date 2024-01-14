@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccommodationDTO} from "../../layout/accommodation-card/model/accommodation.model";
 import {AccommodationService} from "../../layout/accommodation.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AccommodationBasicInfoDTO} from "./model/accommodation.basic-info.model";
+import {AccommodationAutoAccept} from "./model/accommodation-auto-accept.model";
+import {SharedService} from "../../shared/shared.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Component({
@@ -13,14 +16,15 @@ import {AccommodationBasicInfoDTO} from "./model/accommodation.basic-info.model"
   host: {ngSkipHydration: 'true'},
 
 })
-export class AccommodationUpdatingComponent {
+export class AccommodationUpdatingComponent implements OnInit {
   amenities: string[] = ['WiFi', 'Parking', 'Kitchen', 'AC'];
   accommodationTypes: string[] = ['Apartment', 'Studio', 'Room'];
   accommodation:AccommodationDTO;
   newStartDate:Date;
   newEndDate:Date;
   newPrice:string;
-  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute,private _snackBar: MatSnackBar) {
+  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute,private _snackBar: MatSnackBar,
+              private sharedService: SharedService) {
   }
 
   ngOnInit(): void {
@@ -53,7 +57,6 @@ export class AccommodationUpdatingComponent {
       amenities:this.accommodation.amenities,
       images:this.accommodation.images,
       type:this.accommodation.type,
-      reservationAutoAccepted:this.accommodation.reservationAutoAccepted,
       availabilityPeriods:this.accommodation.availabilityPeriods
     }
     this.accommodationService.updateAccommodationBasicInfo(accommodationBasicInfo)
@@ -68,6 +71,22 @@ export class AccommodationUpdatingComponent {
           duration: 2000,
         });
       });
+
+    const accommodationAutoAccept: AccommodationAutoAccept = {
+      reservationAutoAccepted: this.accommodation.reservationAutoAccepted,
+    }
+
+    this.accommodationService.putAccommodationIsReservationAutoAccepted(this.accommodation.id, accommodationAutoAccept)
+      .subscribe({
+        next: (): void =>
+          this.sharedService.openSnackBar('Successfully updated accommodation reservation auto-acceptance status.'),
+        error: (error: HttpErrorResponse): void => {
+          if (error)
+            this.sharedService.openSnackBar(error.error.message);
+          else
+            this.sharedService.openSnackBar('Error reaching the server.');
+        },
+      })
   }
   formatDate(unixTimestamp: number): Date {
     return new Date(unixTimestamp * 1000);
