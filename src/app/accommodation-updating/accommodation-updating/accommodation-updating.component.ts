@@ -46,40 +46,39 @@ export class AccommodationUpdatingComponent implements OnInit {
     }
   }
   SaveChanges():void{
-    console.log(this.accommodation)
-    let accommodationBasicInfo:AccommodationBasicInfoDTO={
-      id:this.accommodation.id,
-      name:this.accommodation.name,
-      description:this.accommodation.description,
-      minimumGuests:this.accommodation.minimumGuests,
-      maximumGuests:this.accommodation.maximumGuests,
-      location:this.accommodation.location,
-      amenities:this.accommodation.amenities,
-      images:this.accommodation.images,
-      type:this.accommodation.type,
-      availabilityPeriods:this.accommodation.availabilityPeriods
-    }
-    this.accommodationService.updateAccommodationBasicInfo(accommodationBasicInfo)
-      .subscribe(updatedInfo => {
-        this._snackBar.open('Successfully changed information', 'Close',{
-          duration: 2000,
-        });
-      },
-
-      error =>{
-        this._snackBar.open('Something went wrong', 'Close',{
-          duration: 2000,
-        });
-      });
-
     const accommodationAutoAccept: AccommodationAutoAccept = {
       reservationAutoAccepted: this.accommodation.reservationAutoAccepted,
     }
 
     this.accommodationService.putAccommodationIsReservationAutoAccepted(this.accommodation.id, accommodationAutoAccept)
       .subscribe({
-        next: (): void =>
-          this.sharedService.openSnackBar('Successfully updated accommodation reservation auto-acceptance status.'),
+        next: (): void => {
+          console.log(this.accommodation)
+          let accommodationBasicInfo:AccommodationBasicInfoDTO={
+            id:this.accommodation.id,
+            name:this.accommodation.name,
+            description:this.accommodation.description,
+            minimumGuests:this.accommodation.minimumGuests,
+            maximumGuests:this.accommodation.maximumGuests,
+            location:this.accommodation.location,
+            amenities:this.accommodation.amenities,
+            images:this.accommodation.images,
+            type:this.accommodation.type,
+            availabilityPeriods:this.accommodation.availabilityPeriods
+          }
+          this.accommodationService.updateAccommodationBasicInfo(accommodationBasicInfo)
+            .subscribe(updatedInfo => {
+                this._snackBar.open('Successfully changed information', 'Close',{
+                  duration: 2000,
+                });
+              },
+
+              error =>{
+                this._snackBar.open('Something went wrong', 'Close',{
+                  duration: 2000,
+                });
+              });
+        },
         error: (error: HttpErrorResponse): void => {
           if (error)
             this.sharedService.openSnackBar(error.error.message);
