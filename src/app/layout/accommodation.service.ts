@@ -14,14 +14,14 @@ import {AccommodationApproval} from "./accommodation-details-screen/model/accomm
 export class AccommodationService {
   accommodationControllerRoute: string= environment.apiHost + 'accommodations';
   constructor(private httpClient: HttpClient) { }
-  getSearchedAccommodations(location:string,numberOfGuests:string,startDate:string,endDate:string): Observable<AccommodationDTO[]>{
+  getSearchedAccommodations(location:string,numberOfGuests:string,startDate:number,endDate:number): Observable<AccommodationDTO[]>{
     const params = {
       location,
       numberOfGuests,
       startDate,
       endDate,
     };
-    if(location=="" && numberOfGuests=="" && startDate=="0" && endDate=="0"){
+    if(location=="" && numberOfGuests=="" && startDate==0 && endDate==0){
       return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search');
     }
     return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search',{params});
@@ -47,5 +47,9 @@ export class AccommodationService {
                              accommodationApproval: AccommodationApproval): Observable<AccommodationApproval> {
     return this.httpClient.put<AccommodationApproval>(this.accommodationControllerRoute + '/' + id + '/is-approved',
       accommodationApproval);
+  }
+
+  loadImage(id:number):Observable<Blob>{
+    return this.httpClient.get(environment.apiHost+'images/'+id.toString(),{responseType:'blob'});
   }
 }

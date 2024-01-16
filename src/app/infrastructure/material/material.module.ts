@@ -19,6 +19,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatSelectModule} from "@angular/material/select";
 import {MatStepperModule} from "@angular/material/stepper";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [],
@@ -41,7 +42,8 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatCheckboxModule,
     MatSliderModule,
     MatSelectModule,
-    MatStepperModule
+    MatStepperModule,
+    MatGridListModule
   ],
   exports: [
     MatToolbarModule,
@@ -61,7 +63,8 @@ import {MatStepperModule} from "@angular/material/stepper";
     MatCheckboxModule,
     MatSliderModule,
     MatSelectModule,
-    MatStepperModule
+    MatStepperModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule { }
