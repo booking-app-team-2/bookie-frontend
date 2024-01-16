@@ -4,7 +4,6 @@ import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {AccommodationDTO} from "../accommodation-card/model/accommodation.model";
 import {AccommodationService} from "../accommodation.service";
 import {FormControl, FormGroup} from "@angular/forms";
-
 @Component({
   selector: 'app-main-screen',
   templateUrl: './main-screen.component.html',
@@ -23,6 +22,7 @@ export class MainScreenComponent{
     startThumbValue:number=100;
     endThumbValue:number=5000;
     value="";
+    image:any;
 
   accommodations: AccommodationDTO[];
   filteredAccommodations:AccommodationDTO[];
@@ -96,11 +96,11 @@ export class MainScreenComponent{
     let startDate:number=0;
     let endDate:number=0;
     if(this.range.value.start!=null && this.range.value.end!=null){
-      startDate=Math.floor(this.range.value.start.getTime()/1000);
-
-      endDate=Math.floor(this.range.value.end.getTime()/1000);
+      startDate=this.range.value.start.getTime();
+      endDate=this.range.value.end.getTime();
+      console.log(startDate);
     }
-    this.accommodationService.getSearchedAccommodations(this.location,this.guestNumber,startDate.toString(),endDate.toString()).subscribe({
+    this.accommodationService.getSearchedAccommodations(this.location,this.guestNumber,startDate,endDate).subscribe({
       next: (accommodations: AccommodationDTO[]): void => {
         this.accommodations = accommodations;
         if (this.accommodations.length > 0) {

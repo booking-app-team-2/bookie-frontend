@@ -17,14 +17,14 @@ import {
 export class AccommodationService {
   accommodationControllerRoute: string= environment.apiHost + 'accommodations';
   constructor(private httpClient: HttpClient) { }
-  getSearchedAccommodations(location:string,numberOfGuests:string,startDate:string,endDate:string): Observable<AccommodationDTO[]>{
+  getSearchedAccommodations(location:string,numberOfGuests:string,startDate:number,endDate:number): Observable<AccommodationDTO[]>{
     const params = {
       location,
       numberOfGuests,
       startDate,
       endDate,
     };
-    if(location=="" && numberOfGuests=="" && startDate=="0" && endDate=="0"){
+    if(location=="" && numberOfGuests=="" && startDate==0 && endDate==0){
       return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search');
     }
     return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search',{params});
@@ -59,5 +59,9 @@ export class AccommodationService {
     return this.httpClient.put<AccommodationAutoAccept>(
       this.accommodationControllerRoute + '/' + id + '/is-reservation-auto-accepted', accommodationAutoAccept
     );
+  }
+
+  loadImage(id:number):Observable<Blob>{
+    return this.httpClient.get(environment.apiHost+'images/'+id.toString(),{responseType:'blob'});
   }
 }
