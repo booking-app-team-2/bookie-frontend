@@ -50,7 +50,7 @@ export class ReservationsLayoutComponent implements OnInit {
     this.searchAndFilterReservations();
   }
 
-  searchAndFilterReservations() {
+  searchAndFilterReservations(): void {
     let statuses: string[] = [];
 
     this.searchAndFilterForm.value.waiting && statuses.push('Waiting');

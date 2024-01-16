@@ -50,7 +50,7 @@
       <div class="header-cell">Action</div>
     </div>
     <div *ngFor="let reservation of reservations" id="reservations-holder">
-      <app-reservation [reservation]="reservation" />
+      <app-reservation [reservation]="reservation" (reservationStatusChanged)="searchAndFilterReservations()" />
     </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ import {map, Observable} from "rxjs";
 import {ReservationOwnerDTO} from "../shared/model/ReservationOwnerDTO.model";
 import {ReservationOwner} from "../shared/model/ReservationOwner.model";
 import {NumberOfCancelledReservations} from "./reservation/model/NumberOfCancelledReservations.model";
+import {ReservationStatus} from "./reservation/model/ReservationStatus.model";
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,19 @@ export class ReservationService {
 
   post(reservation: Reservation): Observable<Reservation> {
     return this.httpClient.post<Reservation>(this.reservationControllerRoute, reservation);
+  }
+
+  acceptReservation(id: number): Observable<ReservationStatus> {
+    return this.httpClient.put<ReservationStatus>(
+      `${this.reservationControllerRoute}/${id}/status/accepted`,
+      null
+    );
+  }
+
+  declineReservation(id: number): Observable<ReservationStatus> {
+    return this.httpClient.put<ReservationStatus>(
+      `${this.reservationControllerRoute}/${id}/status/declined`,
+      null
+    );
   }
 }

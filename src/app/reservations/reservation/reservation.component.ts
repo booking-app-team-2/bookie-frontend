@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ReservationOwner} from "../../shared/model/ReservationOwner.model";
 import {ReservationService} from "../reservation.service";
 import {NumberOfCancelledReservations} from "./model/NumberOfCancelledReservations.model";
@@ -13,11 +13,15 @@ import {SharedService} from "../../shared/shared.service";
 export class ReservationComponent implements OnInit {
   @Input()
   reservation: ReservationOwner | undefined;
+
   numberOfCancelledReservations: NumberOfCancelledReservations | undefined;
+
+  @Output()
+  reservationStatusChanged: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private reservationService: ReservationService, private sharedService: SharedService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this
       .reservationService
       .getNumberOfCancelledReservationsForReservee(this.reservation?.reserveeBasicInfoDTO.id ?? 0)
@@ -31,5 +35,35 @@ export class ReservationComponent implements OnInit {
             this.sharedService.openSnackBar('Error reaching the server.');
         }
       })
+  }
+
+  acceptReservation(): void {
+    this.reservationService.acceptReservation(this.reservation?.id ?? 0).subscribe({
+      next: (): void => {
+        this.sharedService.openSnackBar('Reservation successfully accepted.');
+        this.reservationStatusChanged.emit();
+      },
+      error: (error: HttpErrorResponse): void => {
+        if (error)
+          this.sharedService.openSnackBar(error.error.message);
+        else
+          this.sharedService.openSnackBar('Error reaching the server.');
+      }
+    });
+  }
+
+  declineReservation(): void {
+    this.reservationService.declineReservation(this.reservation?.id ?? 0).subscribe({
+      next: (): void => {
+        this.sharedService.openSnackBar('Reservation successfully declined.');
+        this.reservationStatusChanged.emit();
+      },
+      error: (error: HttpErrorResponse): void => {
+        if (error)
+          this.sharedService.openSnackBar(error.error.message);
+        else
+          this.sharedService.openSnackBar('Error reaching the server.');
+      }
+    })
   }
 }

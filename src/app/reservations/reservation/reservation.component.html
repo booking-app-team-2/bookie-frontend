@@ -11,7 +11,7 @@
     }}
   </div>
   <mat-divider vertical />
-  <div class="reservation-cell">{{reservation?.price}}</div>
+  <div class="reservation-cell">{{reservation?.price}}$</div>
   <mat-divider vertical />
   <div class="reservation-cell">
     {{reservation?.reserveeBasicInfoDTO?.name}} {{reservation?.reserveeBasicInfoDTO?.surname}}
@@ -22,7 +22,13 @@
   <div class="reservation-cell">{{reservation?.status}}</div>
   <mat-divider vertical />
   <div class="reservation-cell">
-    <button class="reservation-button" mat-flat-button color="primary">Accept</button>
-    <button class="reservation-button" mat-stroked-button color="primary">Decline</button>
+    <ng-container *ngIf="reservation?.status == 'Waiting'">
+      <button class="reservation-button" mat-flat-button color="primary" (click)="acceptReservation()">
+        Accept
+      </button>
+      <button class="reservation-button" mat-stroked-button color="primary" (click)="declineReservation()">
+        Decline
+      </button>
+    </ng-container>
   </div>
 </div>
