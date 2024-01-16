@@ -1,17 +1,25 @@
 <div id="content-holder">
-  <div class="reservation-cell">asd</div>
+  <div class="reservation-cell">{{reservation?.accommodationNameDTO?.name}}</div>
   <mat-divider vertical />
-  <div class="reservation-cell">bsd</div>
+  <div class="reservation-cell">{{reservation?.numberOfGuests}}</div>
   <mat-divider vertical />
-  <div class="reservation-cell">csd</div>
+  <div class="reservation-cell">
+    {{
+      reservation?.period?.startDate | date:'dd/MM/yyyy'
+    }} - {{
+      reservation?.period?.endDate | date:'dd/MM/yyyy'
+    }}
+  </div>
   <mat-divider vertical />
-  <div class="reservation-cell">dsd</div>
+  <div class="reservation-cell">{{reservation?.price}}</div>
   <mat-divider vertical />
-  <div class="reservation-cell">esd</div>
+  <div class="reservation-cell">
+    {{reservation?.reserveeBasicInfoDTO?.name}} {{reservation?.reserveeBasicInfoDTO?.surname}}
+  </div>
   <mat-divider vertical />
-  <div class="reservation-cell">fsd</div>
+  <div class="reservation-cell">{{numberOfCancelledReservations?.numberOfCancelledReservations}}</div>
   <mat-divider vertical />
-  <div class="reservation-cell">gsd</div>
+  <div class="reservation-cell">{{reservation?.status}}</div>
   <mat-divider vertical />
   <div class="reservation-cell">
     <button class="reservation-button" mat-flat-button color="primary">Accept</button>

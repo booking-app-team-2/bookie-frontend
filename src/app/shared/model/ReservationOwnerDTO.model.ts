@@ -1,13 +1,13 @@
 import {AccommodationName} from "./AccommodationName.model";
 import {ReserveeBasicInfo} from "./ReserveeBasicInfo.model";
-import {Period} from "./period.model";
+import {PeriodDTO} from "./periodDTO.model";
 
-export interface ReservationOwner {
+export interface ReservationOwnerDTO {
   id: number,
   numberOfGuests: number,
   status: string,
   accommodationNameDTO: AccommodationName,
   reserveeBasicInfoDTO: ReserveeBasicInfo,
-  period: Period,
+  periodDTO: PeriodDTO,
   price: number,
 }

@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../env/env";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Reservation} from "./reserve-dialog/model/reservation.model";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
+import {ReservationOwnerDTO} from "../shared/model/ReservationOwnerDTO.model";
 import {ReservationOwner} from "../shared/model/ReservationOwner.model";
+import {NumberOfCancelledReservations} from "./reservation/model/NumberOfCancelledReservations.model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +33,36 @@ export class ReservationService {
       })
     };
 
-    return this.httpClient.get<ReservationOwner[]>(
-      this.reservationControllerRoute + '/accommodation/owner',
+    return this
+      .httpClient
+      .get<ReservationOwnerDTO[]>(
+        this.reservationControllerRoute + '/accommodation/owner',
+        options)
+      .pipe(map((reservationOwnerDTOs: ReservationOwnerDTO[]) => reservationOwnerDTOs
+        .map((reservationOwnerDTO: ReservationOwnerDTO): ReservationOwner => {
+          return {
+            id: reservationOwnerDTO.id,
+            numberOfGuests: reservationOwnerDTO.numberOfGuests,
+            status: reservationOwnerDTO.status,
+            accommodationNameDTO: reservationOwnerDTO.accommodationNameDTO,
+            reserveeBasicInfoDTO: reservationOwnerDTO.reserveeBasicInfoDTO,
+            period: {
+              startDate: new Date(reservationOwnerDTO.periodDTO.startTimestamp),
+              endDate: new Date(reservationOwnerDTO.periodDTO.endTimestamp),
+            },
+            price: reservationOwnerDTO.price,
+          }
+        }))
+      );
+  }
+
+  getNumberOfCancelledReservationsForReservee(reserveeId: number): Observable<NumberOfCancelledReservations> {
+    const options: { params: HttpParams } = {
+      params: new HttpParams().set('reservee_id', reserveeId),
+    }
+
+    return this.httpClient.get<NumberOfCancelledReservations>(
+      this.reservationControllerRoute + '/status/cancelled',
       options
     );
   }
