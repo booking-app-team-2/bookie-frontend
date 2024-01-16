@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../env/env";
 import {Observable} from "rxjs";
 import {User} from "./profile/model/user.model";
-import {UserBasicInfo} from "./basic-info-dialog/model/user-basic-info.model";
+import {UserBasicInfo} from "../shared/model/user-basic-info.model";
 import {UserPassword} from "./password-change-dialog/model/user-password.model";
 import {UserTelephone} from "./telephone-dialog/model/user-telephone.model";
 import {UserAddress} from "./address-dialog/model/user-address.model";

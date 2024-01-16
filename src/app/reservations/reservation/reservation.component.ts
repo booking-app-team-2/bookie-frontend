@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {ReservationOwner} from "../../shared/model/ReservationOwner.model";
 
 @Component({
   selector: 'app-reservation',
@@ -6,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './reservation.component.scss'
 })
 export class ReservationComponent {
-  userRole: string = 'Guest';
-  status: string = 'Accepted';
+  @Input()
+  reservation: ReservationOwner | undefined;
 }

@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ProfileService} from "../profile.service";
-import {UserBasicInfo} from "./model/user-basic-info.model";
+import {UserBasicInfo} from "../../shared/model/user-basic-info.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
