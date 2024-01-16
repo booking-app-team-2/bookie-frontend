@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReservationsLayoutOwnerComponent } from './reservations-layout-owner/reservations-layout-owner.component';
-import { ReservationOwnerComponent } from './reservation-owner/reservation-owner.component';
+import { ReservationsLayoutComponent } from './reservations-layout/reservations-layout.component';
+import { ReservationComponent } from './reservation/reservation.component';
 import {ReserveDialogComponent} from "./reserve-dialog/reserve-dialog.component";
 import {MaterialModule} from "../infrastructure/material/material.module";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -10,8 +10,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    ReservationsLayoutOwnerComponent,
-    ReservationOwnerComponent,
+    ReservationsLayoutComponent,
+    ReservationComponent,
     ReserveDialogComponent
   ],
   imports: [

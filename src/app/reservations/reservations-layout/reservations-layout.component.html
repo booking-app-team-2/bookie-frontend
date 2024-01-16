@@ -9,15 +9,19 @@
       <mat-divider vertical />
       <div class="header-cell">Price</div>
       <mat-divider vertical />
-      <div class="header-cell">Reservee</div>
-      <mat-divider vertical />
-      <div class="header-cell">Number of reservations cancelled by reservee</div>
+      <ng-container *ngIf="userRole === 'Owner'">
+        <div class="header-cell">Reservee</div>
+        <mat-divider vertical />
+        <div class="header-cell">Number of reservations cancelled by reservee</div>
+        <mat-divider vertical />
+      </ng-container>
+      <div class="header-cell">Status</div>
       <mat-divider vertical />
       <div class="header-cell">Action</div>
     </div>
     <div id="reservations-holder">
-      <app-reservation-owner />
-      <app-reservation-owner />
+      <app-reservation />
+      <app-reservation />
     </div>
   </div>
 </div>

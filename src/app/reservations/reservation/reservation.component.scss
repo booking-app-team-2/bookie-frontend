@@ -14,14 +14,13 @@
 }
 
 .reservation-cell {
-  flex: 1 0 165px;
+  flex: 1 0 11em;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
   text-align: center;
   gap: 10px;
-  padding: 10px;
 }
 
 .reservation-button {

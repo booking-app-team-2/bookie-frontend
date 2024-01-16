@@ -8,8 +8,8 @@ import {RegisterComponent} from "./login-register/register/register.component";
 import {AccommodationUpdatingComponent} from "./accommodation-updating/accommodation-updating/accommodation-updating.component";
 import {OwnerAccommodationsComponent} from "./owner-accommodations/owner-accommodations/owner-accommodations.component";
 import {
-  ReservationsLayoutOwnerComponent
-} from "./reservations/reservations-layout-owner/reservations-layout-owner.component";
+  ReservationsLayoutComponent
+} from "./reservations/reservations-layout/reservations-layout.component";
 
 const routes: Routes = [
   { path: '', component: MainScreenComponent },
@@ -19,7 +19,7 @@ const routes: Routes = [
   { component: RegisterComponent, path: "register"},
   { component: AccommodationUpdatingComponent, path: "updating/:id"},
   { component: OwnerAccommodationsComponent, path: "owner/:id/accommodations"},
-  { component: ReservationsLayoutOwnerComponent, path: "reservations" }
+  { component: ReservationsLayoutComponent, path: "reservations" }
 ];
 
 @NgModule({
