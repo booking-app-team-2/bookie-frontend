@@ -15,6 +15,55 @@
   gap: 30px;
 }
 
+#search-and-filter-form-holder {
+  width: 35%;
+  align-self: flex-end;
+}
+
+#search-and-filter-holder {
+  display: flex;
+  flex-flow: column nowrap;
+  align-self: flex-end;
+}
+
+#search-and-filter-holder > button{
+  align-self: flex-end;
+  width: 35%;
+}
+
+.reservation-search {
+  width: 100%;
+}
+
+.reservation-search mat-icon{
+  color: black;
+  @media (prefers-color-scheme: dark){
+    color: #FDF5EC;
+  }
+}
+
+#filter-holder {
+  padding: 10px;
+  border: 1px solid black;
+  color: black;
+  @media (prefers-color-scheme: dark) {
+    border-color: white;
+    color: white;
+  }
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column nowrap;
+  font: 1em rubik;
+  margin-bottom: 1.25em;
+}
+
+#filter-holder > div {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
 #header-holder {
   height: 40px;
   display: flex;

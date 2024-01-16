@@ -1,5 +1,35 @@
 <div id="content-holder">
   <div id="inner-holder">
+    <div id="search-and-filter-form-holder">
+      <form>
+        <div id="search-and-filter-holder">
+          <mat-form-field appearance="outline" color="primary" class="reservation-search">
+            <mat-label>Accommodation name</mat-label>
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput type="text" name="accommodationName" spellcheck="false">
+          </mat-form-field>
+          <mat-form-field appearance="outline" color="primary">
+            <mat-label>Pick the reservation period</mat-label>
+            <mat-date-range-input [formGroup]="periodForm" [rangePicker]="picker">
+              <input matStartDate formControlName="startDate" placeholder="Start date">
+              <input matEndDate formControlName="endDate" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker" />
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+          <div id="filter-holder">
+            Find reservations by status:
+            <div>
+              <mat-checkbox>Waiting</mat-checkbox>
+              <mat-checkbox>Accepted</mat-checkbox>
+              <mat-checkbox>Declined</mat-checkbox>
+              <mat-checkbox>Cancelled</mat-checkbox>
+            </div>
+          </div>
+          <button mat-raised-button color="primary">Search</button>
+        </div>
+      </form>
+    </div>
     <div id="header-holder">
       <div class="header-cell">Accommodation</div>
       <mat-divider vertical />
