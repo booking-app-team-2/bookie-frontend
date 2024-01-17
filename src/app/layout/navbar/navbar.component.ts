@@ -11,7 +11,7 @@ export class NavbarComponent {
   userType: string = this.tokenService.getRoleFromToken() ?? 'unauthenticated';
   userName: string = this.tokenService.getNameFromToken() ?? '';
 
-  constructor(private tokenService : TokenService, private router : Router) {
+  constructor(protected tokenService : TokenService, private router : Router) {
     router.events.subscribe(
       () => {
         this.userType = this.tokenService.getRoleFromToken() ?? 'unauthenticated';

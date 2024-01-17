@@ -7,14 +7,15 @@ import {Component, AfterViewInit, Input} from '@angular/core';
 })
 export class MapComponent implements AfterViewInit {
   private map: any;
-  @Input() center: [number, number] = [0, 0];
+  @Input() newCenter: [number, number]=[0,0];
+
   constructor() {}
 
   private initMap(): void {
     if (typeof window !== 'undefined') {
       import('leaflet').then((L) => {
         this.map = L.map('map', {
-          center:this.center,
+          center:this.newCenter,
           zoom: 13,
         });
 

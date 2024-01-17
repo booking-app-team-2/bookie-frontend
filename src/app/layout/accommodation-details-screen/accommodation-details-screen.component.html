@@ -6,7 +6,16 @@
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
-  <div class="imgholder"></div>
+  <div class="sliderContainer">
+    <button  mat-button (click)="shiftPictureLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+    <div class="imgContainer">
+      <img [src]="selectedImage" class="displayPic" alt="img"/>
+      <div class="smallImgHolder">
+        <img *ngFor="let image of images; trackBy: trackByImage" [src]="image" width="100px" height="100px" alt="" class="smallImg">
+      </div>
+    </div>
+    <button  mat-button (click)="shiftPictureRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+  </div>
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
@@ -70,7 +79,7 @@
     <div class="div DescPrice">
       <div class="div-wrapper"><div class="text-wrapper">Location</div></div>
       <div class="div-wrapper">
-        <app-map [center]="mapCenter"></app-map>
+        <app-map [newCenter]="mapCenter" #mapComponent></app-map>
       </div>
     </div>
     <div class="vertical-full-width-wrapper">
@@ -81,7 +90,7 @@
       <div class="div-wrapper"><div class="text-wrapper">{{price}}</div></div>
       <div class="div-wrapper">
         <mat-card class="calendar-card">
-          <mat-calendar [dateClass]="dateClass()" [(selected)]="selected" (selectedChange)="displayPrice()"></mat-calendar>
+          <mat-calendar [dateClass]="dateClass()" [(selected)]="selected" (selectedChange)="displayPrice()" #calendarComponent></mat-calendar>
         </mat-card>
       </div>
     </div>

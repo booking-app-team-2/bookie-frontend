@@ -13,8 +13,8 @@ export interface AccommodationDTO{
     id:number;
     price:number;
     period:{
-      startDate:number;
-      endDate:number;
+      startDate:string;
+      endDate:string;
     }
     deleted:boolean;
   }[];
