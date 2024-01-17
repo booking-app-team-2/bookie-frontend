@@ -1,7 +1,13 @@
 <div id="content-holder">
   <div class="reservation-cell">{{reservation?.accommodationNameDTO?.name}}</div>
   <mat-divider vertical />
-  <div class="reservation-cell">{{reservation?.numberOfGuests}}</div>
+  <div class="reservation-cell">
+    {{
+      ((reservation?.numberOfGuests ?? 0) > 1) || ((reservation?.numberOfGuests ?? 0) == 0) ?
+        reservation?.numberOfGuests + ' people' :
+        reservation?.numberOfGuests + ' person'
+    }}
+  </div>
   <mat-divider vertical />
   <div class="reservation-cell">
     {{
@@ -11,7 +17,7 @@
     }}
   </div>
   <mat-divider vertical />
-  <div class="reservation-cell">{{reservation?.price}}$</div>
+  <div class="reservation-cell">${{reservation?.price}}</div>
   <mat-divider vertical />
   <div class="reservation-cell">
     {{reservation?.reserveeBasicInfoDTO?.name}} {{reservation?.reserveeBasicInfoDTO?.surname}}
@@ -23,10 +29,12 @@
   <mat-divider vertical />
   <div class="reservation-cell">
     <ng-container *ngIf="reservation?.status == 'Waiting'">
-      <button class="reservation-button" mat-flat-button color="primary" (click)="acceptReservation()">
+      <button class="reservation-button" mat-flat-button color="primary"
+              (click)="openAcceptReservationDialog('250ms', '250ms')">
         Accept
       </button>
-      <button class="reservation-button" mat-stroked-button color="primary" (click)="declineReservation()">
+      <button class="reservation-button" mat-stroked-button color="primary"
+              (click)="openDeclineReservationDialog('250ms', '250ms')">
         Decline
       </button>
     </ng-container>

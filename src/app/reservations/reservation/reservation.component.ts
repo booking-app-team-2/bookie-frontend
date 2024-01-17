@@ -4,6 +4,10 @@ import {ReservationService} from "../reservation.service";
 import {NumberOfCancelledReservations} from "./model/NumberOfCancelledReservations.model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  CustomMessageBoxDialogComponent
+} from "../../shared/custom-message-box-dialog/custom-message-box-dialog.component";
 
 @Component({
   selector: 'app-reservation',
@@ -19,7 +23,8 @@ export class ReservationComponent implements OnInit {
   @Output()
   reservationStatusChanged: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private reservationService: ReservationService, private sharedService: SharedService) { }
+  constructor(private reservationService: ReservationService, private sharedService: SharedService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this
@@ -37,33 +42,59 @@ export class ReservationComponent implements OnInit {
       })
   }
 
-  acceptReservation(): void {
-    this.reservationService.acceptReservation(this.reservation?.id ?? 0).subscribe({
-      next: (): void => {
-        this.sharedService.openSnackBar('Reservation successfully accepted.');
-        this.reservationStatusChanged.emit();
+  openAcceptReservationDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(CustomMessageBoxDialogComponent, {
+      data: {
+        message: 'Are you sure you want to accept this reservation?'
       },
-      error: (error: HttpErrorResponse): void => {
-        if (error)
-          this.sharedService.openSnackBar(error.error.message);
-        else
-          this.sharedService.openSnackBar('Error reaching the server.');
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (!dialogResult)
+          return;
+
+        this.reservationService.acceptReservation(this.reservation?.id ?? 0).subscribe({
+          next: (): void => {
+            this.sharedService.openSnackBar('Reservation successfully accepted.');
+            this.reservationStatusChanged.emit();
+          },
+          error: (error: HttpErrorResponse): void => {
+            if (error)
+              this.sharedService.openSnackBar(error.error.message);
+            else
+              this.sharedService.openSnackBar('Error reaching the server.');
+          }
+        });
       }
     });
   }
 
-  declineReservation(): void {
-    this.reservationService.declineReservation(this.reservation?.id ?? 0).subscribe({
-      next: (): void => {
-        this.sharedService.openSnackBar('Reservation successfully declined.');
-        this.reservationStatusChanged.emit();
+  openDeclineReservationDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(CustomMessageBoxDialogComponent, {
+      data: {
+        message: 'Are you sure you want to decline this reservation?'
       },
-      error: (error: HttpErrorResponse): void => {
-        if (error)
-          this.sharedService.openSnackBar(error.error.message);
-        else
-          this.sharedService.openSnackBar('Error reaching the server.');
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (!dialogResult)
+          return
+
+        this.reservationService.declineReservation(this.reservation?.id ?? 0).subscribe({
+          next: (): void => {
+            this.sharedService.openSnackBar('Reservation successfully declined.');
+            this.reservationStatusChanged.emit();
+          },
+          error: (error: HttpErrorResponse): void => {
+            if (error)
+              this.sharedService.openSnackBar(error.error.message);
+            else
+              this.sharedService.openSnackBar('Error reaching the server.');
+          }
+        })
       }
-    })
+    });
   }
 }
