@@ -7,6 +7,9 @@ import {LoginComponent} from "./login-register/login/login.component";
 import {RegisterComponent} from "./login-register/register/register.component";
 import {AccommodationUpdatingComponent} from "./accommodation-updating/accommodation-updating/accommodation-updating.component";
 import {OwnerAccommodationsComponent} from "./owner-accommodations/owner-accommodations/owner-accommodations.component";
+import {
+  ReservationsLayoutComponent
+} from "./reservations/reservations-layout/reservations-layout.component";
 
 const routes: Routes = [
   { path: '', component: MainScreenComponent },
@@ -16,7 +19,7 @@ const routes: Routes = [
   { component: RegisterComponent, path: "register"},
   { component: AccommodationUpdatingComponent, path: "updating/:id"},
   { component: OwnerAccommodationsComponent, path: "owner/:id/accommodations"},
-
+  { component: ReservationsLayoutComponent, path: "reservations" }
 ];
 
 @NgModule({

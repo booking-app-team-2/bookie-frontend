@@ -87,9 +87,9 @@ export class ReserveDialogComponent {
       numberOfGuests: this.numberOfGuestsForm.value.numberOfGuests ?? 0,
       accommodationId: this.data.accommodationId,
       reserveeId: this.tokenService.getIdFromToken() ?? 0,
-      period: {
-        startDate: Math.floor((this.periodForm.value.startDate?.getTime() ?? 0) / 1000),
-        endDate: Math.floor((this.periodForm.value.endDate?.getTime() ?? 0) / 1000),
+      periodDTO: {
+        startTimestamp: this.periodForm.value.startDate?.getTime() ?? 0,
+        endTimestamp: this.periodForm.value.endDate?.getTime() ?? 0,
       },
     }
 
