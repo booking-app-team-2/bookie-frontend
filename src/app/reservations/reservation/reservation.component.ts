@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   CustomMessageBoxDialogComponent
 } from "../../shared/custom-message-box-dialog/custom-message-box-dialog.component";
+import {ReservationGuest} from "../../shared/model/ReservationGuest.model";
 
 @Component({
   selector: 'app-reservation',
@@ -16,7 +17,10 @@ import {
 })
 export class ReservationComponent implements OnInit {
   @Input()
-  reservation: ReservationOwner | undefined;
+  userRole: string
+
+  @Input()
+  reservation: ReservationOwner | ReservationGuest | undefined;
 
   numberOfCancelledReservations: NumberOfCancelledReservations | undefined;
 
@@ -26,20 +30,31 @@ export class ReservationComponent implements OnInit {
   constructor(private reservationService: ReservationService, private sharedService: SharedService,
               public dialog: MatDialog) { }
 
+  isReservationOwner(reservation: ReservationOwner | ReservationGuest | undefined): reservation is ReservationOwner {
+    return (reservation as ReservationOwner).reserveeBasicInfo !== undefined;
+  }
+
+  protected getReserveeBasicInfo(): string {
+    return this.isReservationOwner(this.reservation) ?
+      `${this.reservation.reserveeBasicInfo.name} ${this.reservation.reserveeBasicInfo.surname}` :
+      'Placeholder';
+  }
+
   ngOnInit(): void {
-    this
-      .reservationService
-      .getNumberOfCancelledReservationsForReservee(this.reservation?.reserveeBasicInfoDTO.id ?? 0)
-      .subscribe({
-        next: (numberOfCancelledReservations: NumberOfCancelledReservations): NumberOfCancelledReservations =>
-          this.numberOfCancelledReservations = numberOfCancelledReservations,
-        error: (error: HttpErrorResponse): void => {
-          if (error)
-            this.sharedService.openSnackBar(error.error.message);
-          else
-            this.sharedService.openSnackBar('Error reaching the server.');
-        }
-      })
+    if (this.isReservationOwner(this.reservation))
+      this
+        .reservationService
+        .getNumberOfCancelledReservationsForReservee(this.reservation?.reserveeBasicInfo.id ?? 0)
+        .subscribe({
+          next: (numberOfCancelledReservations: NumberOfCancelledReservations): NumberOfCancelledReservations =>
+            this.numberOfCancelledReservations = numberOfCancelledReservations,
+          error: (error: HttpErrorResponse): void => {
+            if (error)
+              this.sharedService.openSnackBar(error.error.message);
+            else
+              this.sharedService.openSnackBar('Error reaching the server.');
+          }
+        })
   }
 
   openAcceptReservationDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {

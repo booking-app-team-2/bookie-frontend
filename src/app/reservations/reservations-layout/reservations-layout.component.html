@@ -26,7 +26,12 @@
               <mat-checkbox formControlName="cancelled">Cancelled</mat-checkbox>
             </div>
           </div>
-          <button mat-raised-button color="primary" (click)="searchAndFilterReservations()">Search</button>
+          <button mat-raised-button color="primary"
+                  (click)=
+                    "userRole == 'Guest' ? searchAndFilterReservationsGuest() : searchAndFilterReservationsOwner()"
+          >
+            Search
+          </button>
         </div>
       </form>
     </div>
@@ -50,7 +55,10 @@
       <div class="header-cell">Action</div>
     </div>
     <div id="reservations-holder">
-      <app-reservation *ngFor="let reservation of reservations" [reservation]="reservation" (reservationStatusChanged)="searchAndFilterReservations()" />
+      <app-reservation *ngFor="let reservation of reservations" [userRole]="userRole" [reservation]="reservation"
+                       (reservationStatusChanged)=
+                         "userRole == 'Guest' ? searchAndFilterReservationsGuest() : searchAndFilterReservationsOwner()"
+      />
     </div>
   </div>
 </div>
