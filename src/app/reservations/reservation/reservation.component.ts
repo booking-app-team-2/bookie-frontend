@@ -112,4 +112,60 @@ export class ReservationComponent implements OnInit {
       }
     });
   }
+
+  openCancelReservationDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(CustomMessageBoxDialogComponent, {
+      data: {
+        message: 'Are you sure you want to cancel this reservation?'
+      },
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (!dialogResult)
+          return
+
+        this.reservationService.cancelReservation(this.reservation?.id ?? 0).subscribe({
+          next: (): void => {
+            this.sharedService.openSnackBar('Reservation successfully cancelled.');
+            this.reservationStatusChanged.emit();
+          },
+          error: (error: HttpErrorResponse): void => {
+            if (error)
+              this.sharedService.openSnackBar(error.error.message);
+            else
+              this.sharedService.openSnackBar('Error reaching the server.');
+          }
+        })
+      }
+    });
+  }
+
+  openDeleteReservationDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(CustomMessageBoxDialogComponent, {
+      data: {
+        message: 'Are you sure you want to delete this reservation?'
+      },
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (!dialogResult)
+          return
+
+        this.reservationService.deleteReservation(this.reservation?.id ?? 0).subscribe({
+          next: (): void => {
+            this.sharedService.openSnackBar('Reservation successfully deleted.');
+            this.reservationStatusChanged.emit();
+          },
+          error: (error: HttpErrorResponse): void => {
+            if (error)
+              this.sharedService.openSnackBar(error.error.message);
+            else
+              this.sharedService.openSnackBar('Error reaching the server.');
+          }
+        })
+      }
+    });
+  }
 }

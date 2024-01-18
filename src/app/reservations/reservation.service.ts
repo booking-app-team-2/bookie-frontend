@@ -120,4 +120,15 @@ export class ReservationService {
       null
     );
   }
+
+  cancelReservation(id: number): Observable<ReservationStatus> {
+    return this.httpClient.put<ReservationStatus>(
+      `${this.reservationControllerRoute}/${id}/status/cancelled`,
+      null
+    );
+  }
+
+  deleteReservation(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.reservationControllerRoute}/${id}`);
+  }
 }

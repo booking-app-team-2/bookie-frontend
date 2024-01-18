@@ -44,11 +44,17 @@
     </ng-container>
     <ng-template #guestButtonContainer>
       <ng-container *ngIf="reservation?.status == 'Accepted' else deletableReservation">
-        <button class="reservation-button" mat-flat-button color="primary">Cancel</button>
+        <button class="reservation-button" mat-flat-button color="primary"
+                (click)="openCancelReservationDialog('250ms', '250ms')">
+          Cancel
+        </button>
       </ng-container>
       <ng-template #deletableReservation>
         <ng-container *ngIf="reservation?.status == 'Waiting'">
-          <button class="reservation-button" mat-flat-button color="primary">Delete</button>
+          <button class="reservation-button" mat-flat-button color="primary"
+                  (click)="openDeleteReservationDialog('250ms', '250ms')">
+            Delete
+          </button>
         </ng-container>
       </ng-template>
     </ng-template>
