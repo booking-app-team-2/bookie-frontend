@@ -4,9 +4,10 @@ import {AccommodationService} from "../../layout/accommodation.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AccommodationBasicInfoDTO} from "./model/accommodation.basic-info.model";
+import {AccommodationAutoAccept} from "./model/accommodation-auto-accept.model";
+import {SharedService} from "../../shared/shared.service";
+import {HttpErrorResponse} from "@angular/common/http";
 import {ImageService} from "../../shared/image.service";
-import {Observable} from "rxjs";
-import {response} from "express";
 
 
 @Component({
@@ -16,20 +17,22 @@ import {response} from "express";
   host: {ngSkipHydration: 'true'},
 
 })
-export class AccommodationUpdatingComponent implements OnInit{
+export class AccommodationUpdatingComponent implements OnInit {
   amenities: string[] = ['WiFi', 'Parking', 'Kitchen', 'AC'];
   accommodationTypes: string[] = ['Apartment', 'Studio', 'Room'];
   accommodation:AccommodationDTO;
   newStartDate:Date;
   newEndDate:Date;
   newPrice:string;
+
+  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute,private _snackBar: MatSnackBar,
+              private sharedService: SharedService, private imageService: ImageService) { }
+
   images: {
     id:number,
     path:any
   }[]=[];
   imageFiles:any[]=[];
-  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute,private _snackBar: MatSnackBar,private imageService:ImageService) {
-  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -85,47 +88,61 @@ export class AccommodationUpdatingComponent implements OnInit{
     }
   }
   SaveChanges():void{
-    let accommodationBasicInfo:AccommodationBasicInfoDTO={
-      id:this.accommodation.id,
-      name:this.accommodation.name,
-      description:this.accommodation.description,
-      minimumGuests:this.accommodation.minimumGuests,
-      maximumGuests:this.accommodation.maximumGuests,
-      location:this.accommodation.location,
-      amenities:this.accommodation.amenities,
-      images:this.accommodation.images,
-      type:this.accommodation.type,
-      reservationAutoAccepted:this.accommodation.reservationAutoAccepted,
-      availabilityPeriods:[]
+    const accommodationAutoAccept: AccommodationAutoAccept = {
+      reservationAutoAccepted: this.accommodation.reservationAutoAccepted,
     }
-    this.accommodation.availabilityPeriods.forEach((availabilityPeriod)=>{
-      const formatStartDate:Date|null=this.parseDateString(availabilityPeriod.period.startDate);
-      const formatEndDate:Date|null=this.parseDateString(availabilityPeriod.period.endDate);
-      console.log(formatStartDate?.getTime())
-      if(formatStartDate!=null && formatEndDate!=null){
-        accommodationBasicInfo.availabilityPeriods.push({
-          id:availabilityPeriod.id,
-          price:availabilityPeriod.price,
-          period:{
-            startTimestamp:formatStartDate.getTime(),
-            endTimestamp:formatEndDate.getTime()
-          },
-          deleted:availabilityPeriod.deleted
-        });
-      }
-    });
-    this.accommodationService.updateAccommodationBasicInfo(accommodationBasicInfo)
-      .subscribe(updatedInfo => {
-        this._snackBar.open('Successfully changed information', 'Close',{
-          duration: 2000,
-        });
-      },
 
-      error =>{
-        this._snackBar.open('Something went wrong', 'Close',{
-          duration: 2000,
-        });
-      });
+    this.accommodationService.putAccommodationIsReservationAutoAccepted(this.accommodation.id, accommodationAutoAccept)
+      .subscribe({
+        next: (): void => {
+          let accommodationBasicInfo:AccommodationBasicInfoDTO={
+            id:this.accommodation.id,
+            name:this.accommodation.name,
+            description:this.accommodation.description,
+            minimumGuests:this.accommodation.minimumGuests,
+            maximumGuests:this.accommodation.maximumGuests,
+            location:this.accommodation.location,
+            amenities:this.accommodation.amenities,
+            images:this.accommodation.images,
+            type:this.accommodation.type,
+            availabilityPeriods:[]
+          }
+          this.accommodation.availabilityPeriods.forEach((availabilityPeriod)=>{
+            const formatStartDate:Date|null=this.parseDateString(availabilityPeriod.period.startDate);
+            const formatEndDate:Date|null=this.parseDateString(availabilityPeriod.period.endDate);
+            console.log(formatStartDate?.getTime())
+            if(formatStartDate!=null && formatEndDate!=null){
+              accommodationBasicInfo.availabilityPeriods.push({
+                id:availabilityPeriod.id,
+                price:availabilityPeriod.price,
+                period:{
+                  startTimestamp:formatStartDate.getTime(),
+                  endTimestamp:formatEndDate.getTime()
+                },
+                deleted:availabilityPeriod.deleted
+              });
+            }
+          });
+          this.accommodationService.updateAccommodationBasicInfo(accommodationBasicInfo)
+            .subscribe(updatedInfo => {
+                this._snackBar.open('Successfully changed information', 'Close',{
+                  duration: 2000,
+                });
+              },
+
+              error =>{
+                this._snackBar.open('Something went wrong', 'Close',{
+                  duration: 2000,
+                });
+              });
+        },
+        error: (error: HttpErrorResponse): void => {
+          if (error)
+            this.sharedService.openSnackBar(error.error.message);
+          else
+            this.sharedService.openSnackBar('Error reaching the server.');
+        },
+      })
   }
   formatDate(unixTimestamp: number): Date {
     return new Date(unixTimestamp * 1000);
