@@ -15,6 +15,7 @@ import { CustomMessageBoxDialogComponent } from '../shared/custom-message-box-di
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import {ReservationsModule} from "../reservations/reservations.module";
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -24,10 +25,8 @@ import {ReservationsModule} from "../reservations/reservations.module";
     ReviewCardComponent,
     FilterDialogComponent,
     MapComponent,
-    ReserveDialogComponent,
     CustomMessageBoxDialogComponent,
     ReviewDialogComponent
-    CustomMessageBoxDialogComponent
   ],
   imports: [
     ReservationsModule,
@@ -46,7 +45,9 @@ import {ReservationsModule} from "../reservations/reservations.module";
     MainScreenComponent,
     ReviewCardComponent,
     FilterDialogComponent,
-    MapComponent
+    MapComponent,
+    CustomMessageBoxDialogComponent,
+    ReviewDialogComponent,
   ]
 })
 export class LayoutModule { }
