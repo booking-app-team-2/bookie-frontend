@@ -95,7 +95,6 @@ export class AccommodationUpdatingComponent implements OnInit{
       reservationAutoAccepted:this.accommodation.reservationAutoAccepted,
       availabilityPeriods:[]
     }
-    console.log(accommodationBasicInfo);
     this.accommodation.availabilityPeriods.forEach((availabilityPeriod)=>{
       const formatStartDate:Date|null=this.parseDateString(availabilityPeriod.period.startDate);
       const formatEndDate:Date|null=this.parseDateString(availabilityPeriod.period.endDate);
