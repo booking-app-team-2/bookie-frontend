@@ -7,6 +7,11 @@ import {ReservationOwnerDTO} from "../shared/model/ReservationOwnerDTO.model";
 import {ReservationOwner} from "../shared/model/ReservationOwner.model";
 import {NumberOfCancelledReservations} from "./reservation/model/NumberOfCancelledReservations.model";
 import {ReservationStatus} from "./reservation/model/ReservationStatus.model";
+import {ReservationGuest} from "../shared/model/ReservationGuest.model";
+import {ReservationGuestDTO} from "../shared/model/ReservationGuestDTO.model";
+import {
+  ReservationSearchAndFilterParameters
+} from "./reservations-layout/model/ReservationSearchAndFilterParameters.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,37 +21,67 @@ export class ReservationService {
 
   constructor(private httpClient: HttpClient) { }
 
-  searchAndFilter(
-    name: string,
-    startDate: Date | null,
-    endDate: Date | null,
-    statuses: string[]
-  ): Observable<ReservationOwner[]> {
-    const options: { params: HttpParams } = {
+  private getOptions(
+    reservationSearchAndFilterParameters: ReservationSearchAndFilterParameters
+  ): { params: HttpParams } {
+    return {
       params: new HttpParams({
         fromObject: Object.assign(
           {},
-          {name: name},
-          startDate && {start_timestamp: startDate.getTime()},
-          endDate && {end_timestamp: endDate.getTime()},
-          {status: statuses}
+          {name: reservationSearchAndFilterParameters.name},
+          reservationSearchAndFilterParameters.startDate && {
+            start_timestamp: reservationSearchAndFilterParameters.startDate.getTime()
+          },
+          reservationSearchAndFilterParameters.endDate && {
+            end_timestamp: reservationSearchAndFilterParameters.endDate.getTime()
+          },
+          {status: reservationSearchAndFilterParameters.statuses}
         )
       })
-    };
+    }
+  }
 
+  searchAndFilterGuest(
+    reservationSearchAndFilterParameters: ReservationSearchAndFilterParameters
+  ): Observable<ReservationGuest[]> {
+    return this
+      .httpClient
+      .get<ReservationGuestDTO[]>(
+        this.reservationControllerRoute + '/reservee',
+        this.getOptions(reservationSearchAndFilterParameters))
+      .pipe(map((reservationGuestDTOs: ReservationGuestDTO[]) => reservationGuestDTOs
+        .map((reservationGuestDTO: ReservationGuestDTO): ReservationGuest => {
+          return {
+            id: reservationGuestDTO.id,
+            numberOfGuests: reservationGuestDTO.numberOfGuests,
+            status: reservationGuestDTO.status,
+            accommodationName: reservationGuestDTO.accommodationNameDTO,
+            period: {
+              startDate: new Date(reservationGuestDTO.periodDTO.startTimestamp),
+              endDate: new Date(reservationGuestDTO.periodDTO.endTimestamp),
+            },
+            price: reservationGuestDTO.price,
+          }
+        }))
+      );
+  }
+
+  searchAndFilterOwner(
+    reservationSearchAndFilterParameters: ReservationSearchAndFilterParameters
+  ): Observable<ReservationOwner[]> {
     return this
       .httpClient
       .get<ReservationOwnerDTO[]>(
         this.reservationControllerRoute + '/accommodation/owner',
-        options)
+        this.getOptions(reservationSearchAndFilterParameters))
       .pipe(map((reservationOwnerDTOs: ReservationOwnerDTO[]) => reservationOwnerDTOs
         .map((reservationOwnerDTO: ReservationOwnerDTO): ReservationOwner => {
           return {
             id: reservationOwnerDTO.id,
             numberOfGuests: reservationOwnerDTO.numberOfGuests,
             status: reservationOwnerDTO.status,
-            accommodationNameDTO: reservationOwnerDTO.accommodationNameDTO,
-            reserveeBasicInfoDTO: reservationOwnerDTO.reserveeBasicInfoDTO,
+            accommodationName: reservationOwnerDTO.accommodationNameDTO,
+            reserveeBasicInfo: reservationOwnerDTO.reserveeBasicInfoDTO,
             period: {
               startDate: new Date(reservationOwnerDTO.periodDTO.startTimestamp),
               endDate: new Date(reservationOwnerDTO.periodDTO.endTimestamp),
@@ -84,5 +119,16 @@ export class ReservationService {
       `${this.reservationControllerRoute}/${id}/status/declined`,
       null
     );
+  }
+
+  cancelReservation(id: number): Observable<ReservationStatus> {
+    return this.httpClient.put<ReservationStatus>(
+      `${this.reservationControllerRoute}/${id}/status/cancelled`,
+      null
+    );
+  }
+
+  deleteReservation(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.reservationControllerRoute}/${id}`);
   }
 }

@@ -1,5 +1,5 @@
 <div id="content-holder">
-  <div class="reservation-cell">{{reservation?.accommodationNameDTO?.name}}</div>
+  <div class="reservation-cell">{{reservation?.accommodationName?.name}}</div>
   <mat-divider vertical />
   <div class="reservation-cell">
     {{
@@ -19,24 +19,44 @@
   <mat-divider vertical />
   <div class="reservation-cell">${{reservation?.price}}</div>
   <mat-divider vertical />
-  <div class="reservation-cell">
-    {{reservation?.reserveeBasicInfoDTO?.name}} {{reservation?.reserveeBasicInfoDTO?.surname}}
-  </div>
-  <mat-divider vertical />
-  <div class="reservation-cell">{{numberOfCancelledReservations?.numberOfCancelledReservations}}</div>
-  <mat-divider vertical />
+  <ng-container *ngIf="userRole == 'Owner'">
+    <div class="reservation-cell">
+      {{getReserveeBasicInfo()}}
+    </div>
+    <mat-divider vertical />
+    <div class="reservation-cell">{{numberOfCancelledReservations?.numberOfCancelledReservations}}</div>
+    <mat-divider vertical />
+  </ng-container>
   <div class="reservation-cell">{{reservation?.status}}</div>
   <mat-divider vertical />
   <div class="reservation-cell">
-    <ng-container *ngIf="reservation?.status == 'Waiting'">
-      <button class="reservation-button" mat-flat-button color="primary"
-              (click)="openAcceptReservationDialog('250ms', '250ms')">
-        Accept
-      </button>
-      <button class="reservation-button" mat-stroked-button color="primary"
-              (click)="openDeclineReservationDialog('250ms', '250ms')">
-        Decline
-      </button>
+    <ng-container *ngIf="userRole == 'Owner' else guestButtonContainer">
+      <ng-container *ngIf="reservation?.status == 'Waiting'">
+        <button class="reservation-button" mat-flat-button color="primary"
+                (click)="openAcceptReservationDialog('250ms', '250ms')">
+          Accept
+        </button>
+        <button class="reservation-button" mat-stroked-button color="primary"
+                (click)="openDeclineReservationDialog('250ms', '250ms')">
+          Decline
+        </button>
+      </ng-container>
     </ng-container>
+    <ng-template #guestButtonContainer>
+      <ng-container *ngIf="reservation?.status == 'Accepted' else deletableReservation">
+        <button class="reservation-button" mat-flat-button color="primary"
+                (click)="openCancelReservationDialog('250ms', '250ms')">
+          Cancel
+        </button>
+      </ng-container>
+      <ng-template #deletableReservation>
+        <ng-container *ngIf="reservation?.status == 'Waiting'">
+          <button class="reservation-button" mat-flat-button color="primary"
+                  (click)="openDeleteReservationDialog('250ms', '250ms')">
+            Delete
+          </button>
+        </ng-container>
+      </ng-template>
+    </ng-template>
   </div>
 </div>
