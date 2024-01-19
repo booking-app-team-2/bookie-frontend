@@ -2,29 +2,27 @@
   <img class="bookie-kawaii" [src]="image" alt="Image" height="196" width="232"/>
   <div class="div">
     <div class="div-name">
-      <div class="text-wrapper">{{accommodation?.name }}</div>
+      <div class="text-wrapper">{{accommodation.name }}</div>
       <div class="div-rating">
         <div class="stars">
-          <mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon>
-          <mat-icon>star</mat-icon>
-          <mat-icon>star_half</mat-icon>
+          <mat-icon *ngFor="let star of stars" class="star">{{ star }}</mat-icon>
         </div>
-        <div class="text-wrapper">(4.5)</div>
+        <div class="text-wrapper"> ({{ averageGrade }}) </div>
       </div>
     </div>
     <div class="div">
       <p class="text-wrapper">
-        {{accommodation?.description}}
+        {{accommodation.description}}
       </p>
     </div>
     <div class="div-bottom">
-      <div class="text-wrapper">{{accommodation?.minimumGuests}} to {{accommodation?.maximumGuests}} people</div>
-      <button mat-raised-button class="button" color="primary" [routerLink]="isOwnerScreen ? ['/updating', accommodation?.id] : ['/details', accommodation?.id]">
-        <span *ngIf="isOwnerScreen; else alternativeText">Edit</span>
-        <ng-template #alternativeText>See details</ng-template>
-      </button>
+      <div class="text-wrapper">{{accommodation.minimumGuests}} to {{accommodation.maximumGuests}} people</div>
+      <div class="buttonDiv">
+        <button mat-raised-button class="button" color="primary" [routerLink]="['/details', accommodation?.id]">
+          See details
+        </button>
+        <button mat-raised-button class="button" color="primary" [routerLink]="['/updating', accommodation?.id]" *ngIf="isOwnerScreen">Edit</button>
+      </div>
     </div>
   </div>
 </div>

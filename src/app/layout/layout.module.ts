@@ -13,6 +13,7 @@ import { MapComponent } from '../shared/map/map.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ReserveDialogComponent } from './reserve-dialog/reserve-dialog.component';
 import { CustomMessageBoxDialogComponent } from '../shared/custom-message-box-dialog/custom-message-box-dialog.component';
+import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CustomMessageBoxDialogComponent } from '../shared/custom-message-box-di
     FilterDialogComponent,
     MapComponent,
     ReserveDialogComponent,
-    CustomMessageBoxDialogComponent
+    CustomMessageBoxDialogComponent,
+    ReviewDialogComponent
   ],
   imports: [
     CommonModule,

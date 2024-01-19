@@ -1,0 +1,13 @@
+<div class="frame">
+  <div class="headerText">Accommodation reviews</div>
+  <div class="unapprovedAccommodation" *ngFor="let review of accommodationUnapprovedReviews">
+    <div class="text-wrapper">Accommodation {{review.accommodationId}}</div>
+    <app-review-card [review]="review" [isUnapproved]="true"></app-review-card>
+  </div>
+  <div class="headerText">Owner reviews</div>
+  <div class="unapprovedOwner" *ngFor="let review of ownerUnapprovedReviews">
+    <div class="text-wrapper">Owner {{review.revieweeId}}</div>
+    <app-review-card [review]="review" [isUnapproved]="true"></app-review-card>
+  </div>
+</div>
+

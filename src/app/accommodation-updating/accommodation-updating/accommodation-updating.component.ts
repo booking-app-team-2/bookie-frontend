@@ -5,9 +5,6 @@ import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AccommodationBasicInfoDTO} from "./model/accommodation.basic-info.model";
 import {ImageService} from "../../shared/image.service";
-import {Observable} from "rxjs";
-import {response} from "express";
-
 
 @Component({
   selector: 'app-accommodation-updating',
@@ -98,6 +95,7 @@ export class AccommodationUpdatingComponent implements OnInit{
       reservationAutoAccepted:this.accommodation.reservationAutoAccepted,
       availabilityPeriods:[]
     }
+    console.log(accommodationBasicInfo);
     this.accommodation.availabilityPeriods.forEach((availabilityPeriod)=>{
       const formatStartDate:Date|null=this.parseDateString(availabilityPeriod.period.startDate);
       const formatEndDate:Date|null=this.parseDateString(availabilityPeriod.period.endDate);

@@ -7,6 +7,9 @@ import {LoginComponent} from "./login-register/login/login.component";
 import {RegisterComponent} from "./login-register/register/register.component";
 import {AccommodationUpdatingComponent} from "./accommodation-updating/accommodation-updating/accommodation-updating.component";
 import {OwnerAccommodationsComponent} from "./owner-accommodations/owner-accommodations/owner-accommodations.component";
+import {OwnerReviewsComponent} from "./owner-reviews/owner-reviews/owner-reviews.component";
+import {ReportedReviewsComponent} from "./reported-reviews/reported-reviews/reported-reviews.component";
+import {UnapprovedReviewsComponent} from "./unapproved-reviews/unapproved-reviews/unapproved-reviews.component";
 
 const routes: Routes = [
   { path: '', component: MainScreenComponent },
@@ -16,6 +19,9 @@ const routes: Routes = [
   { component: RegisterComponent, path: "register"},
   { component: AccommodationUpdatingComponent, path: "updating/:id"},
   { component: OwnerAccommodationsComponent, path: "owner/:id/accommodations"},
+  { component: OwnerReviewsComponent, path: "owner/:id/reviews"},
+  { component: ReportedReviewsComponent, path: "reviews/reported"},
+  { component: UnapprovedReviewsComponent, path: "reviews/unapproved"},
 
 ];
 
