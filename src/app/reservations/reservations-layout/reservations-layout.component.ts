@@ -5,6 +5,8 @@ import {ReservationOwner} from "../../shared/model/ReservationOwner.model";
 import {ReservationService} from "../reservation.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
+import {ReservationGuest} from "../../shared/model/ReservationGuest.model";
+import {ReservationSearchAndFilterParameters} from "./model/ReservationSearchAndFilterParameters.model";
 
 @Component({
   selector: 'app-reservations-layout',
@@ -41,32 +43,53 @@ export class ReservationsLayoutComponent implements OnInit {
     cancelled: new FormControl<boolean | null>(false),
   });
 
-  reservations: ReservationOwner[] | undefined;
+  reservations: ReservationOwner[] | ReservationGuest[] | undefined;
 
   constructor(private tokenService: TokenService, private reservationService: ReservationService,
               private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.searchAndFilterReservations();
+    if(this.userRole == 'Guest')
+      this.searchAndFilterReservationsGuest();
+    else
+      this.searchAndFilterReservationsOwner();
   }
 
-  searchAndFilterReservations(): void {
+  private getStatuses(): string[] {
     let statuses: string[] = [];
 
     this.searchAndFilterForm.value.waiting && statuses.push('Waiting');
-
     this.searchAndFilterForm.value.accepted && statuses.push('Accepted');
-
     this.searchAndFilterForm.value.declined && statuses.push('Declined');
-
     this.searchAndFilterForm.value.cancelled && statuses.push('Cancelled');
 
-    this.reservationService.searchAndFilter(
-      this.searchAndFilterForm.value.name ?? '',
-      this.searchAndFilterForm.value.startDate ?? null,
-      this.searchAndFilterForm.value.endDate ?? null,
-      statuses
-    ).subscribe({
+    return statuses;
+  }
+
+  private getSearchAndFilterParameters(): ReservationSearchAndFilterParameters {
+    return {
+      name: this.searchAndFilterForm.value.name ?? '',
+      startDate: this.searchAndFilterForm.value.startDate ?? null,
+      endDate: this.searchAndFilterForm.value.endDate ?? null,
+      statuses: this.getStatuses()
+    }
+  }
+
+  searchAndFilterReservationsGuest(): void {
+    this.reservationService.searchAndFilterGuest(this.getSearchAndFilterParameters()).subscribe({
+      next: (reservationsGuest: ReservationGuest[]): ReservationGuest[] => this.reservations = reservationsGuest,
+      error: (error: HttpErrorResponse): void => {
+        if (error) {
+          this.sharedService.openSnackBar(error.error.message);
+        }
+        else
+          this.sharedService.openSnackBar("Error reaching the server.");
+      }
+    });
+  }
+
+  searchAndFilterReservationsOwner(): void {
+    this.reservationService.searchAndFilterOwner(this.getSearchAndFilterParameters()).subscribe({
       next: (reservationsOwner: ReservationOwner[]): ReservationOwner[] => this.reservations = reservationsOwner,
       error: (error: HttpErrorResponse): void => {
         if (error) {
