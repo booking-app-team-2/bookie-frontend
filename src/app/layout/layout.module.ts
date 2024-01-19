@@ -11,9 +11,9 @@ import {FilterDialogComponent} from "./filter-dialog/filter-dialog.component";
 import {CdkListbox} from "@angular/cdk/listbox";
 import { MapComponent } from '../shared/map/map.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ReserveDialogComponent } from './reserve-dialog/reserve-dialog.component';
 import { CustomMessageBoxDialogComponent } from '../shared/custom-message-box-dialog/custom-message-box-dialog.component';
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
+import {ReservationsModule} from "../reservations/reservations.module";
 
 @NgModule({
   declarations: [
@@ -27,8 +27,10 @@ import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
     ReserveDialogComponent,
     CustomMessageBoxDialogComponent,
     ReviewDialogComponent
+    CustomMessageBoxDialogComponent
   ],
   imports: [
+    ReservationsModule,
     CommonModule,
     MaterialModule,
     RouterLink,

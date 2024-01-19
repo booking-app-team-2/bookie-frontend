@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../env/env";
-import {catchError, Observable, retry, throwError} from "rxjs";
+import {Observable} from "rxjs";
 import {User} from "./profile/model/user.model";
 import {UserBasicInfo} from "./basic-info-dialog/model/user-basic-info.model";
 import {UserPassword} from "./password-change-dialog/model/user-password.model";

@@ -1,0 +1,36 @@
+#content-holder {
+  height: 10vh;
+  min-height: 100px;
+  border: 1px solid black;
+  color: black;
+  @media (prefers-color-scheme: dark) {
+    border-color: white;
+    color: white;
+  }
+  border-radius: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  font: 1em rubik;
+}
+
+.reservation-cell {
+  flex: 1 0 11em;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.reservation-button {
+  width: 50%;
+}
+
+.mat-divider.mat-divider-vertical {
+  margin: 20px 0;
+  border-right-color: black;
+  @media (prefers-color-scheme: dark) {
+    border-right-color: white;
+  }
+}
