@@ -41,11 +41,22 @@ export class ReserveDialogComponent {
     endDate: new FormControl<Date | null>(null, [Validators.required]),
   });
 
+  private getDateInLocalTimezone(date: Date): Date {
+    return new Date(date.toLocaleDateString([], { timeZone: 'Europe/Belgrade' }));
+  }
+
   availabilityPeriodFilter = (d: Date | null): boolean => {
     return this.data.availabilityPeriods.some(
-      availabilityPeriod =>
-        availabilityPeriod.period.startDate * 1000 <= (d?.getTime() ?? new Date().getTime()) &&
-        availabilityPeriod.period.endDate * 1000 >= (d?.getTime() ?? new Date().getTime())
+      (availabilityPeriod: {
+        id: number,
+        price: number,
+        period: {
+          startDate: number,
+          endDate: number
+        },
+        deleted: boolean}) =>
+        this.getDateInLocalTimezone(new Date(availabilityPeriod.period.startDate)) <= (d ?? new Date()) &&
+        this.getDateInLocalTimezone(new Date(availabilityPeriod.period.endDate)) >= (d ?? new Date())
     );
   }
 
