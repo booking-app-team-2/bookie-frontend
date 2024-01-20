@@ -1,0 +1,27 @@
+.notification {
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 4px;
+  background-color: #d94215;
+  @media (prefers-color-scheme: dark) {
+    background-color: #631785;
+  }
+  color: #FDF5EC;
+  display: flex;
+  flex-flow: column nowrap;
+  vertical-align: center;
+  width: 50vw;
+  font-family: Rubik;
+}
+
+.type {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.body {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}

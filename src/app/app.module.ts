@@ -16,6 +16,7 @@ import {TokenInterceptor} from "./shared/interceptor/token-interceptor";
 import {ReportedReviewsModule} from "./reported-reviews/reported-reviews.module";
 import {UnapprovedReviewsModule} from "./unapproved-reviews/unapproved-reviews.module";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
+import {NotificationsModule} from "./notifications/notifications.module";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
     OwnerAccommodationsModule,
     OwnerReviewsModule,
     ReportedReviewsModule,
-    UnapprovedReviewsModule
+    UnapprovedReviewsModule,
+    NotificationsModule,
   ],
   providers: [
     provideClientHydration(),

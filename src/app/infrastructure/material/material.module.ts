@@ -44,7 +44,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatSliderModule,
     MatSelectModule,
     MatStepperModule,
-    MatGridListModule
+    MatGridListModule,
   ],
   exports: [
     MatToolbarModule,
@@ -65,7 +65,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatSliderModule,
     MatSelectModule,
     MatStepperModule,
-    MatGridListModule
+    MatGridListModule,
   ]
 })
 export class MaterialModule { }

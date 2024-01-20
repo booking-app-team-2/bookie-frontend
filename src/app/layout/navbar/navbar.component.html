@@ -8,6 +8,7 @@
     <button mat-button [routerLink]="'/register'">Register</button>
   </div>
   <div class="buttons-container" *ngIf="userType == 'Guest'">
+    <button mat-button [routerLink]="'/notifications'">Notifications</button>
     <button mat-button>Favourite accommodations</button>
     <button mat-button [routerLink]="'/reservations'">My reservations</button>
     <button mat-button routerLink="profile">Welcome, {{userName}}</button>
@@ -17,6 +18,7 @@
     </button>
   </div>
   <div class="buttons-container" *ngIf="userType == 'Owner'">
+    <button mat-button [routerLink]="'/notifications'">Notifications</button>
     <button mat-button [routerLink]="'/reservations'">Reservations for my accommodations</button>
     <button mat-button [routerLink]="'/owner/'+ this.tokenService.getIdFromToken()+'/accommodations'">View my accommodations</button>
     <button mat-button>Create an accommodation</button>

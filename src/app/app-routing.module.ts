@@ -11,6 +11,7 @@ import {OwnerReviewsComponent} from "./owner-reviews/owner-reviews/owner-reviews
 import {ReportedReviewsComponent} from "./reported-reviews/reported-reviews/reported-reviews.component";
 import {UnapprovedReviewsComponent} from "./unapproved-reviews/unapproved-reviews/unapproved-reviews.component";
 import {ReservationsLayoutComponent} from "./reservations/reservations-layout/reservations-layout.component";
+import {NotificationsScreenComponent} from "./notifications/notifications-screen/notifications-screen.component";
 
 const routes: Routes = [
   { path: '', component: MainScreenComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { component: OwnerReviewsComponent, path: "owner/:id/reviews"},
   { component: ReportedReviewsComponent, path: "reviews/reported"},
   { component: UnapprovedReviewsComponent, path: "reviews/unapproved"},
-  { component: ReservationsLayoutComponent, path: "reservations" }
+  { component: ReservationsLayoutComponent, path: "reservations" },
+  { component: NotificationsScreenComponent, path: "notifications" }
 ];
 
 @NgModule({

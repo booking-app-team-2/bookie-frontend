@@ -1,0 +1,10 @@
+<div class="notifications-container">
+  <div *ngFor="let notification of notifications" class="notification">
+      <div class="type">
+        <mat-label>{{ notification.type }}</mat-label>
+      </div>
+      <div class="body">
+        <mat-label>{{ notification.body }}</mat-label>
+      </div>
+  </div>
+</div>
