@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {environment} from "../../env/env";
 import {catchError, Observable, throwError} from "rxjs";
 import {AccommodationDTO} from "./accommodation-card/model/accommodation.model";
@@ -63,5 +63,11 @@ export class AccommodationService {
 
   loadImage(id:number):Observable<Blob>{
     return this.httpClient.get(environment.apiHost+'images/'+id.toString(),{responseType:'blob'});
+  }
+  getOwnerIdByAccommodationId(id:number):Observable<number>{
+    return this.httpClient.get<number>(environment.apiHost+'owners/accommodation/'+id.toString()).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error.error.message);
+      }));
   }
 }

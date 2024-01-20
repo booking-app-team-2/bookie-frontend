@@ -12,7 +12,9 @@ import {CdkListbox} from "@angular/cdk/listbox";
 import { MapComponent } from '../shared/map/map.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CustomMessageBoxDialogComponent } from '../shared/custom-message-box-dialog/custom-message-box-dialog.component';
+import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import {ReservationsModule} from "../reservations/reservations.module";
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import {ReservationsModule} from "../reservations/reservations.module";
     ReviewCardComponent,
     FilterDialogComponent,
     MapComponent,
-    CustomMessageBoxDialogComponent
+    CustomMessageBoxDialogComponent,
+    ReviewDialogComponent
   ],
   imports: [
     ReservationsModule,
@@ -42,7 +45,9 @@ import {ReservationsModule} from "../reservations/reservations.module";
     MainScreenComponent,
     ReviewCardComponent,
     FilterDialogComponent,
-    MapComponent
+    MapComponent,
+    CustomMessageBoxDialogComponent,
+    ReviewDialogComponent,
   ]
 })
 export class LayoutModule { }

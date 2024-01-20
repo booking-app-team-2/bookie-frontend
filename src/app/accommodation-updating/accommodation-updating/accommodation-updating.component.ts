@@ -9,7 +9,6 @@ import {SharedService} from "../../shared/shared.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ImageService} from "../../shared/image.service";
 
-
 @Component({
   selector: 'app-accommodation-updating',
   templateUrl: './accommodation-updating.component.html',

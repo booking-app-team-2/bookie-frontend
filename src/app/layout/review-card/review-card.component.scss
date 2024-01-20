@@ -1,5 +1,6 @@
 .frame {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 20px;
   padding: 10px 20px;
@@ -31,7 +32,6 @@
 .frame .div-top {
   align-items: center;
   gap: 10px;
-  padding: 0 10px;
   align-self: stretch;
   width: 100%;
   flex: 0 0 auto;
@@ -42,7 +42,6 @@
 .frame .div-info {
   align-items: center;
   gap: 10px;
-  padding: 0 10px;
   align-self: stretch;
   flex: 0 0 auto;
   display: flex;
@@ -91,4 +90,10 @@
 
 mat-icon{
   color: rgb(255, 210, 48);
+}
+.dateDiv{
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+  align-items: center;
 }

@@ -1,0 +1,22 @@
+<form #reviewForm="ngForm" (ngSubmit)="postReview()">
+    <div class="frame">
+      <mat-form-field class="example-full-width" color="primary" appearance="outline">
+        <mat-label>Grade</mat-label>
+        <input matInput type="number" [(ngModel)]="grade" name="grade" min="1" max="5" required>
+        <button matSuffix mat-icon-button aria-label="Clear" *ngIf="grade" (click)="clearGrade()">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+        <mat-error *ngIf="isInvalidGrade()">Please enter a value between 1 and 5.</mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" color="primary" appearance="outline">
+        <mat-label>Comment</mat-label>
+        <mat-icon matPrefix>comment</mat-icon>
+        <input matInput type="text" [(ngModel)]="comment" name="comment" required>
+        <button matSuffix mat-icon-button aria-label="Clear" *ngIf="comment" (click)="comment=''">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="reviewForm.invalid">Submit Review</button>
+    </div>
+</form>

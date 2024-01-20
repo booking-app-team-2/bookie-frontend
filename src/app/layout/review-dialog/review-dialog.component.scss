@@ -1,0 +1,26 @@
+.frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+  background-color: #FDF5EC;
+  color: black;
+  width: 20vw;
+  height: 40vh;
+  margin-top: 5vh;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #171123;
+    color: #FDF5EC;
+  }
+}
+form{
+  background-color: #FDF5EC;
+  color: black;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #171123;
+    color: #FDF5EC;
+  }
+}
+

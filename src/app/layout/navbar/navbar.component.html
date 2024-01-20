@@ -27,7 +27,8 @@
     </button>
   </div>
   <div class="buttons-container" *ngIf="userType == 'Admin'">
-    <button mat-button>Reported comments</button>
+    <button mat-button [routerLink]="'reviews/reported'">Reported comments</button>
+    <button mat-button [routerLink]="'reviews/unapproved'">Unapproved comments</button>
     <button mat-button>Users</button>
     <button mat-button routerLink="profile">Welcome, {{userName}}</button>
     <button (click)="logOut()" mat-button>Log out</button>

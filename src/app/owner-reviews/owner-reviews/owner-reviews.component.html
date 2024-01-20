@@ -1,0 +1,16 @@
+<div class="frame">
+  <div class="reviewHeader">
+    <div class="text-wrapper">Owner reviews</div>
+    <div class="text-wrapper">Average grade</div>
+    <div class="div-rating">
+      <div class="stars">
+        <mat-icon *ngFor="let star of stars" class="star">{{ star }}</mat-icon>
+      </div>
+      <div class="text-wrapper">({{ averageGrade }})</div>
+    </div>
+    <button class="reviewBtn" *ngIf="userType=='Guest'" mat-flat-button color="primary" (click)="openReviewDialog('250ms', '250ms')">Make a review</button>
+  </div>
+  <div *ngFor="let review of reviews">
+    <app-review-card [review]="review"></app-review-card>
+  </div>
+</div>

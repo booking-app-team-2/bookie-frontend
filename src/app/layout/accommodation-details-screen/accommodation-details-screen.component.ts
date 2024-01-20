@@ -14,6 +14,10 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {ReserveDialogComponent} from "../../reservations/reserve-dialog/reserve-dialog.component";
 import {MapComponent} from "../../shared/map/map.component";
 import {ImageService} from "../../shared/image.service";
+import {ReviewService} from "../review-card/review.service";
+import {AccommodationReviewDTO} from "../review-card/model/accommodation-review.model";
+import {FilterDialogComponent} from "../filter-dialog/filter-dialog.component";
+import {ReviewDialogComponent} from "../review-dialog/review-dialog.component";
 
 export interface calendarDate{
   start:Date;
@@ -38,6 +42,9 @@ export class AccommodationDetailsScreenComponent implements OnInit{
   images:any[]=[];
   userType: string = this.tokenService.getRoleFromToken() ?? 'unauthenticated';
   selectedImage:any="";
+  accommodationReviews:AccommodationReviewDTO[];
+  averageGrade:number;
+  ownerId:number;
 
 
   dateClass(): (date: Date) => MatCalendarCellCssClasses {
@@ -74,7 +81,7 @@ export class AccommodationDetailsScreenComponent implements OnInit{
   }
 
   constructor(private accommodationService:AccommodationService,private imageService:ImageService,private route: ActivatedRoute,
-              public dialog: MatDialog, private sharedService: SharedService, private tokenService: TokenService){
+              public dialog: MatDialog, private sharedService: SharedService, private tokenService: TokenService, private reviewService: ReviewService){
   }
 
   parseDateString(dateString: string): Date | null {
@@ -132,11 +139,58 @@ export class AccommodationDetailsScreenComponent implements OnInit{
           }
         }
       );
+      this.imageService.loadImage(0).subscribe({
+        next:(imageSrc:string|null)=>{
+          this.selectedImage=imageSrc;
+        },
+        error:(_)=>{
+          console.error('Error loading image')
+        }
+
+      })
+      this.reviewService.getAccommodationReviews(this.accommodation.id).subscribe({
+        next:(accommodationReviews:AccommodationReviewDTO[])=>{
+          this.accommodationReviews=accommodationReviews;
+        },
+        error:(_)=>{
+
+        }
+      });
+      this.reviewService.getAccommodationAverageGrade(this.accommodation.id).subscribe({
+        next:(averageGrade:number)=>{
+          this.averageGrade=averageGrade;
+        },
+        error:(_)=>{
+
+        }
+      });
+      this.accommodationService.getOwnerIdByAccommodationId(this.accommodation.id).subscribe({
+        next:(id:number)=>{
+          this.ownerId=id;
+          console.log(this.ownerId);
+        },
+        error:(error)=>{
+          this.sharedService.openSnackBar(error);
+        }
+      })
 
     });
   }
   trackByImage(index: number, image: any): any {
     return image;
+  }
+
+  get stars(): string[] {
+    const fullStars = Math.floor(this.averageGrade);
+    const hasHalfStar = this.averageGrade % 1 >= 0.5;
+    const result = Array(5).fill('star_border');
+    for (let i = 0; i < fullStars; i++) {
+      result[i] = 'star';
+    }
+    if (hasHalfStar) {
+      result[fullStars] = 'star_half';
+    }
+    return result;
   }
 
   openReserveDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -215,5 +269,22 @@ export class AccommodationDetailsScreenComponent implements OnInit{
           })
       },
     });
+  }
+  openReviewDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    const dialogRef=this.dialog.open(ReviewDialogComponent, {
+      data: {
+        recipientId:this.accommodation.id,
+        isAccommodationReview:true
+      },
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (!dialogResult)
+          return
+          this.sharedService.openSnackBar(dialogResult);
+      },
+    });
+
   }
 }
