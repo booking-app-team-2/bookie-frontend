@@ -6,7 +6,16 @@
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
-  <div class="imgholder"></div>
+  <div class="sliderContainer">
+    <button  mat-button (click)="shiftPictureLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+    <div class="imgContainer">
+      <img [src]="selectedImage" class="displayPic" alt="img" loading="eager"/>
+      <div class="smallImgHolder">
+        <img *ngFor="let image of images; trackBy: trackByImage" [src]="image" width="100px" height="100px" alt="" class="smallImg" loading="eager">
+      </div>
+    </div>
+    <button  mat-button (click)="shiftPictureRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+  </div>
   <div class="divider">
     <mat-divider></mat-divider>
   </div>
@@ -29,13 +38,9 @@
       <div class="div-wrapper">
         <div class="div-rating">
           <div class="stars">
-            <mat-icon>star</mat-icon>
-            <mat-icon>star</mat-icon>
-            <mat-icon>star</mat-icon>
-            <mat-icon>star</mat-icon>
-            <mat-icon>star_half</mat-icon>
+            <mat-icon *ngFor="let star of stars" class="star">{{ star }}</mat-icon>
           </div>
-          <div class="text-wrapper">4.5</div>
+          <div class="text-wrapper">{{ averageGrade }}</div>
         </div>
       </div>
     </div>
@@ -70,7 +75,7 @@
     <div class="div DescPrice">
       <div class="div-wrapper"><div class="text-wrapper">Location</div></div>
       <div class="div-wrapper">
-        <app-map [center]="mapCenter"></app-map>
+        <app-map [newCenter]="mapCenter" #mapComponent></app-map>
       </div>
     </div>
     <div class="vertical-full-width-wrapper">
@@ -81,7 +86,7 @@
       <div class="div-wrapper"><div class="text-wrapper">{{price}}</div></div>
       <div class="div-wrapper">
         <mat-card class="calendar-card">
-          <mat-calendar [dateClass]="dateClass()" [(selected)]="selected" (selectedChange)="displayPrice()"></mat-calendar>
+          <mat-calendar [dateClass]="dateClass()" [(selected)]="selected" (selectedChange)="displayPrice()" #calendarComponent></mat-calendar>
         </mat-card>
       </div>
     </div>
@@ -105,19 +110,22 @@
     <div class="divider">
       <mat-divider></mat-divider>
     </div>
-    <div class="text-wrapper">Reviews</div>
-    <div class="divider">
-      <mat-divider></mat-divider>
+    <div class="reviewDiv">
+      <div class="text-wrapper reviewHeader">
+        Reviews
+      </div>
+      <button *ngIf="userType=='Guest'" mat-flat-button color="primary" (click)="openReviewDialog('250ms', '250ms')">Make a review</button>
+      <button mat-raised-button class="button" color="primary" [routerLink]="'/owner/'+ this.ownerId+'/reviews'">
+        See owner reviews
+      </button>
     </div>
-    <app-review-card></app-review-card>
-    <div class="divider">
-      <mat-divider></mat-divider>
+
+    <div *ngFor="let review of accommodationReviews">
+      <div class="divider">
+        <mat-divider></mat-divider>
+      </div>
+      <app-review-card [review]="review" [ownerId]="ownerId"></app-review-card>
     </div>
-    <app-review-card></app-review-card>
-    <div class="divider">
-      <mat-divider></mat-divider>
-    </div>
-    <app-review-card></app-review-card>
   </div>
   <button id="fab" mat-fab color="warn" extended="" *ngIf="userType == 'Guest'"
           (click)="openReserveDialog('250ms', '250ms')">

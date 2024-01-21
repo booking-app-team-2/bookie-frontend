@@ -78,3 +78,9 @@
 mat-icon{
   color: rgb(255, 210, 48);
 }
+.buttonDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1vw;
+}

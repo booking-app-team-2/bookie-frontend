@@ -1,0 +1,64 @@
+<div id="content-holder">
+  <div id="inner-holder">
+    <div id="search-and-filter-form-holder">
+      <form [formGroup]="searchAndFilterForm">
+        <div id="search-and-filter-holder">
+          <mat-form-field appearance="outline" color="primary" class="reservation-search">
+            <mat-label>Accommodation name</mat-label>
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput type="text" name="name" formControlName="name" spellcheck="false">
+          </mat-form-field>
+          <mat-form-field appearance="outline" color="primary">
+            <mat-label>Pick the reservation period</mat-label>
+            <mat-date-range-input [formGroup]="searchAndFilterForm" [rangePicker]="picker">
+              <input matStartDate formControlName="startDate" placeholder="Start date">
+              <input matEndDate formControlName="endDate" placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="picker" />
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+          <div id="filter-holder">
+            Find reservations by status:
+            <div>
+              <mat-checkbox formControlName="waiting">Waiting</mat-checkbox>
+              <mat-checkbox formControlName="accepted">Accepted</mat-checkbox>
+              <mat-checkbox formControlName="declined">Declined</mat-checkbox>
+              <mat-checkbox formControlName="cancelled">Cancelled</mat-checkbox>
+            </div>
+          </div>
+          <button mat-raised-button color="primary"
+                  (click)=
+                    "userRole == 'Guest' ? searchAndFilterReservationsGuest() : searchAndFilterReservationsOwner()"
+          >
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="header-holder">
+      <div class="header-cell">Accommodation</div>
+      <mat-divider vertical />
+      <div class="header-cell">Number of guests</div>
+      <mat-divider vertical />
+      <div class="header-cell">From - To</div>
+      <mat-divider vertical />
+      <div class="header-cell">Price</div>
+      <mat-divider vertical />
+      <ng-container *ngIf="userRole === 'Owner'">
+        <div class="header-cell">Reservee</div>
+        <mat-divider vertical />
+        <div class="header-cell">Number of reservations cancelled by reservee</div>
+        <mat-divider vertical />
+      </ng-container>
+      <div class="header-cell">Status</div>
+      <mat-divider vertical />
+      <div class="header-cell">Action</div>
+    </div>
+    <div id="reservations-holder">
+      <app-reservation *ngFor="let reservation of reservations" [userRole]="userRole" [reservation]="reservation"
+                       (reservationStatusChanged)=
+                         "userRole == 'Guest' ? searchAndFilterReservationsGuest() : searchAndFilterReservationsOwner()"
+      />
+    </div>
+  </div>
+</div>

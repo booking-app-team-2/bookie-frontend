@@ -9,7 +9,7 @@
   </div>
   <div class="buttons-container" *ngIf="userType == 'Guest'">
     <button mat-button>Favourite accommodations</button>
-    <button mat-button>My reservations</button>
+    <button mat-button [routerLink]="'/reservations'">My reservations</button>
     <button mat-button routerLink="profile">Welcome, {{userName}}</button>
     <button (click)="logOut()" mat-button >Log out</button>
     <button mat-icon-button aria-label="notifications">
@@ -17,7 +17,8 @@
     </button>
   </div>
   <div class="buttons-container" *ngIf="userType == 'Owner'">
-    <button mat-button>Reservations for my accommodations</button>
+    <button mat-button [routerLink]="'/reservations'">Reservations for my accommodations</button>
+    <button mat-button [routerLink]="'/owner/'+ this.tokenService.getIdFromToken()+'/accommodations'">View my accommodations</button>
     <button mat-button>Create an accommodation</button>
     <button mat-button routerLink="profile">Welcome, {{userName}}</button>
     <button (click)="logOut()" mat-button>Log out</button>
@@ -26,7 +27,8 @@
     </button>
   </div>
   <div class="buttons-container" *ngIf="userType == 'Admin'">
-    <button mat-button>Reported comments</button>
+    <button mat-button [routerLink]="'reviews/reported'">Reported comments</button>
+    <button mat-button [routerLink]="'reviews/unapproved'">Unapproved comments</button>
     <button mat-button>Users</button>
     <button mat-button routerLink="profile">Welcome, {{userName}}</button>
     <button (click)="logOut()" mat-button>Log out</button>

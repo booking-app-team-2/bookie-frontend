@@ -1,0 +1,39 @@
+.frame{
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+  margin-top: 10vh;
+}
+.text-wrapper{
+  position: relative;
+  font:2em"rubik";
+  text-align: center;
+  color: white;
+}
+.reviewBtn{
+  width: 30vw;
+}
+.reviewHeader{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+}
+.frame .div-rating {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  position: relative;
+}
+
+.frame .stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  align-self: stretch;
+  flex: 0 0 auto;
+}
+mat-icon{
+  color: rgb(255, 210, 48);
+}

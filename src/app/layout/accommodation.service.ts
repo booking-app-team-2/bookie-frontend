@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {environment} from "../../env/env";
 import {catchError, Observable, throwError} from "rxjs";
 import {AccommodationDTO} from "./accommodation-card/model/accommodation.model";
@@ -7,6 +7,9 @@ import {
   AccommodationBasicInfoDTO
 } from "../accommodation-updating/accommodation-updating/model/accommodation.basic-info.model";
 import {AccommodationApproval} from "./accommodation-details-screen/model/accommodation-approval.model";
+import {
+  AccommodationAutoAccept
+} from "../accommodation-updating/accommodation-updating/model/accommodation-auto-accept.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +17,14 @@ import {AccommodationApproval} from "./accommodation-details-screen/model/accomm
 export class AccommodationService {
   accommodationControllerRoute: string= environment.apiHost + 'accommodations';
   constructor(private httpClient: HttpClient) { }
-  getSearchedAccommodations(location:string,numberOfGuests:string,startDate:string,endDate:string): Observable<AccommodationDTO[]>{
+  getSearchedAccommodations(location:string,numberOfGuests:string,startDate:number,endDate:number): Observable<AccommodationDTO[]>{
     const params = {
       location,
       numberOfGuests,
       startDate,
       endDate,
     };
-    if(location=="" && numberOfGuests=="" && startDate=="0" && endDate=="0"){
+    if(location=="" && numberOfGuests=="" && startDate==0 && endDate==0){
       return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search');
     }
     return this.httpClient.get<AccommodationDTO[]>(this.accommodationControllerRoute+'/search',{params});
@@ -47,5 +50,24 @@ export class AccommodationService {
                              accommodationApproval: AccommodationApproval): Observable<AccommodationApproval> {
     return this.httpClient.put<AccommodationApproval>(this.accommodationControllerRoute + '/' + id + '/is-approved',
       accommodationApproval);
+  }
+
+  putAccommodationIsReservationAutoAccepted(
+    id: number,
+    accommodationAutoAccept: AccommodationAutoAccept
+  ): Observable<AccommodationAutoAccept> {
+    return this.httpClient.put<AccommodationAutoAccept>(
+      this.accommodationControllerRoute + '/' + id + '/is-reservation-auto-accepted', accommodationAutoAccept
+    );
+  }
+
+  loadImage(id:number):Observable<Blob>{
+    return this.httpClient.get(environment.apiHost+'images/'+id.toString(),{responseType:'blob'});
+  }
+  getOwnerIdByAccommodationId(id:number):Observable<number>{
+    return this.httpClient.get<number>(environment.apiHost+'owners/accommodation/'+id.toString()).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error.error.message);
+      }));
   }
 }

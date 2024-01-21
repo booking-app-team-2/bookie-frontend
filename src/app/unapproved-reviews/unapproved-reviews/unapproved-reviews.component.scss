@@ -1,0 +1,21 @@
+.frame{
+  display: flex;
+  flex-direction: column;
+  background-color: #FDF5EC;
+  color: black;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #171123;
+    color: #FDF5EC;
+  }
+}
+.headerText{
+  text-align: center;
+  font: 2em'rubik';
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+.text-wrapper{
+  text-align: center;
+  font: 1.5em'rubik';
+}

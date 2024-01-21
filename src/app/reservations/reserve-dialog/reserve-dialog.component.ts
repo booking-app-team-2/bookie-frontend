@@ -41,11 +41,22 @@ export class ReserveDialogComponent {
     endDate: new FormControl<Date | null>(null, [Validators.required]),
   });
 
+  private getDateInLocalTimezone(date: Date): Date {
+    return new Date(date.toLocaleDateString([], { timeZone: 'Europe/Belgrade' }));
+  }
+
   availabilityPeriodFilter = (d: Date | null): boolean => {
     return this.data.availabilityPeriods.some(
-      availabilityPeriod =>
-        availabilityPeriod.period.startDate * 1000 <= (d?.getTime() ?? new Date().getTime()) &&
-        availabilityPeriod.period.endDate * 1000 >= (d?.getTime() ?? new Date().getTime())
+      (availabilityPeriod: {
+        id: number,
+        price: number,
+        period: {
+          startDate: number,
+          endDate: number
+        },
+        deleted: boolean}) =>
+        this.getDateInLocalTimezone(new Date(availabilityPeriod.period.startDate)) <= (d ?? new Date()) &&
+        this.getDateInLocalTimezone(new Date(availabilityPeriod.period.endDate)) >= (d ?? new Date())
     );
   }
 
@@ -87,9 +98,9 @@ export class ReserveDialogComponent {
       numberOfGuests: this.numberOfGuestsForm.value.numberOfGuests ?? 0,
       accommodationId: this.data.accommodationId,
       reserveeId: this.tokenService.getIdFromToken() ?? 0,
-      period: {
-        startDate: Math.floor((this.periodForm.value.startDate?.getTime() ?? 0) / 1000),
-        endDate: Math.floor((this.periodForm.value.endDate?.getTime() ?? 0) / 1000),
+      periodDTO: {
+        startTimestamp: this.periodForm.value.startDate?.getTime() ?? 0,
+        endTimestamp: this.periodForm.value.endDate?.getTime() ?? 0,
       },
     }
 

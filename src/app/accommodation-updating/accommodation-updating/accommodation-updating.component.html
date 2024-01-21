@@ -7,11 +7,13 @@
       <form class="create-forum" id="form">
         <div class="form-column">
           <div class="bookie-quirky"></div>
-          <button mat-raised-button class="forum-buttons" color="primary" (click)="fileInput.click()">Choose file</button>
-          <input hidden type="file" accept=".svg" #fileInput (change)="onFileSelected($event)">
-          <div class="imageDiv" *ngFor="let image of accommodation.images; let i=index">
-            <img ngSrc="{{image.path}}" alt="Image" height="50" width="50"/>
-            <button mat-flat-button color="primary" class="delete-button" (click)="deleteImage(i)">Delete</button>
+          <form enctype="multipart/form-data">
+            <button mat-raised-button class="forum-buttons" color="primary" (click)="fileInput.click()">Choose file</button>
+            <input hidden type="file" accept=".jpg" #fileInput (change)="onFileSelected($event)">
+          </form>
+          <div class="imageDiv" *ngFor="let image of images; trackBy: trackByImage ; let i=index">
+            <img [src]="image.path" alt="Image" height="50" width="50"/>
+            <button mat-flat-button color="primary" class="delete-button" (click)="deleteImage(image.id)">Delete</button>
           </div>
         </div>
         <div class="form-column">
@@ -48,7 +50,7 @@
 
           <!-- Guests Slider -->
           <mat-label>Min and Max Guests</mat-label>
-          <mat-slider class="full-width" name="guests" min="1" max="10" step="1" discrete>
+          <mat-slider class="full-width" min="1" max="10" step="1" discrete>
             <input [(ngModel)]="accommodation.minimumGuests" matSliderStartThumb name="minimumGuests">
             <input [(ngModel)]="accommodation.maximumGuests" matSliderEndThumb name="maximumGuests">
           </mat-slider>
@@ -59,8 +61,8 @@
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Enter a date range</mat-label>
               <mat-date-range-input [rangePicker]="picker" disabled>
-                <input matStartDate name="startDate_{{i}}" [value]="formatDate(period.period.startDate)">
-                <input matEndDate name="endDate_{{i}}" [value]="formatDate(period.period.endDate)">
+                <input matStartDate name="startDate_{{i}}" [value]="parseDateString(period.period.startDate)">
+                <input matEndDate name="endDate_{{i}}" [value]="parseDateString(period.period.endDate)">
               </mat-date-range-input>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-date-range-picker #picker></mat-date-range-picker>

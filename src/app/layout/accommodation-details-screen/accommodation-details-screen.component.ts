@@ -1,10 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {AccommodationDTO} from "../accommodation-card/model/accommodation.model";
 import {ActivatedRoute} from "@angular/router";
 import {MatCalendarCellCssClasses} from "@angular/material/datepicker";
 import {AccommodationService} from "../accommodation.service";
 import {MatDialog} from "@angular/material/dialog";
-import {ReserveDialogComponent} from "../reserve-dialog/reserve-dialog.component";
 import {SharedService} from "../../shared/shared.service";
 import {TokenService} from "../../shared/token.service";
 import {
@@ -12,6 +11,13 @@ import {
 } from "../../shared/custom-message-box-dialog/custom-message-box-dialog.component";
 import {AccommodationApproval} from "./model/accommodation-approval.model";
 import {HttpErrorResponse} from "@angular/common/http";
+import {ReserveDialogComponent} from "../../reservations/reserve-dialog/reserve-dialog.component";
+import {MapComponent} from "../../shared/map/map.component";
+import {ImageService} from "../../shared/image.service";
+import {ReviewService} from "../review-card/review.service";
+import {AccommodationReviewDTO} from "../review-card/model/accommodation-review.model";
+import {FilterDialogComponent} from "../filter-dialog/filter-dialog.component";
+import {ReviewDialogComponent} from "../review-dialog/review-dialog.component";
 
 export interface calendarDate{
   start:Date;
@@ -27,13 +33,19 @@ export interface calendarDate{
 })
 export class AccommodationDetailsScreenComponent implements OnInit{
 
+  @ViewChild('mapComponent') mapComponent: MapComponent;
   accommodation: AccommodationDTO;
   selected: any;
   dateRange: calendarDate[] = [];
-  price:string="Click on the date to see its price";
-  mapCenter: [number, number];
-
+  price:string="Click here to see the availability periods";
+  mapCenter: [number, number]=[0,0];
+  images:any[]=[];
   userType: string = this.tokenService.getRoleFromToken() ?? 'unauthenticated';
+  selectedImage:any="";
+  accommodationReviews:AccommodationReviewDTO[];
+  averageGrade:number;
+  ownerId:number;
+
 
   dateClass(): (date: Date) => MatCalendarCellCssClasses {
     return (date: Date): MatCalendarCellCssClasses => {
@@ -45,13 +57,21 @@ export class AccommodationDetailsScreenComponent implements OnInit{
       return '';
     };
   }
+  currentIndex=0;
+  shiftPictureRight():void{
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    this.selectedImage=this.images[this.currentIndex];
+  }
+  shiftPictureLeft():void{
+    this.currentIndex = (this.currentIndex - 1) % this.images.length;
+    this.selectedImage=this.images[this.currentIndex];
+  }
 
   displayPrice():void {
     let flag:boolean=false;
     for (const range of this.dateRange) {
       if (this.selected >= range.start && this.selected <= range.end) {
         this.price = "Price: " + range.price;
-
         flag=true;
       }
     }
@@ -60,31 +80,117 @@ export class AccommodationDetailsScreenComponent implements OnInit{
     }
   }
 
-  constructor(private accommodationService:AccommodationService,private route: ActivatedRoute,
-              public dialog: MatDialog, private sharedService: SharedService, private tokenService: TokenService) {
+  constructor(private accommodationService:AccommodationService,private imageService:ImageService,private route: ActivatedRoute,
+              public dialog: MatDialog, private sharedService: SharedService, private tokenService: TokenService, private reviewService: ReviewService){
   }
 
+  parseDateString(dateString: string): Date | null {
+    const dateParts = dateString.split('-');
+    if (dateParts.length === 3) {
+      const year = parseInt(dateParts[0], 10);
+      const month = parseInt(dateParts[1], 10) - 1; // Months are 0-indexed in JavaScript
+      const day = parseInt(dateParts[2], 10);
+      const parsedDate = new Date(year, month, day);
+      if (!isNaN(parsedDate.getTime())) {
+        return parsedDate;
+      }
+    }
+    return null;
+  }
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = params['id'];
+
       this.accommodationService.getAccommodationDetails(id.toString()).subscribe({
-        next: (accommodation: AccommodationDTO): AccommodationDTO => this.accommodation = accommodation,
+        next: (accommodation: AccommodationDTO) => {
+          this.accommodation = accommodation;
+          this.dateRange = [];
+          this.mapCenter = [this.accommodation?.location.latitude, this.accommodation?.location.longitude];
+          for (const period of this.accommodation?.availabilityPeriods || []) {
+            this.dateRange.push({
+              start: this.parseDateString(period.period.startDate)!,
+              end: this.parseDateString(period.period.endDate)!,
+              price: period.price
+            });
+          }
+        },
         error: (_) => {
         }
       });
-      this.mapCenter= [this.accommodation?.location.latitude,this.accommodation?.location.longitude];
-      for(const period of this.accommodation?.availabilityPeriods){
-        this.dateRange.push({
-          start: new Date(
-            period.period.startDate * 1000
-          ),
-          end: new Date(
-            period.period.endDate * 1000
-          ),
-          price:period.price
-        });
-      }
+      this.accommodation.images.forEach((image)=>{
+        this.imageService.loadImage(image.id).subscribe(
+          (imageSrc: string | null) => {
+            if (imageSrc) {
+              console.log('Image loaded:', imageSrc);
+              this.images.push(imageSrc);
+            } else {
+              console.error('Error loading image');
+            }
+          }
+        );
+      })
+      this.imageService.loadImage(0).subscribe(
+        (imageSrc: string | null) => {
+          if (imageSrc) {
+            console.log('Image loaded:', imageSrc);
+            this.selectedImage=imageSrc;
+          } else {
+            console.error('Error loading image');
+          }
+        }
+      );
+      this.imageService.loadImage(0).subscribe({
+        next:(imageSrc:string|null)=>{
+          this.selectedImage=imageSrc;
+        },
+        error:(_)=>{
+          console.error('Error loading image')
+        }
+
+      })
+      this.reviewService.getAccommodationReviews(this.accommodation.id).subscribe({
+        next:(accommodationReviews:AccommodationReviewDTO[])=>{
+          this.accommodationReviews=accommodationReviews;
+        },
+        error:(_)=>{
+
+        }
+      });
+      this.reviewService.getAccommodationAverageGrade(this.accommodation.id).subscribe({
+        next:(averageGrade:number)=>{
+          this.averageGrade=averageGrade;
+        },
+        error:(_)=>{
+
+        }
+      });
+      this.accommodationService.getOwnerIdByAccommodationId(this.accommodation.id).subscribe({
+        next:(id:number)=>{
+          this.ownerId=id;
+          console.log(this.ownerId);
+        },
+        error:(error)=>{
+          this.sharedService.openSnackBar(error);
+        }
+      })
+
     });
+  }
+  trackByImage(index: number, image: any): any {
+    return image;
+  }
+
+  get stars(): string[] {
+    const fullStars = Math.floor(this.averageGrade);
+    const hasHalfStar = this.averageGrade % 1 >= 0.5;
+    const result = Array(5).fill('star_border');
+    for (let i = 0; i < fullStars; i++) {
+      result[i] = 'star';
+    }
+    if (hasHalfStar) {
+      result[fullStars] = 'star_half';
+    }
+    return result;
   }
 
   openReserveDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -163,5 +269,22 @@ export class AccommodationDetailsScreenComponent implements OnInit{
           })
       },
     });
+  }
+  openReviewDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    const dialogRef=this.dialog.open(ReviewDialogComponent, {
+      data: {
+        recipientId:this.accommodation.id,
+        isAccommodationReview:true
+      },
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (!dialogResult)
+          return
+          this.sharedService.openSnackBar(dialogResult);
+      },
+    });
+
   }
 }

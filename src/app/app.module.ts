@@ -11,7 +11,10 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {provideHttpClient, withFetch} from "@angular/common/http";
 import {AccommodationUpdatingModule} from "./accommodation-updating/accommodation-updating.module";
 import {OwnerAccommodationsModule} from "./owner-accommodations/owner-accommodations.module";
+import {OwnerReviewsModule} from "./owner-reviews/owner-reviews.module";
 import {TokenInterceptor} from "./shared/interceptor/token-interceptor";
+import {ReportedReviewsModule} from "./reported-reviews/reported-reviews.module";
+import {UnapprovedReviewsModule} from "./unapproved-reviews/unapproved-reviews.module";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
 
 @NgModule({
@@ -28,7 +31,10 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
     LoginRegisterModule,
     AccommodationUpdatingModule,
     HttpClientModule,
-    OwnerAccommodationsModule
+    OwnerAccommodationsModule,
+    OwnerReviewsModule,
+    ReportedReviewsModule,
+    UnapprovedReviewsModule
   ],
   providers: [
     provideClientHydration(),

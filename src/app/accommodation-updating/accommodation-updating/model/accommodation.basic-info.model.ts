@@ -17,13 +17,12 @@ export interface AccommodationBasicInfoDTO{
     isDeleted:boolean;
   }[];
   type:string;
-  reservationAutoAccepted:boolean;
   availabilityPeriods:{
     id:number;
     price:number;
     period:{
-      startDate:number;
-      endDate:number;
+      startTimestamp:number;
+      endTimestamp:number;
     }
     deleted:boolean;
   }[];
