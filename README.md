@@ -1,28 +1,37 @@
-# Bookie
+# Bookie Frontend
 Frontend app for Bookie.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+# Contributors
+- Darko Svilar SV50/2021
+- Gojko Vučković SV49/2021
+- Boris Markov SV73/2021
 
-## Development server
+# Usage instructions
+## Prerequisites
+Clone the **[Bookie Backend](https://github.com/booking-app-team-2/bookie-backend)** project and run it.<br>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Clone the project from this repository<br>
 
-## Code scaffolding
+In your preferred editor/shell, positioned inside the project, run `ng serve -o` for a dev server.
+This will automatiaclly open `http://localhost:4200/` in your browser.<br>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
+Use the app as regular.<br>
 
-## Build
+### Note
+If you change any data that needs reverting during the testing of the app, just rerun the server. The server drops and recreates the DB schema every time it is rerun and has a test script setup that inserts the same test data upon running the app.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Logging in
+The landing page of the app is the main screen for an unauthenticated user.<br>
+To log in, press the Login button on the navigation bar.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This is a list of valid users by role that should suffice for testing the project:
+- Guest
+  - Username: `darko@gmail.com`
+  - Password: `darko123`
+- Owner
+  - Username: `owner@gmail.com`
+  - Password: `owner123`
+- Admin
+  - Username: `bookie@gmail.com`
+  - Password: `bookie123`
