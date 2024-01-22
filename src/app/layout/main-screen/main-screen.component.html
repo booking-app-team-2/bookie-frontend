@@ -5,7 +5,7 @@
       <mat-form-field class="example-full-width" color="primary" appearance="outline">
         <mat-label>Location</mat-label>
         <mat-icon matPrefix>search</mat-icon>
-        <input matInput type="text" [(ngModel)]="location" name="value">
+        <input matInput type="text" [(ngModel)]="location" name="value" class="locationInput">
         <button matSuffix mat-icon-button aria-label="Clear" *ngIf="location" (click)="location=''">
           <mat-icon>remove_circle_outline</mat-icon>
         </button>
@@ -15,7 +15,7 @@
         <mat-form-field class="example-full-width" color="primary" appearance="outline">
           <mat-label>Guest number</mat-label>
           <mat-icon matPrefix>search</mat-icon>
-          <input matInput type="text" [(ngModel)]="guestNumber" name="value">
+          <input matInput type="text" [(ngModel)]="guestNumber" name="value" class="guestInput">
           <button matSuffix mat-icon-button aria-label="Clear" *ngIf="guestNumber" (click)="guestNumber=''">
             <mat-icon>remove_circle_outline</mat-icon>
           </button>
@@ -27,7 +27,7 @@
           <input matStartDate formControlName="start" placeholder="Start date">
           <input matEndDate formControlName="end" placeholder="End date">
         </mat-date-range-input>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle matIconSuffix [for]="picker" class="calendarIcon"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
 
         @if (range.controls.start.hasError('matStartDateInvalid')) {
@@ -38,8 +38,8 @@
         }
       </mat-form-field>
       <div class="button-div">
-        <button mat-flat-button color="primary" (click)="searchButton()">Search</button>
-        <button mat-flat-button color="accent" *ngIf="isButtonEnabled" (click)="openFilterDialog('250ms', '250ms')">Filter</button>
+        <button mat-flat-button color="primary" (click)="searchButton()" class="searchBtn">Search</button>
+        <button mat-flat-button color="accent" *ngIf="isButtonEnabled" (click)="openFilterDialog('250ms', '250ms')" class="filterBtn">Filter</button>
       </div>
     </div>
   </div>

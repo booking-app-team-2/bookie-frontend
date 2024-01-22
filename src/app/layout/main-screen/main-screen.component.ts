@@ -19,8 +19,8 @@ export class MainScreenComponent{
     apartment:boolean=false;
     room:boolean=false;
     studio:boolean=false;
-    startThumbValue:number=100;
-    endThumbValue:number=5000;
+    startThumbValue:number=0;
+    endThumbValue:number=100;
     value="";
     image:any;
 
@@ -70,14 +70,14 @@ export class MainScreenComponent{
       );
       const priceFilteredAccommodations:AccommodationDTO[]=[];
       this.filteredAccommodations.forEach((accommodation)=>{
-        accommodation.availabilityPeriods.forEach((availabilityPeriod)=>{
-          // @ts-ignore
-          if(Math.floor(this.range.value.start.getTime()/1000).toString()>=availabilityPeriod.period.startDate && Math.floor(this.range.value.end.getTime()/1000).toString()<=availabilityPeriod.period.endDate && availabilityPeriod.price>=this.startThumbValue && availabilityPeriod.price<=this.endThumbValue){
+        accommodation.availabilityPeriods.some((availabilityPeriod)=>{
+          if(availabilityPeriod.price>=this.startThumbValue && availabilityPeriod.price<=this.endThumbValue){
             priceFilteredAccommodations.push(accommodation);
-            return;
+            return true;
           }
-        })
-      })
+          return false;
+        });
+      });
       this.filteredAccommodations=JSON.parse(JSON.stringify(priceFilteredAccommodations));
     });
   }
@@ -102,7 +102,7 @@ export class MainScreenComponent{
     }
     this.accommodationService.getSearchedAccommodations(this.location,this.guestNumber,startDate,endDate).subscribe({
       next: (accommodations: AccommodationDTO[]): void => {
-        this.accommodations = accommodations;
+        this.accommodations=accommodations;
         if (this.accommodations.length > 0) {
           this.isButtonEnabled = true;
           this.filteredAccommodations=JSON.parse(JSON.stringify(this.accommodations));

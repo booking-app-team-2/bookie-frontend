@@ -2,25 +2,25 @@
   <div class="statement-holder" id="asd">
     <mat-label>Amenities</mat-label>
     <div class="options-holder">
-      <mat-checkbox [(ngModel)]="data.wifi">WiFi</mat-checkbox>
-      <mat-checkbox [(ngModel)]="data.parking">Parking</mat-checkbox>
-      <mat-checkbox [(ngModel)]="data.ac">AC</mat-checkbox>
-      <mat-checkbox [(ngModel)]="data.kitchen">Kitchen</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.wifi" class="wifi">WiFi</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.parking" class="parking">Parking</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.ac" class="ac">AC</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.kitchen" class="kitchen">Kitchen</mat-checkbox>
     </div>
   </div>
   <div class="statement-holder">
     <mat-label>Accommodation type</mat-label>
     <div class="options-holder">
-      <mat-checkbox [(ngModel)]="data.apartment">Apartment</mat-checkbox>
-      <mat-checkbox [(ngModel)]="data.room">Room</mat-checkbox>
-      <mat-checkbox [(ngModel)]="data.studio">Studio</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.apartment" class="apartment">Apartment</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.room" class="room">Room</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.studio" class="studio">Studio</mat-checkbox>
     </div>
   </div>
   <div class="statement-holder">
     <mat-label>Price per guest</mat-label>
-    <mat-slider class="full-width" name="price" min="0" max="10000" step="" discrete>
-      <input [(ngModel)]="data.startThumbValue" matSliderStartThumb>
-      <input [(ngModel)]="data.endThumbValue" matSliderEndThumb>
+    <mat-slider class="full-width" name="price" min="0" max="100" step="" discrete>
+      <input [(ngModel)]="data.startThumbValue" matSliderStartThumb class="startSlider">
+      <input [(ngModel)]="data.endThumbValue" matSliderEndThumb class="endSlider">
     </mat-slider>
   </div>
 
