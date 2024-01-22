@@ -6,6 +6,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SharedService} from "../../shared/shared.service";
 import {TokenService} from "../../shared/token.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-reserve-dialog',
@@ -103,8 +104,7 @@ export class ReserveDialogComponent {
         endTimestamp: this.periodForm.value.endDate?.getTime() ?? 0,
       },
     }
-
-    this.reservationService.post(reservation).subscribe({
+    this.reservationPost(reservation).subscribe({
       next: (): void => this.dialogRef.close(true),
       error: (error: HttpErrorResponse): void => {
         if (error)
@@ -112,6 +112,10 @@ export class ReserveDialogComponent {
         else
           this.sharedService.openSnackBar("Error reaching the server.");
       },
-    });
+    })
+  }
+
+  reservationPost(reservation:Reservation):Observable<Reservation>{
+    return this.reservationService.post(reservation);
   }
 }
