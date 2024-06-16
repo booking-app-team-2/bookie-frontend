@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProfileDeletionDialogComponent } from './profile-deletion-dialog.component';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 
-fdescribe('ProfileDeletionDialogComponent', (): void => {
+describe('ProfileDeletionDialogComponent', (): void => {
   let component: ProfileDeletionDialogComponent;
   let fixture: ComponentFixture<ProfileDeletionDialogComponent>;
   let httpController: HttpTestingController;
