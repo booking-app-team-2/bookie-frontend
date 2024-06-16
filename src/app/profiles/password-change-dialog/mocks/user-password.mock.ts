@@ -7,5 +7,5 @@ export const testUserPassword1: UserPassword = {
 
 export const testUserPassword2: UserPassword = {
   currentPassword: 'testCurrentPassword2',
-  newPassword: 'testNewPassword2',
+  newPassword: 'bB2@asdasdasdasd',
 }

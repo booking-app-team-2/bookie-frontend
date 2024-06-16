@@ -83,6 +83,7 @@ fdescribe('ProfileComponent', (): void => {
 
   it('should input the user data upon being loaded', (): void => {
     fixture.detectChanges();
+    expect(tokenServiceSpy.getIdFromToken).toHaveBeenCalledTimes(1);
     expect(profileServiceSpy.get).toHaveBeenCalledTimes(1);
     checkUser();
   });
@@ -106,6 +107,7 @@ fdescribe('ProfileComponent', (): void => {
       });
 
       fixture.detectChanges();
+      expect(tokenServiceSpy.getIdFromToken).toHaveBeenCalledTimes(1);
       expect(profileServiceSpy.get).toHaveBeenCalledTimes(2);
       checkUser();
     }
@@ -129,6 +131,7 @@ fdescribe('ProfileComponent', (): void => {
       });
 
       fixture.detectChanges();
+      expect(tokenServiceSpy.getIdFromToken).toHaveBeenCalledTimes(1);
       expect(profileServiceSpy.get).toHaveBeenCalledTimes(2);
       checkUser();
     }
@@ -150,6 +153,7 @@ fdescribe('ProfileComponent', (): void => {
     });
 
     fixture.detectChanges();
+    expect(tokenServiceSpy.getIdFromToken).toHaveBeenCalledTimes(1);
     expect(profileServiceSpy.get).toHaveBeenCalledTimes(2);
     checkUser();
   });
@@ -169,6 +173,7 @@ fdescribe('ProfileComponent', (): void => {
       });
 
       fixture.detectChanges();
+      expect(tokenServiceSpy.getIdFromToken).toHaveBeenCalledTimes(1);
       expect(profileServiceSpy.get).toHaveBeenCalledTimes(2);
       checkUser();
       expect(sharedServiceSpy.openSnackBar).toHaveBeenCalledWith('Password successfully changed.');
