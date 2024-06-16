@@ -11,7 +11,7 @@ describe('FilterDialogComponent', () => {
       declarations: [FilterDialogComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(FilterDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
