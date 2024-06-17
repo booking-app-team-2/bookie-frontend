@@ -38,7 +38,7 @@
         }
       </mat-form-field>
       <div class="button-div">
-        <button mat-flat-button color="primary" (click)="searchButton()">Search</button>
+        <button id="search-button" mat-flat-button color="primary" (click)="searchButton()">Search</button>
         <button mat-flat-button color="accent" *ngIf="isButtonEnabled" (click)="openFilterDialog('250ms', '250ms')">Filter</button>
       </div>
     </div>

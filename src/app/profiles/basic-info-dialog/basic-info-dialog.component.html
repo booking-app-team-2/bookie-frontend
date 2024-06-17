@@ -18,10 +18,11 @@
     </div>
   </form>
   <div id="button-holder">
-    <button mat-raised-button color="primary" (click)="updateUserBasicInfo()" [disabled]="!userBasicInfoForm.valid">
+    <button id="confirm-button" mat-raised-button color="primary" (click)="updateUserBasicInfo()"
+            [disabled]="!userBasicInfoForm.valid">
       Confirm
     </button>
-    <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+    <button id="cancel-button" mat-raised-button color="primary" mat-dialog-close>Cancel</button>
   </div>
 </div>
 <app-snack-bar />
