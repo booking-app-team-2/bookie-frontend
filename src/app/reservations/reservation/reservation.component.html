@@ -9,7 +9,7 @@
     }}
   </div>
   <mat-divider vertical />
-  <div class="reservation-cell">
+  <div id="period-value" class="reservation-cell">
     {{
       reservation?.period?.startDate | date:'dd/MM/yyyy'
     }} - {{
@@ -27,8 +27,14 @@
     <div class="reservation-cell">{{numberOfCancelledReservations?.numberOfCancelledReservations}}</div>
     <mat-divider vertical />
   </ng-container>
-  <div class="reservation-cell">{{reservation?.status}}</div>
+  <div id="status-value" class="reservation-cell">{{reservation?.status}}</div>
   <mat-divider vertical />
+  <ng-container *ngIf="userRole == 'Guest'">
+    <div id="cancellation-value" class="reservation-cell">
+      {{reservation?.accommodationName?.reservationCancellationDeadline}}
+    </div>
+    <mat-divider vertical />
+  </ng-container>
   <div class="reservation-cell">
     <ng-container *ngIf="userRole == 'Owner' else guestButtonContainer">
       <ng-container *ngIf="reservation?.status == 'Waiting'">
@@ -44,7 +50,7 @@
     </ng-container>
     <ng-template #guestButtonContainer>
       <ng-container *ngIf="reservation?.status == 'Accepted' else deletableReservation">
-        <button class="reservation-button" mat-flat-button color="primary"
+        <button id="cancel-button" class="reservation-button" mat-flat-button color="primary"
                 (click)="openCancelReservationDialog('250ms', '250ms')">
           Cancel
         </button>
