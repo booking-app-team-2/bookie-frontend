@@ -96,6 +96,7 @@ export class ReserveDialogComponent {
 
     const reservation: Reservation = {
       numberOfGuests: this.numberOfGuestsForm.value.numberOfGuests ?? 0,
+      status: null,
       accommodationId: this.data.accommodationId,
       reserveeId: this.tokenService.getIdFromToken() ?? 0,
       periodDTO: {
